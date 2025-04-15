@@ -74,6 +74,24 @@
             display: inline-block;
             margin-right: 15px;
         }
+        .member-select option:disabled {
+            color: #999;
+            background-color: #f2f2f2;
+        }
+        .save-button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .save-button:hover {
+            background-color: #219955;
+        }
     </style>
 </head>
 <body>
@@ -158,15 +176,49 @@
         <li>All members collaborate on preparing the 10-minute demonstration video</li>
         <li>Each member explains their portion of the work in the video</li>
     </ul>
+
+    <button class="save-button" id="save-assignments">Save Task Assignments</button>
+
     <script>
-        // Save selections to localStorage
+        // Function to update dropdowns - disable options that are already selected elsewhere
+        function updateDropdowns() {
+            // Get all selected values
+            const selectedValues = Array.from(document.querySelectorAll('.member-select'))
+                .map(select => select.value)
+                .filter(value => value !== "");
+            
+            // For each dropdown
+            document.querySelectorAll('.member-select').forEach(select => {
+                // Get the currently selected value for this dropdown
+                const currentValue = select.value;
+                
+                // For each option in this dropdown
+                Array.from(select.options).forEach(option => {
+                    // Skip the empty option
+                    if (option.value === "") return;
+                    
+                    // If this option is selected in another dropdown, disable it
+                    if (selectedValues.includes(option.value) && option.value !== currentValue) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        // Save selections to localStorage and update dropdowns
         document.querySelectorAll('.member-select').forEach(select => {
             select.addEventListener('change', function() {
+                // Store the selection
                 localStorage.setItem('task_' + this.previousElementSibling.textContent, this.value);
+                
+                // Update all dropdowns
+                updateDropdowns();
             });
         });
 
-        // Load saved selections on page load
+        // Load saved selections on page load and update dropdowns
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.member-select').forEach(select => {
                 const savedValue = localStorage.getItem('task_' + select.previousElementSibling.textContent);
@@ -174,6 +226,27 @@
                     select.value = savedValue;
                 }
             });
+            
+            // Update dropdowns based on loaded values
+            updateDropdowns();
+        });
+
+        // Add a save button functionality
+        document.getElementById('save-assignments').addEventListener('click', function() {
+            // Get all assignments
+            const assignments = {};
+            document.querySelectorAll('.member-select').forEach(select => {
+                if (select.value) {
+                    const task = select.previousElementSibling.textContent;
+                    assignments[task] = select.value;
+                }
+            });
+            
+            // Save all at once
+            localStorage.setItem('all_assignments', JSON.stringify(assignments));
+            
+            // Provide feedback
+            alert('Task assignments saved successfully!');
         });
     </script>
 </body>
