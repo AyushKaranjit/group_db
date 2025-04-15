@@ -58,39 +58,19 @@
             padding: 15px;
             border-radius: 4px;
         }
-        .member-select {
-            padding: 8px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #f8f8f8;
-            width: 100%;
-            max-width: 300px;
-        }
         .task-title {
             margin-top: 0;
             font-size: 18px;
             display: inline-block;
             margin-right: 15px;
         }
-        .member-select option:disabled {
-            color: #999;
-            background-color: #f2f2f2;
-        }
-        .save-button {
-            display: block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
+        .member-assigned {
+            background-color: #f8f8f8;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .save-button:hover {
-            background-color: #219955;
+            border-left: 3px solid #27ae60;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -108,13 +88,7 @@
     
     <div class="task-section">
         <h3 class="task-title">Creates &amp; Documentation</h3>
-        <select class="member-select">
-            <option value="">Select Team Member</option>
-            <option value="ayush">Ayush Karanjit</option>
-            <option value="anuskar">Anuskar Sigdel</option>
-            <option value="utsab">Utsab Thami Magar</option>
-            <option value="nabin">Nabin Thapaliya</option>
-        </select>
+        <div class="member-assigned">Assigned to: Ayush Karanjit</div>
         <ul>
             <li>Develop the <code>Creates.sql</code> file for table creation</li>
             <li>Take lead on documenting table structures</li>
@@ -124,13 +98,7 @@
 
     <div class="task-section">
         <h3 class="task-title">Constraints &amp; Drops</h3>
-        <select class="member-select">
-            <option value="">Select Team Member</option>
-            <option value="ayush">Ayush Karanjit</option>
-            <option value="anuskar">Anuskar Sigdel</option>
-            <option value="utsab">Utsab Thami Magar</option>
-            <option value="nabin">Nabin Thapaliya</option>
-        </select>
+        <div class="member-assigned">Assigned to: Nabin Thapaliya</div>
         <ul>
             <li>Develop the <code>Constraints.sql</code> file to implement all integrity constraints</li>
             <li>Create the <code>Drops.sql</code> file for proper table removal</li>
@@ -140,13 +108,7 @@
 
     <div class="task-section">
         <h3 class="task-title">Insert Data &amp; Testing</h3>
-        <select class="member-select">
-            <option value="">Select Team Member</option>
-            <option value="ayush">Ayush Karanjit</option>
-            <option value="anuskar">Anuskar Sigdel</option>
-            <option value="utsab">Utsab Thami Magar</option>
-            <option value="nabin">Nabin Thapaliya</option>
-        </select>
+        <div class="member-assigned">Assigned to: Utsab Thami Magar</div>
         <ul>
             <li>Create the <code>Insert.sql</code> file with test data (minimum 5 records per table)</li>
             <li>Verify that inserts maintain referential integrity</li>
@@ -156,13 +118,7 @@
 
     <div class="task-section">
         <h3 class="task-title">Queries &amp; Integration</h3>
-        <select class="member-select">
-            <option value="">Select Team Member</option>
-            <option value="ayush">Ayush Karanjit</option>
-            <option value="anuskar">Anuskar Sigdel</option>
-            <option value="utsab">Utsab Thami Magar</option>
-            <option value="nabin">Nabin Thapaliya</option>
-        </select>
+        <div class="member-assigned">Assigned to: Anuskar Sigdel</div>
         <ul>
             <li>Develop the <code>Queries.sql</code> file with all required query types</li>
             <li>Ensure queries work with the inserted test data</li>
@@ -177,77 +133,6 @@
         <li>Each member explains their portion of the work in the video</li>
     </ul>
 
-    <button class="save-button" id="save-assignments">Save Task Assignments</button>
-
-    <script>
-        // Function to update dropdowns - disable options that are already selected elsewhere
-        function updateDropdowns() {
-            // Get all selected values
-            const selectedValues = Array.from(document.querySelectorAll('.member-select'))
-                .map(select => select.value)
-                .filter(value => value !== "");
-            
-            // For each dropdown
-            document.querySelectorAll('.member-select').forEach(select => {
-                // Get the currently selected value for this dropdown
-                const currentValue = select.value;
-                
-                // For each option in this dropdown
-                Array.from(select.options).forEach(option => {
-                    // Skip the empty option
-                    if (option.value === "") return;
-                    
-                    // If this option is selected in another dropdown, disable it
-                    if (selectedValues.includes(option.value) && option.value !== currentValue) {
-                        option.disabled = true;
-                    } else {
-                        option.disabled = false;
-                    }
-                });
-            });
-        }
-
-        // Save selections to localStorage and update dropdowns
-        document.querySelectorAll('.member-select').forEach(select => {
-            select.addEventListener('change', function() {
-                // Store the selection
-                localStorage.setItem('task_' + this.previousElementSibling.textContent, this.value);
-                
-                // Update all dropdowns
-                updateDropdowns();
-            });
-        });
-
-        // Load saved selections on page load and update dropdowns
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.member-select').forEach(select => {
-                const savedValue = localStorage.getItem('task_' + select.previousElementSibling.textContent);
-                if (savedValue) {
-                    select.value = savedValue;
-                }
-            });
-            
-            // Update dropdowns based on loaded values
-            updateDropdowns();
-        });
-
-        // Add a save button functionality
-        document.getElementById('save-assignments').addEventListener('click', function() {
-            // Get all assignments
-            const assignments = {};
-            document.querySelectorAll('.member-select').forEach(select => {
-                if (select.value) {
-                    const task = select.previousElementSibling.textContent;
-                    assignments[task] = select.value;
-                }
-            });
-            
-            // Save all at once
-            localStorage.setItem('all_assignments', JSON.stringify(assignments));
-            
-            // Provide feedback
-            alert('Task assignments saved successfully!');
-        });
-    </script>
+    <a href="index.html" class="nav-link">← Back to Assignment Details</a>
 </body>
 </html>
