@@ -52,6 +52,28 @@
         .nav-link:hover {
             background-color: #1a252f;
         }
+        .task-section {
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .member-select {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            width: 100%;
+            max-width: 300px;
+        }
+        .task-title {
+            margin-top: 0;
+            font-size: 18px;
+            display: inline-block;
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
@@ -66,33 +88,69 @@
 
     <h2>Phase 2: Development Tasks</h2>
     
-    <h3>Member 1: Creates &amp; Documentation</h3>
-    <ul>
-        <li>Develop the <code>Creates.sql</code> file for table creation</li>
-        <li>Take lead on documenting table structures</li>
-        <li>Help coordinate the overall database structure</li>
-    </ul>
+    <div class="task-section">
+        <h3 class="task-title">Creates &amp; Documentation</h3>
+        <select class="member-select">
+            <option value="">Select Team Member</option>
+            <option value="ayush">Ayush Karanjit</option>
+            <option value="anuskar">Anuskar Sigdel</option>
+            <option value="utsab">Utsab Thami Magar</option>
+            <option value="nabin">Nabin Thapaliya</option>
+        </select>
+        <ul>
+            <li>Develop the <code>Creates.sql</code> file for table creation</li>
+            <li>Take lead on documenting table structures</li>
+            <li>Help coordinate the overall database structure</li>
+        </ul>
+    </div>
 
-    <h3>Member 2: Constraints &amp; Drops</h3>
-    <ul>
-        <li>Develop the <code>Constraints.sql</code> file to implement all integrity constraints</li>
-        <li>Create the <code>Drops.sql</code> file for proper table removal</li>
-        <li>Focus on ensuring referential integrity is properly maintained</li>
-    </ul>
+    <div class="task-section">
+        <h3 class="task-title">Constraints &amp; Drops</h3>
+        <select class="member-select">
+            <option value="">Select Team Member</option>
+            <option value="ayush">Ayush Karanjit</option>
+            <option value="anuskar">Anuskar Sigdel</option>
+            <option value="utsab">Utsab Thami Magar</option>
+            <option value="nabin">Nabin Thapaliya</option>
+        </select>
+        <ul>
+            <li>Develop the <code>Constraints.sql</code> file to implement all integrity constraints</li>
+            <li>Create the <code>Drops.sql</code> file for proper table removal</li>
+            <li>Focus on ensuring referential integrity is properly maintained</li>
+        </ul>
+    </div>
 
-    <h3>Member 3: Insert Data &amp; Testing</h3>
-    <ul>
-        <li>Create the <code>Insert.sql</code> file with test data (minimum 5 records per table)</li>
-        <li>Verify that inserts maintain referential integrity</li>
-        <li>Test that all constraints work properly with the test data</li>
-    </ul>
+    <div class="task-section">
+        <h3 class="task-title">Insert Data &amp; Testing</h3>
+        <select class="member-select">
+            <option value="">Select Team Member</option>
+            <option value="ayush">Ayush Karanjit</option>
+            <option value="anuskar">Anuskar Sigdel</option>
+            <option value="utsab">Utsab Thami Magar</option>
+            <option value="nabin">Nabin Thapaliya</option>
+        </select>
+        <ul>
+            <li>Create the <code>Insert.sql</code> file with test data (minimum 5 records per table)</li>
+            <li>Verify that inserts maintain referential integrity</li>
+            <li>Test that all constraints work properly with the test data</li>
+        </ul>
+    </div>
 
-    <h3>Member 4: Queries &amp; Integration</h3>
-    <ul>
-        <li>Develop the <code>Queries.sql</code> file with all required query types</li>
-        <li>Ensure queries work with the inserted test data</li>
-        <li>Test integration between all components</li>
-    </ul>
+    <div class="task-section">
+        <h3 class="task-title">Queries &amp; Integration</h3>
+        <select class="member-select">
+            <option value="">Select Team Member</option>
+            <option value="ayush">Ayush Karanjit</option>
+            <option value="anuskar">Anuskar Sigdel</option>
+            <option value="utsab">Utsab Thami Magar</option>
+            <option value="nabin">Nabin Thapaliya</option>
+        </select>
+        <ul>
+            <li>Develop the <code>Queries.sql</code> file with all required query types</li>
+            <li>Ensure queries work with the inserted test data</li>
+            <li>Test integration between all components</li>
+        </ul>
+    </div>
 
     <h2>Phase 3: Review &amp; Video Demonstration</h2>
     <ul>
@@ -101,6 +159,25 @@
         <li>Each member explains their portion of the work in the video</li>
     </ul>
 
-    
+    <a href="index.html" class="nav-link">← Back to Assignment Details</a>
+
+    <script>
+        // Save selections to localStorage
+        document.querySelectorAll('.member-select').forEach(select => {
+            select.addEventListener('change', function() {
+                localStorage.setItem('task_' + this.previousElementSibling.textContent, this.value);
+            });
+        });
+
+        // Load saved selections on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.member-select').forEach(select => {
+                const savedValue = localStorage.getItem('task_' + select.previousElementSibling.textContent);
+                if (savedValue) {
+                    select.value = savedValue;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
