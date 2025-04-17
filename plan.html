@@ -1,137 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workload Distribution Plan - Group Database Assignment</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        h2 {
-            margin-top: 30px;
-        }
-        ul, ol {
-            padding-left: 25px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .important {
-            background-color: #f8f9fa;
-            border-left: 4px solid #2c3e50;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        .deadline {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        .nav-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 15px;
-            background-color: #2c3e50;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .nav-link:hover {
-            background-color: #1a252f;
-        }
-        .task-section {
-            margin-bottom: 25px;
-            border: 1px solid #eee;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        .task-title {
-            margin-top: 0;
-            font-size: 18px;
-            display: inline-block;
-            margin-right: 15px;
-        }
-        .member-assigned {
-            background-color: #f8f8f8;
-            padding: 5px 10px;
-            border-radius: 4px;
-            border-left: 3px solid #27ae60;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #2c3e50;
+      }
+      h1 {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+      }
+      h2 {
+        margin-top: 30px;
+      }
+      ul,
+      ol {
+        padding-left: 25px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .important {
+        background-color: #f8f9fa;
+        border-left: 4px solid #2c3e50;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .deadline {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .nav-link {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 15px;
+        background-color: #2c3e50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      .nav-link:hover {
+        background-color: #1a252f;
+      }
+      .task-section {
+        margin-bottom: 25px;
+        border: 1px solid #eee;
+        padding: 15px;
+        border-radius: 4px;
+      }
+      .task-title {
+        margin-top: 0;
+        font-size: 18px;
+        display: inline-block;
+        margin-right: 15px;
+      }
+      .member-assigned {
+        background-color: #f8f8f8;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border-left: 3px solid #27ae60;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
-    <a href="index.html" class="nav-link">← Back to Assignment Details</a>
+  </head>
+  <body>
+    <a href="plan.html" class="nav-link">View Workload Distribution Plan →</a>
+    <a href="assignment.html" class="nav-link"
+      >View Assignment Specifications →</a
+    >
     <h1>Workload Distribution Plan</h1>
-    
+
     <h2>Phase 1: Database Design (Everyone)</h2>
     <ul>
-        <li>Have all members collaborate on the initial table specifications based on the provided ERD</li>
-        <li>This ensures everyone understands the full database structure before working on individual components</li>
+      <li>
+        Have all members collaborate on the initial table specifications based
+        on the provided ERD
+      </li>
+      <li>
+        This ensures everyone understands the full database structure before
+        working on individual components
+      </li>
     </ul>
 
     <h2>Phase 2: Development Tasks</h2>
-    
+
     <div class="task-section">
-        <h3 class="task-title">Creates &amp; Documentation</h3>
-        <div class="member-assigned">Assigned to: Ayush Karanjit</div>
-        <ul>
-            <li>Develop the <code>Creates.sql</code> file for table creation</li>
-            <li>Take lead on documenting table structures</li>
-            <li>Help coordinate the overall database structure</li>
-        </ul>
+      <h3 class="task-title">Creates &amp; Documentation</h3>
+      <div class="member-assigned">Assigned to: Ayush Karanjit</div>
+      <ul>
+        <li>Develop the <code>Creates.sql</code> file for table creation</li>
+        <li>Take lead on documenting table structures</li>
+        <li>Help coordinate the overall database structure</li>
+      </ul>
     </div>
 
     <div class="task-section">
-        <h3 class="task-title">Constraints &amp; Drops</h3>
-        <div class="member-assigned">Assigned to: Nabin Thapaliya</div>
-        <ul>
-            <li>Develop the <code>Constraints.sql</code> file to implement all integrity constraints</li>
-            <li>Create the <code>Drops.sql</code> file for proper table removal</li>
-            <li>Focus on ensuring referential integrity is properly maintained</li>
-        </ul>
+      <h3 class="task-title">Constraints &amp; Drops</h3>
+      <div class="member-assigned">Assigned to: Nabin Thapaliya</div>
+      <ul>
+        <li>
+          Develop the <code>Constraints.sql</code> file to implement all
+          integrity constraints
+        </li>
+        <li>Create the <code>Drops.sql</code> file for proper table removal</li>
+        <li>Focus on ensuring referential integrity is properly maintained</li>
+      </ul>
     </div>
 
     <div class="task-section">
-        <h3 class="task-title">Insert Data &amp; Testing</h3>
-        <div class="member-assigned">Assigned to: Utsab Thami Magar</div>
-        <ul>
-            <li>Create the <code>Insert.sql</code> file with test data (minimum 5 records per table)</li>
-            <li>Verify that inserts maintain referential integrity</li>
-            <li>Test that all constraints work properly with the test data</li>
-        </ul>
+      <h3 class="task-title">Insert Data &amp; Testing</h3>
+      <div class="member-assigned">Assigned to: Utsab Thami Magar</div>
+      <ul>
+        <li>
+          Create the <code>Insert.sql</code> file with test data (minimum 5
+          records per table)
+        </li>
+        <li>Verify that inserts maintain referential integrity</li>
+        <li>Test that all constraints work properly with the test data</li>
+      </ul>
     </div>
 
     <div class="task-section">
-        <h3 class="task-title">Queries &amp; Integration</h3>
-        <div class="member-assigned">Assigned to: Anuskar Sigdel</div>
-        <ul>
-            <li>Develop the <code>Queries.sql</code> file with all required query types</li>
-            <li>Ensure queries work with the inserted test data</li>
-            <li>Test integration between all components</li>
-        </ul>
+      <h3 class="task-title">Queries &amp; Integration</h3>
+      <div class="member-assigned">Assigned to: Anuskar Sigdel</div>
+      <ul>
+        <li>
+          Develop the <code>Queries.sql</code> file with all required query
+          types
+        </li>
+        <li>Ensure queries work with the inserted test data</li>
+        <li>Test integration between all components</li>
+      </ul>
     </div>
 
     <h2>Phase 3: Review &amp; Video Demonstration</h2>
     <ul>
-        <li>Each member reviews everyone else's work to ensure consistency</li>
-        <li>All members collaborate on preparing the 10-minute demonstration video</li>
-        <li>Each member explains their portion of the work in the video</li>
+      <li>Each member reviews everyone else's work to ensure consistency</li>
+      <li>
+        All members collaborate on preparing the 10-minute demonstration video
+      </li>
+      <li>Each member explains their portion of the work in the video</li>
     </ul>
-
-</body>
+  </body>
 </html>

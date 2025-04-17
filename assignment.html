@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table specifications - database assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav-link {
+            display: inline-block;
+            margin: 30px 10px 0 0;
+            padding: 10px 15px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            background-color: #1a252f;
+        }
+        .erd-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .erd-image {
+            max-width: 100%;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+        }
+        .entities-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .entities-table th {
+            background-color: #2c3e50;
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+        .entities-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .entities-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-link">← back to assignment details</a>
+    <a href="plan.html" class="nav-link">← view workload distribution plan</a>
+    
+    <h1>database assignment specifications</h1>
+    
+    <div id="erd" class="erd-section">
+        <h2>entity relationship diagram (erd)</h2>
+        <p>this diagram shows the relationships between all entities in the database design:</p>
+        <img src="erd.png" alt="entity relationship diagram" class="erd-image">
+        <p><strong>note:</strong> your table specifications must match this erd structure and maintain all relationships shown.</p>
+    </div>
+    
+    <h1>database entities</h1>
+    
+    <table class="entities-table">
+        <thead>
+            <tr>
+                <th>entity</th>
+                <th>description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>degree</td>
+                <td>list of degrees with a unique title and details, included a level eg MSc, BSc, BEng, or BA</td>
+            </tr>
+            <tr>
+                <td>examiner</td>
+                <td>external examiner details with an ID, name, institution, contact details</td>
+            </tr>
+            <tr>
+                <td>attendance</td>
+                <td>list of students' attendance on a module, on a set date, default today</td>
+            </tr>
+            <tr>
+                <td>marker</td>
+                <td>lecturer details</td>
+            </tr>
+            <tr>
+                <td>student</td>
+                <td>student details; number, name, age, contact info</td>
+            </tr>
+            <tr>
+                <td>module</td>
+                <td>list of modules and their details with an active status Y/N default Y</td>
+            </tr>
+            <tr>
+                <td>degree_module</td>
+                <td>list of modules on a degree, with a start date and semester either S1 or S2</td>
+            </tr>
+            <tr>
+                <td>module_list</td>
+                <td>list of students on a module</td>
+            </tr>
+            <tr>
+                <td>assignment</td>
+                <td>assignment outline for a module, with a code, weighting and type</td>
+            </tr>
+            <tr>
+                <td>submission</td>
+                <td>module assignment submission, with receipt no, date and time</td>
+            </tr>
+            <tr>
+                <td>student_submission</td>
+                <td>a list of student's individual submissions, with their grade</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
