@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             color: #333;
@@ -33,6 +33,32 @@
         .nav-link:hover {
             background-color: #1a252f;
         }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 40px 0;
+        }
+        .spec-table th {
+            background-color: #2c3e50;
+            color: white;
+            text-align: left;
+            padding: 8px;
+            font-size: 14px;
+        }
+        .spec-table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .spec-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .table-title {
+            background-color: #e7e7e7;
+            font-weight: bold;
+            padding: 8px;
+            border-bottom: 2px solid #2c3e50;
+        }
         .erd-section {
             margin: 30px 0;
             padding: 20px;
@@ -46,29 +72,11 @@
             margin: 20px auto;
             border: 1px solid #ccc;
         }
-        .entities-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        .entities-table th {
-            background-color: #2c3e50;
-            color: white;
-            text-align: left;
-            padding: 10px;
-        }
-        .entities-table td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .entities-table tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="nav-link">← back to assignment details</a>
-    <a href="plan.html" class="nav-link">← view workload distribution plan</a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="plan.html" class="nav-link">view workload distribution plan →</a>
     
     <h1>database assignment specifications</h1>
     
@@ -79,61 +87,370 @@
         <p><strong>note:</strong> your table specifications must match this erd structure and maintain all relationships shown.</p>
     </div>
     
-    <h1>database entities</h1>
+    <h1>table specifications</h1>
     
-    <table class="entities-table">
-        <thead>
-            <tr>
-                <th>entity</th>
-                <th>description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>degree</td>
-                <td>list of degrees with a unique title and details, included a level eg MSc, BSc, BEng, or BA</td>
-            </tr>
-            <tr>
-                <td>examiner</td>
-                <td>external examiner details with an ID, name, institution, contact details</td>
-            </tr>
-            <tr>
-                <td>marker</td>
-                <td>lecturer details</td>
-            </tr>
-            <tr>
-                <td>student</td>
-                <td>student details; number, name, age, contact info</td>
-            </tr>
-            <tr>
-                <td>module</td>
-                <td>list of modules and their details with an active status Y/N default Y</td>
-            </tr>
-            <tr>
-                <td>degree_module</td>
-                <td>list of modules on a degree, with a start date and semester either S1 or S2</td>
-            </tr>
-            <tr>
-                <td>module_list</td>
-                <td>list of students on a module</td>
-            </tr>
-            <tr>
-                <td>attendance</td>
-                <td>list of students' attendance on a module, on a set date, default today</td>
-            </tr>
-            <tr>
-                <td>assignment</td>
-                <td>assignment outline for a module, with a code, weighting and type</td>
-            </tr>
-            <tr>
-                <td>submission</td>
-                <td>module assignment submission, with receipt no, date and time</td>
-            </tr>
-            <tr>
-                <td>student_submission</td>
-                <td>a list of student's individual submissions, with their grade</td>
-            </tr>
-        </tbody>
-    </table>
+    <table class="spec-table">
+        <tr>
+            <th>tablename</th>
+            <th>attribute</th>
+            <th>datatype</th>
+            <th>constraints</th>
+        </tr>
+        <tr class="table-title" colspan="4">
+            <td colspan="4">degrees</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>degree_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_degrees</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>degree_title</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>detail</td>
+            <td>VARCHAR2(100)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>level</td>
+            <td>VARCHAR2(5)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>degree_year</td>
+            <td>VARCHAR2(10)</td>
+            <td>DEFAULT '4'</td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">examiners</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>examiner_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_examiners</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>examiner_name</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>institution</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>contact_detail</td>
+            <td>VARCHAR2(20)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>address</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">markers</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>marker_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_markers</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>marker_fname</td>
+            <td>VARCHAR2(15)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>marker_lname</td>
+            <td>VARCHAR2(15)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>contact_detail</td>
+            <td>VARCHAR2(20)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>address</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">students</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>student_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_students</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>student_name</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>dob</td>
+            <td>DATE</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>contact_number</td>
+            <td>VARCHAR2(20)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>address</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>examiner_id</td>
+            <td>NUMBER(5)</td>
+            <td>fk_m_examiners</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_name</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>detail</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>status</td>
+            <td>CHAR</td>
+            <td>DEFAULT 'Y'</td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">degree_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_degree_modules, fk_dm_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>degree_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_degree_modules, fk_dm_degrees</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>start_date</td>
+            <td>DATE</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>semester</td>
+            <td>VARCHAR2(2)</td>
+            <td>CHECK (semester IN ('S1', 'S2'))</td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">module_lists</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>student_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_module_lists, fk_ml_students</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_module_lists, fk_ml_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>enrollment_date</td>
+            <td>DATE</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">attendances</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>attendance_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_attendances</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_id</td>
+            <td>NUMBER(5)</td>
+            <td>fk_a_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>date</td>
+            <td>DATE</td>
+            <td>DEFAULT SYSDATE</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>status</td>
+            <td>VARCHAR2(7)</td>
+            <td>CHECK (status IN ('Present', 'Absent'))</td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">assignments</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>assignment_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_assignments</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>module_id</td>
+            <td>NUMBER(5)</td>
+            <td>fk_a_modules</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>code</td>
+            <td>VARCHAR2(5)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>title</td>
+            <td>VARCHAR2(30)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>weighting</td>
+            <td>NUMBER(3,2)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>type</td>
+            <td>VARCHAR2(50)</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">submissions</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>submission_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_submissions</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>assignment_id</td>
+            <td>NUMBER(5)</td>
+            <td>fk_s_assignments</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>marker_id</td>
+            <td>NUMBER(5)</td>
+            <td>fk_s_markers</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>receipt_no</td>
+            <td>VARCHAR2(20)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>submission_date</td>
+            <td>DATE</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>submission_time</td>
+            <td>TIMESTAMP</td>
+            <td></td>
+        </tr>
+        
+        <tr class="table-title">
+            <td colspan="4">student_submissions</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>student_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_student_submissions, fk_s_students</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>submission_id</td>
+            <td>NUMBER(5)</td>
+            <td>pk_student_submissions, fk_s_submissions</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>grade</td>
+            <td>NUMBER(5,2)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>feedback</td>
+            <td>VARCHAR2(100)</td>
+            <td></td>
+        </tr>
+    </table> 
 </body>
 </html>
