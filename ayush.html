@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush's Completed Tasks - Database Assignment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2 {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin: 30px 10px 0 0;
+            padding: 10px 15px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-link:hover {
+            background-color: #1a252f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 0 5px 5px;
+            border-left: 4px solid #2c3e50;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0 0 30px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .file-header {
+            background-color: #e7e7e7;
+            padding: 12px 15px;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+            border-left: 4px solid #2c3e50;
+            margin: 40px 0 0 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .file-header .filename {
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 6px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .view-button {
+            background-color: #3498db;
+        }
+        
+        .view-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        
+        .copy-button {
+            background-color: #27ae60;
+        }
+        
+        .copy-button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        
+        .download-button {
+            background-color: #9b59b6;
+        }
+        
+        .download-button:hover {
+            background-color: #8e44ad;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        
+        .code-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .code-content.visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <a href="plan.html" class="nav-link">← Go Back</a>
+    <h1>Ayush's Completed Tasks</h1>
+    
+    <div class="file-header">
+        <span class="filename">constraints_group1.txt</span>
+        <button class="btn view-button" onclick="toggleCode('constraints')">View</button>
+        <button class="btn copy-button" onclick="copyToClipboard('constraints')">Copy</button>
+        <button class="btn download-button" onclick="downloadFile('constraints', 'constraints_group1.txt')">Download</button>
+    </div>
+    <pre id="constraints" class="code-content">
+/* 
+Student Name, Student number, Module name, Student login
+Date, Course and Year 
+*/
+
+-- @D:\file_name\constraints_group1.txt
+
+-- PRIMARY KEY CONSTRAINTS
+-- These establish entity integrity by ensuring unique identification
+
+ALTER TABLE degrees 
+ADD CONSTRAINT pk_degrees 
+PRIMARY KEY (degree_id);
+
+ALTER TABLE examiners 
+ADD CONSTRAINT pk_examiners 
+PRIMARY KEY (examiner_id);
+
+ALTER TABLE markers 
+ADD CONSTRAINT pk_markers 
+PRIMARY KEY (marker_id);
+
+ALTER TABLE students 
+ADD CONSTRAINT pk_students 
+PRIMARY KEY (student_id);
+
+ALTER TABLE modules 
+ADD CONSTRAINT pk_modules 
+PRIMARY KEY (module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT pk_attendances 
+PRIMARY KEY (attendance_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT pk_assignments 
+PRIMARY KEY (assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT pk_submissions 
+PRIMARY KEY (submission_id);
+
+-- COMPOSITE PRIMARY KEYS for junction tables
+-- These establish entity integrity for many-to-many relationships
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT pk_degree_modules 
+PRIMARY KEY (module_id, degree_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT pk_module_lists 
+PRIMARY KEY (student_id, module_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT pk_student_submissions 
+PRIMARY KEY (student_id, submission_id);
+
+-- FOREIGN KEY CONSTRAINTS
+-- These establish referential integrity between related tables
+
+ALTER TABLE modules 
+ADD CONSTRAINT fk_m_examiners 
+FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_dm_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_dm_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_ml_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_ml_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT fk_a_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT fk_a_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_s_assignments 
+FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_s_markers 
+FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_s_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_s_submissions 
+FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
+
+-- CHECK CONSTRAINTS
+-- These implement domain integrity by limiting values
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT check_semester 
+CHECK (semester IN ('S1', 'S2'));
+
+ALTER TABLE attendances 
+ADD CONSTRAINT check_attendance_status 
+CHECK (status IN ('Present', 'Absent'));
+
+-- DEFAULT CONSTRAINTS
+-- These set default values for columns
+
+ALTER TABLE degrees 
+MODIFY degree_year DEFAULT '4';
+
+ALTER TABLE modules 
+MODIFY status DEFAULT 'Y';
+
+ALTER TABLE attendances 
+MODIFY date DEFAULT SYSDATE;
+
+-- Verify constraints have been created
+SELECT constraint_name, constraint_type, table_name 
+FROM user_constraints 
+ORDER BY table_name, constraint_type;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;
+    </pre>
+    
+    <div class="file-header">
+        <span class="filename">drops_group1.txt</span>
+        <button class="btn view-button" onclick="toggleCode('drops')">View</button>
+        <button class="btn copy-button" onclick="copyToClipboard('drops')">Copy</button>
+        <button class="btn download-button" onclick="downloadFile('drops', 'drops_group1.txt')">Download</button>
+    </div>
+    <pre id="drops" class="code-content">
+/* 
+Student Name, Student number, Module name, Student login
+Date, Course and Year 
+*/
+
+-- @D:\file_name\drops_group1.txt
+
+-- Disable foreign key constraints to prevent errors during table drops
+-- This makes the drop process more efficient and avoids constraint violations
+
+SET CONSTRAINTS ALL DEFERRED;
+
+-- Drop tables in the reverse order of their dependencies
+-- Start with tables that have foreign keys referencing other tables
+
+DROP TABLE student_submissions CASCADE CONSTRAINTS;
+
+DROP TABLE submissions CASCADE CONSTRAINTS;
+
+DROP TABLE assignments CASCADE CONSTRAINTS;
+
+DROP TABLE attendances CASCADE CONSTRAINTS;
+
+DROP TABLE module_lists CASCADE CONSTRAINTS;
+
+DROP TABLE degree_modules CASCADE CONSTRAINTS;
+
+DROP TABLE modules CASCADE CONSTRAINTS;
+
+-- Now drop tables with no dependencies or whose dependents have been dropped
+
+DROP TABLE students CASCADE CONSTRAINTS;
+
+DROP TABLE markers CASCADE CONSTRAINTS;
+
+DROP TABLE examiners CASCADE CONSTRAINTS;
+
+DROP TABLE degrees CASCADE CONSTRAINTS;
+
+-- Verify all tables have been dropped
+SELECT table_name 
+FROM user_tables 
+WHERE table_name IN ('DEGREES', 'EXAMINERS', 'MARKERS', 'STUDENTS', 
+                     'MODULES', 'DEGREE_MODULES', 'MODULE_LISTS', 
+                     'ATTENDANCES', 'ASSIGNMENTS', 'SUBMISSIONS', 
+                     'STUDENT_SUBMISSIONS');
+
+-- After all tables are dropped, permanently remove them from the recyclebin
+PURGE RECYCLEBIN;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;
+    </pre>
+    <script>
+    function toggleCode(id) {
+        const codeElement = document.getElementById(id);
+        const button = event.target;
+        
+        if (codeElement.classList.contains('visible')) {
+            codeElement.classList.remove('visible');
+            setTimeout(() => {
+                codeElement.style.display = 'none';
+            }, 300);
+            button.textContent = 'View';
+        } else {
+            codeElement.style.display = 'block';
+            setTimeout(() => {
+                codeElement.classList.add('visible');
+            }, 10);
+            button.textContent = 'Hide';
+        }
+    }
+    
+    function copyToClipboard(id) {
+        const codeElement = document.getElementById(id);
+        const button = event.target;
+        const originalText = button.textContent;
+        
+        // Make sure code is visible during copy
+        const wasHidden = codeElement.style.display === 'none';
+        if (wasHidden) {
+            codeElement.style.display = 'block';
+        }
+        
+        // Copy text to clipboard
+        navigator.clipboard.writeText(codeElement.textContent)
+            .then(() => {
+                // Show success feedback
+                button.textContent = 'Copied!';
+                button.style.backgroundColor = '#16a085';
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                }, 2000);
+                
+                // Restore display state if it was hidden
+                if (wasHidden) {
+                    codeElement.style.display = 'none';
+                }
+            })
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+                button.textContent = 'Failed!';
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            });
+    }
+
+    function downloadFile(id, filename) {
+        const codeElement = document.getElementById(id);
+        const textContent = codeElement.textContent;
+        
+        // Create a blob with the text content
+        const blob = new Blob([textContent], { type: 'text/plain' });
+        
+        // Create a URL for the blob
+        const url = URL.createObjectURL(blob);
+        
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        
+        // Append the link, click it, and remove it
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up the URL object
+        URL.revokeObjectURL(url);
+    }
+</script>
+</body>
+</html>

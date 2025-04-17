@@ -1,0 +1,53 @@
+/* 
+Student Name, Student number, Module name, Student login
+Date, Course and Year 
+*/
+
+-- @D:\file_name\drops_group1.txt
+
+-- Disable foreign key constraints to prevent errors during table drops
+-- This makes the drop process more efficient and avoids constraint violations
+
+SET CONSTRAINTS ALL DEFERRED;
+
+-- Drop tables in the reverse order of their dependencies
+-- Start with tables that have foreign keys referencing other tables
+
+DROP TABLE student_submissions CASCADE CONSTRAINTS;
+
+DROP TABLE submissions CASCADE CONSTRAINTS;
+
+DROP TABLE assignments CASCADE CONSTRAINTS;
+
+DROP TABLE attendances CASCADE CONSTRAINTS;
+
+DROP TABLE module_lists CASCADE CONSTRAINTS;
+
+DROP TABLE degree_modules CASCADE CONSTRAINTS;
+
+DROP TABLE modules CASCADE CONSTRAINTS;
+
+-- Now drop tables with no dependencies or whose dependents have been dropped
+
+DROP TABLE students CASCADE CONSTRAINTS;
+
+DROP TABLE markers CASCADE CONSTRAINTS;
+
+DROP TABLE examiners CASCADE CONSTRAINTS;
+
+DROP TABLE degrees CASCADE CONSTRAINTS;
+
+-- Verify all tables have been dropped
+SELECT table_name 
+FROM user_tables 
+WHERE table_name IN ('DEGREES', 'EXAMINERS', 'MARKERS', 'STUDENTS', 
+                     'MODULES', 'DEGREE_MODULES', 'MODULE_LISTS', 
+                     'ATTENDANCES', 'ASSIGNMENTS', 'SUBMISSIONS', 
+                     'STUDENT_SUBMISSIONS');
+
+-- After all tables are dropped, permanently remove them from the recyclebin
+PURGE RECYCLEBIN;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;
