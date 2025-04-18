@@ -51,9 +51,6 @@
         border-bottom: 1px solid #ddd;
         font-size: 14px;
       }
-      .spec-table tr:nth-child(even) {
-        background-color: #f8f9fa;
-      }
       .table-title {
         background-color: #e7e7e7;
         font-weight: bold;
@@ -116,7 +113,7 @@
         <td></td>
         <td>degree_title</td>
         <td>VARCHAR2(30)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -133,8 +130,8 @@
       <tr>
         <td></td>
         <td>degree_year</td>
-        <td>VARCHAR2(10)</td>
-        <td>DEFAULT '4'</td>
+        <td>NUMBER(1)</td>
+        <td>DEFAULT 4 NOT NULL CHECK (degree_year BETWEEN 1 AND 9)</td>
       </tr>
 
       <tr class="table-title">
@@ -150,13 +147,13 @@
         <td></td>
         <td>examiner_fname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>examiner_lname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -190,13 +187,13 @@
         <td></td>
         <td>marker_fname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>marker_lname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -224,19 +221,19 @@
         <td></td>
         <td>student_fname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>student_lname</td>
         <td>VARCHAR2(15)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>dob</td>
-        <td>attendance_date</td>
-        <td></td>
+        <td>DATE</td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -264,13 +261,13 @@
         <td></td>
         <td>examiner_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_m_examiners</td>
+        <td>fk_modules_examiners</td>
       </tr>
       <tr>
         <td></td>
         <td>module_name</td>
         <td>VARCHAR2(30)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -292,19 +289,19 @@
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_degree_modules, fk_dm_modules</td>
+        <td>pk_degree_modules, fk_degree_modules_modules</td>
       </tr>
       <tr>
         <td></td>
         <td>degree_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_degree_modules, fk_dm_degrees</td>
+        <td>pk_degree_modules, fk_degree_modules_degrees</td>
       </tr>
       <tr>
         <td></td>
-        <td>start_attendance_date</td>
-        <td>attendance_date</td>
-        <td></td>
+        <td>start_date</td>
+        <td>DATE</td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -320,19 +317,19 @@
         <td></td>
         <td>student_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_module_lists, fk_ml_students</td>
+        <td>pk_module_lists, fk_module_lists_students</td>
       </tr>
       <tr>
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_module_lists, fk_ml_modules</td>
+        <td>pk_module_lists, fk_module_lists_modules</td>
       </tr>
       <tr>
         <td></td>
-        <td>enrollment_attendance_date</td>
-        <td>attendance_date</td>
-        <td></td>
+        <td>enrollment_date</td>
+        <td>DATE</td>
+        <td>NOT NULL</td>
       </tr>
 
       <tr class="table-title">
@@ -348,13 +345,13 @@
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_a_modules</td>
+        <td>fk_attendances_modules</td>
       </tr>
       <tr>
         <td></td>
         <td>attendance_date</td>
-        <td>attendance_date</td>
-        <td>DEFAULT SYSattendance_date</td>
+        <td>DATE</td>
+        <td>DEFAULT SYSDATE NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -376,25 +373,25 @@
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_a_modules</td>
+        <td>fk_assignments_modules</td>
       </tr>
       <tr>
         <td></td>
         <td>code</td>
         <td>VARCHAR2(5)</td>
-        <td></td>
+        <td>NOT NULL UNIQUE</td>
       </tr>
       <tr>
         <td></td>
         <td>title</td>
         <td>VARCHAR2(30)</td>
-        <td></td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>weighting</td>
-        <td>NUMBER(3,2)</td>
-        <td></td>
+        <td>NUMBER(5,2)</td>
+        <td>NOT NULL CHECK (weighting BETWEEN 0 AND 100)</td>
       </tr>
       <tr>
         <td></td>
@@ -416,25 +413,25 @@
         <td></td>
         <td>assignment_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_s_assignments</td>
+        <td>fk_submissions_assignments</td>
       </tr>
       <tr>
         <td></td>
         <td>marker_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_s_markers</td>
+        <td>fk_submissions_markers</td>
       </tr>
       <tr>
         <td></td>
         <td>receipt_no</td>
         <td>VARCHAR2(20)</td>
-        <td></td>
+        <td>NOT NULL UNIQUE</td>
       </tr>
       <tr>
         <td></td>
-        <td>submission_attendance_date</td>
-        <td>attendance_date</td>
-        <td></td>
+        <td>submission_date</td>
+        <td>DATE</td>
+        <td>NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -450,19 +447,22 @@
         <td></td>
         <td>student_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_student_submissions, fk_s_students</td>
+        <td>pk_student_submissions, fk_student_submissions_students</td>
       </tr>
       <tr>
         <td></td>
         <td>submission_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_student_submissions, fk_s_submissions</td>
+        <td>pk_student_submissions, fk_student_submissions_submissions</td>
       </tr>
       <tr>
         <td></td>
         <td>grade</td>
-        <td>NUMBER(5,2)</td>
-        <td></td>
+        <td>VARCHAR2(2)</td>
+        <td>
+          CHECK (grade IN
+          ('A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'))
+        </td>
       </tr>
       <tr>
         <td></td>
