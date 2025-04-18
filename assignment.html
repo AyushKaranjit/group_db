@@ -131,7 +131,7 @@
         <td></td>
         <td>degree_year</td>
         <td>NUMBER(1)</td>
-        <td>DEFAULT 4 NOT NULL CHECK (degree_year BETWEEN 1 AND 9)</td>
+        <td>DEFAULT 4, NOT NULL, CHECK (degree_year BETWEEN 1 AND 9)</td>
       </tr>
 
       <tr class="table-title">
@@ -351,7 +351,7 @@
         <td></td>
         <td>attendance_date</td>
         <td>DATE</td>
-        <td>DEFAULT SYSDATE NOT NULL</td>
+        <td>DEFAULT SYSDATE, NOT NULL</td>
       </tr>
       <tr>
         <td></td>
@@ -379,7 +379,7 @@
         <td></td>
         <td>code</td>
         <td>VARCHAR2(5)</td>
-        <td>NOT NULL UNIQUE</td>
+        <td>NOT NULL, UNIQUE</td>
       </tr>
       <tr>
         <td></td>
@@ -391,7 +391,7 @@
         <td></td>
         <td>weighting</td>
         <td>NUMBER(5,2)</td>
-        <td>NOT NULL CHECK (weighting BETWEEN 0 AND 100)</td>
+        <td>NOT NULL, CHECK (weighting BETWEEN 0 AND 100)</td>
       </tr>
       <tr>
         <td></td>
@@ -425,7 +425,7 @@
         <td></td>
         <td>receipt_no</td>
         <td>VARCHAR2(20)</td>
-        <td>NOT NULL UNIQUE</td>
+        <td>NOT NULL, UNIQUE</td>
       </tr>
       <tr>
         <td></td>
