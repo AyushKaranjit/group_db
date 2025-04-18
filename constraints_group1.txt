@@ -3,7 +3,7 @@ Student Name, Student number, Module name, Student login
 Date, Course and Year 
 */
 
--- @D:\file_name\constraints_group1.txt
+-- @E:\DB-PROJECT\constraints_group1.txt
 
 -- PRIMARY KEY CONSTRAINTS
 -- These establish entity integrity by ensuring unique identification

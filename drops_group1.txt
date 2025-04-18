@@ -3,7 +3,7 @@ Student Name, Student number, Module name, Student login
 Date, Course and Year 
 */
 
--- @D:\file_name\drops_group1.txt
+-- @E:\DB-PROJECT\drops_group1.txt
 
 -- Disable foreign key constraints to prevent errors during table drops
 -- This makes the drop process more efficient and avoids constraint violations
