@@ -5,6 +5,11 @@ Date, Course and Year
 
 -- @E:\DB-PROJECT\constraints_group1.txt
 
+-- Changes to table structure for optimization
+
+-- Modify attendances.status to be more efficient
+ALTER TABLE attendances MODIFY status CHAR(1);
+
 -- PRIMARY KEY CONSTRAINTS
 -- These establish entity integrity by ensuring unique identification
 
@@ -132,7 +137,7 @@ ALTER TABLE attendances MODIFY attendance_date DATE NOT NULL;
 
 ALTER TABLE assignments MODIFY code VARCHAR2(5) NOT NULL;
 ALTER TABLE assignments MODIFY title VARCHAR2(30) NOT NULL;
-ALTER TABLE assignments MODIFY weighting NUMBER(3,2) NOT NULL;
+ALTER TABLE assignments MODIFY weighting NUMBER(5,2) NOT NULL;
 
 ALTER TABLE submissions MODIFY receipt_no VARCHAR2(20) NOT NULL;
 ALTER TABLE submissions MODIFY submission_date DATE NOT NULL;
@@ -155,13 +160,17 @@ ALTER TABLE degrees
 ADD CONSTRAINT check_degree_year 
 CHECK (degree_year BETWEEN 1 AND 9);
 
+ALTER TABLE modules
+ADD CONSTRAINT check_module_status
+CHECK (status IN ('Y', 'N'));
+
 ALTER TABLE degree_modules 
 ADD CONSTRAINT check_semester 
 CHECK (semester IN ('S1', 'S2'));
 
 ALTER TABLE attendances 
 ADD CONSTRAINT check_attendance_status 
-CHECK (status IN ('Present', 'Absent'));
+CHECK (status IN ('P', 'A'));
 
 ALTER TABLE assignments 
 ADD CONSTRAINT check_weighting 
