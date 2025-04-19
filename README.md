@@ -1,1 +1,1 @@
-# The website is live at https://ayushkaranjit.github.io/group_db/assignment.html
+The website is live at https://ayushkaranjit.github.io/group_db/index.html
