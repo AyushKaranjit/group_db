@@ -58,6 +58,10 @@ PRIMARY KEY (student_id, submission_id);
 -- FOREIGN KEY CONSTRAINTS
 -- These establish referential integrity between related tables
 
+ALTER TABLE students 
+ADD CONSTRAINT fk_students_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
+
 ALTER TABLE modules 
 ADD CONSTRAINT fk_modules_examiners 
 FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);

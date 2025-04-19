@@ -22,9 +22,9 @@ DROP TABLE degree_modules CASCADE CONSTRAINTS;
 
 DROP TABLE modules CASCADE CONSTRAINTS;
 
--- Now dropping tables with no dependencies or whose dependents have been dropped
-
 DROP TABLE students CASCADE CONSTRAINTS;
+
+-- Now dropping tables with no dependencies
 
 DROP TABLE markers CASCADE CONSTRAINTS;
 

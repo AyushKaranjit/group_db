@@ -148,7 +148,8 @@
         Download
       </button>
     </div>
-    <pre id="constraints" class="code-content">/* 
+    <pre id="constraints" class="code-content">
+/* 
 Student Name, Student number, Module name, Student login
 Date, Course and Year 
 */
@@ -207,6 +208,10 @@ PRIMARY KEY (student_id, submission_id);
 
 -- FOREIGN KEY CONSTRAINTS
 -- These establish referential integrity between related tables
+
+ALTER TABLE students 
+ADD CONSTRAINT fk_students_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
 
 ALTER TABLE modules 
 ADD CONSTRAINT fk_modules_examiners 
@@ -282,7 +287,8 @@ ORDER BY table_name, constraint_type;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre>
+COMMIT;</pre
+    >
 
     <div class="file-header">
       <span class="filename">drops_group1.txt</span>
@@ -299,7 +305,8 @@ COMMIT;</pre>
         Download
       </button>
     </div>
-    <pre id="drops" class="code-content">/* 
+    <pre id="drops" class="code-content">
+/* 
 Student Name, Student number, Module name, Student login
 Date, Course and Year 
 */
@@ -323,9 +330,9 @@ DROP TABLE degree_modules CASCADE CONSTRAINTS;
 
 DROP TABLE modules CASCADE CONSTRAINTS;
 
--- Now dropping tables with no dependencies or whose dependents have been dropped
-
 DROP TABLE students CASCADE CONSTRAINTS;
+
+-- Now dropping tables with no dependencies
 
 DROP TABLE markers CASCADE CONSTRAINTS;
 
@@ -346,7 +353,8 @@ PURGE RECYCLEBIN;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre>
+COMMIT;</pre
+    >
     <script>
       function toggleCode(id) {
         const codeElement = document.getElementById(id);
