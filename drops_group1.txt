@@ -5,13 +5,8 @@ Date, Course and Year
 
 -- @E:\DB-PROJECT\drops_group1.txt
 
--- Disable foreign key constraints to prevent errors during table drops
--- This makes the drop process more efficient and avoids constraint violations
-
-SET CONSTRAINTS ALL DEFERRED;
-
--- Drop tables in the reverse order of their dependencies
--- Start with tables that have foreign keys referencing other tables
+-- Dropping tables in the reverse order of their dependencies
+-- Starting with tables that have foreign keys referencing other tables
 
 DROP TABLE student_submissions CASCADE CONSTRAINTS;
 
@@ -27,7 +22,7 @@ DROP TABLE degree_modules CASCADE CONSTRAINTS;
 
 DROP TABLE modules CASCADE CONSTRAINTS;
 
--- Now drop tables with no dependencies or whose dependents have been dropped
+-- Now dropping tables with no dependencies or whose dependents have been dropped
 
 DROP TABLE students CASCADE CONSTRAINTS;
 

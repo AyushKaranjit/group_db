@@ -59,47 +59,47 @@ PRIMARY KEY (student_id, submission_id);
 -- These establish referential integrity between related tables
 
 ALTER TABLE modules 
-ADD CONSTRAINT fk_m_examiners 
+ADD CONSTRAINT fk_modules_examiners 
 FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
 
 ALTER TABLE degree_modules 
-ADD CONSTRAINT fk_dm_modules 
+ADD CONSTRAINT fk_degree_modules_modules 
 FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE degree_modules 
-ADD CONSTRAINT fk_dm_degrees 
+ADD CONSTRAINT fk_degree_modules_degrees 
 FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
 
 ALTER TABLE module_lists 
-ADD CONSTRAINT fk_ml_students 
+ADD CONSTRAINT fk_module_lists_students 
 FOREIGN KEY (student_id) REFERENCES students(student_id);
 
 ALTER TABLE module_lists 
-ADD CONSTRAINT fk_ml_modules 
+ADD CONSTRAINT fk_module_lists_modules 
 FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE attendances 
-ADD CONSTRAINT fk_a_modules 
+ADD CONSTRAINT fk_attendances_modules 
 FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE assignments 
-ADD CONSTRAINT fk_a_modules 
+ADD CONSTRAINT fk_assignments_modules 
 FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE submissions 
-ADD CONSTRAINT fk_s_assignments 
+ADD CONSTRAINT fk_submissions_assignments 
 FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
 
 ALTER TABLE submissions 
-ADD CONSTRAINT fk_s_markers 
+ADD CONSTRAINT fk_submissions_markers 
 FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
 
 ALTER TABLE student_submissions 
-ADD CONSTRAINT fk_s_students 
+ADD CONSTRAINT fk_student_submissions_students 
 FOREIGN KEY (student_id) REFERENCES students(student_id);
 
 ALTER TABLE student_submissions 
-ADD CONSTRAINT fk_s_submissions 
+ADD CONSTRAINT fk_student_submissions_submissions 
 FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
 
 -- CHECK CONSTRAINTS
