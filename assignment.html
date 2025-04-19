@@ -279,9 +279,8 @@
         <td></td>
         <td>status</td>
         <td>CHAR(1)</td>
-        <td>DEFAULT 'Y'</td>
+        <td>DEFAULT 'Y', CHECK (status IN ('Y', 'N'))</td>
       </tr>
-
       <tr class="table-title">
         <td colspan="4">degree_modules</td>
       </tr>
@@ -356,10 +355,9 @@
       <tr>
         <td></td>
         <td>status</td>
-        <td>VARCHAR2(7)</td>
-        <td>CHECK (status IN ('Present', 'Absent'))</td>
+        <td>CHAR(1)</td>
+        <td>CHECK (status IN ('P', 'A'))</td>
       </tr>
-
       <tr class="table-title">
         <td colspan="4">assignments</td>
       </tr>
