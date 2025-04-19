@@ -127,7 +127,7 @@ ALTER TABLE modules
 MODIFY status DEFAULT 'Y';
 
 ALTER TABLE attendances 
-MODIFY date DEFAULT SYSDATE;
+MODIFY attendance_date DEFAULT SYSDATE;
 
 -- Verify constraints have been created
 SELECT constraint_name, constraint_type, table_name 
