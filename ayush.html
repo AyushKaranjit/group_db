@@ -148,143 +148,141 @@
         Download
       </button>
     </div>
-    <pre id="constraints" class="code-content">
-      /* 
-      Student Name, Student number, Module name, Student login
-      Date, Course and Year 
-      */
-      
-      -- @E:\DB-PROJECT\constraints_group1.txt
-      
-      -- PRIMARY KEY CONSTRAINTS
-      -- These establish entity integrity by ensuring unique identification
-      
-      ALTER TABLE degrees 
-      ADD CONSTRAINT pk_degrees 
-      PRIMARY KEY (degree_id);
-      
-      ALTER TABLE examiners 
-      ADD CONSTRAINT pk_examiners 
-      PRIMARY KEY (examiner_id);
-      
-      ALTER TABLE markers 
-      ADD CONSTRAINT pk_markers 
-      PRIMARY KEY (marker_id);
-      
-      ALTER TABLE students 
-      ADD CONSTRAINT pk_students 
-      PRIMARY KEY (student_id);
-      
-      ALTER TABLE modules 
-      ADD CONSTRAINT pk_modules 
-      PRIMARY KEY (module_id);
-      
-      ALTER TABLE attendances 
-      ADD CONSTRAINT pk_attendances 
-      PRIMARY KEY (attendance_id);
-      
-      ALTER TABLE assignments 
-      ADD CONSTRAINT pk_assignments 
-      PRIMARY KEY (assignment_id);
-      
-      ALTER TABLE submissions 
-      ADD CONSTRAINT pk_submissions 
-      PRIMARY KEY (submission_id);
-      
-      -- COMPOSITE PRIMARY KEYS for junction tables
-      -- These establish entity integrity for many-to-many relationships
-      
-      ALTER TABLE degree_modules 
-      ADD CONSTRAINT pk_degree_modules 
-      PRIMARY KEY (module_id, degree_id);
-      
-      ALTER TABLE module_lists 
-      ADD CONSTRAINT pk_module_lists 
-      PRIMARY KEY (student_id, module_id);
-      
-      ALTER TABLE student_submissions 
-      ADD CONSTRAINT pk_student_submissions 
-      PRIMARY KEY (student_id, submission_id);
-      
-      -- FOREIGN KEY CONSTRAINTS
-      -- These establish referential integrity between related tables
-      
-      ALTER TABLE modules 
-      ADD CONSTRAINT fk_modules_examiners 
-      FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
-      
-      ALTER TABLE degree_modules 
-      ADD CONSTRAINT fk_degree_modules_modules 
-      FOREIGN KEY (module_id) REFERENCES modules(module_id);
-      
-      ALTER TABLE degree_modules 
-      ADD CONSTRAINT fk_degree_modules_degrees 
-      FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
-      
-      ALTER TABLE module_lists 
-      ADD CONSTRAINT fk_module_lists_students 
-      FOREIGN KEY (student_id) REFERENCES students(student_id);
-      
-      ALTER TABLE module_lists 
-      ADD CONSTRAINT fk_module_lists_modules 
-      FOREIGN KEY (module_id) REFERENCES modules(module_id);
-      
-      ALTER TABLE attendances 
-      ADD CONSTRAINT fk_attendances_modules 
-      FOREIGN KEY (module_id) REFERENCES modules(module_id);
-      
-      ALTER TABLE assignments 
-      ADD CONSTRAINT fk_assignments_modules 
-      FOREIGN KEY (module_id) REFERENCES modules(module_id);
-      
-      ALTER TABLE submissions 
-      ADD CONSTRAINT fk_submissions_assignments 
-      FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
-      
-      ALTER TABLE submissions 
-      ADD CONSTRAINT fk_submissions_markers 
-      FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
-      
-      ALTER TABLE student_submissions 
-      ADD CONSTRAINT fk_student_submissions_students 
-      FOREIGN KEY (student_id) REFERENCES students(student_id);
-      
-      ALTER TABLE student_submissions 
-      ADD CONSTRAINT fk_student_submissions_submissions 
-      FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
-      
-      -- CHECK CONSTRAINTS
-      -- These implement domain integrity by limiting values
-      
-      ALTER TABLE degree_modules 
-      ADD CONSTRAINT check_semester 
-      CHECK (semester IN ('S1', 'S2'));
-      
-      ALTER TABLE attendances 
-      ADD CONSTRAINT check_attendance_status 
-      CHECK (status IN ('Present', 'Absent'));
-      
-      -- DEFAULT CONSTRAINTS
-      -- These set default values for columns
-      
-      ALTER TABLE degrees 
-      MODIFY degree_year DEFAULT '4';
-      
-      ALTER TABLE modules 
-      MODIFY status DEFAULT 'Y';
-      
-      ALTER TABLE attendances 
-      MODIFY date DEFAULT SYSDATE;
-      
-      -- Verify constraints have been created
-      SELECT constraint_name, constraint_type, table_name 
-      FROM user_constraints 
-      ORDER BY table_name, constraint_type;
-      
-      -- COMMIT CHANGES
-      -- This saves all the changes made to the database schema
-      COMMIT;
-    </pre>
+    <pre id="constraints" class="code-content">/* 
+Student Name, Student number, Module name, Student login
+Date, Course and Year 
+*/
+
+-- @E:\DB-PROJECT\constraints_group1.txt
+
+-- PRIMARY KEY CONSTRAINTS
+-- These establish entity integrity by ensuring unique identification
+
+ALTER TABLE degrees 
+ADD CONSTRAINT pk_degrees 
+PRIMARY KEY (degree_id);
+
+ALTER TABLE examiners 
+ADD CONSTRAINT pk_examiners 
+PRIMARY KEY (examiner_id);
+
+ALTER TABLE markers 
+ADD CONSTRAINT pk_markers 
+PRIMARY KEY (marker_id);
+
+ALTER TABLE students 
+ADD CONSTRAINT pk_students 
+PRIMARY KEY (student_id);
+
+ALTER TABLE modules 
+ADD CONSTRAINT pk_modules 
+PRIMARY KEY (module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT pk_attendances 
+PRIMARY KEY (attendance_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT pk_assignments 
+PRIMARY KEY (assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT pk_submissions 
+PRIMARY KEY (submission_id);
+
+-- COMPOSITE PRIMARY KEYS for junction tables
+-- These establish entity integrity for many-to-many relationships
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT pk_degree_modules 
+PRIMARY KEY (module_id, degree_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT pk_module_lists 
+PRIMARY KEY (student_id, module_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT pk_student_submissions 
+PRIMARY KEY (student_id, submission_id);
+
+-- FOREIGN KEY CONSTRAINTS
+-- These establish referential integrity between related tables
+
+ALTER TABLE modules 
+ADD CONSTRAINT fk_modules_examiners 
+FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_degree_modules_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_degree_modules_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_module_lists_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_module_lists_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT fk_attendances_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT fk_assignments_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_submissions_assignments 
+FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_submissions_markers 
+FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_student_submissions_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_student_submissions_submissions 
+FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
+
+-- CHECK CONSTRAINTS
+-- These implement domain integrity by limiting values
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT check_semester 
+CHECK (semester IN ('S1', 'S2'));
+
+ALTER TABLE attendances 
+ADD CONSTRAINT check_attendance_status 
+CHECK (status IN ('Present', 'Absent'));
+
+-- DEFAULT CONSTRAINTS
+-- These set default values for columns
+
+ALTER TABLE degrees 
+MODIFY degree_year DEFAULT '4';
+
+ALTER TABLE modules 
+MODIFY status DEFAULT 'Y';
+
+ALTER TABLE attendances 
+MODIFY date DEFAULT SYSDATE;
+
+-- Verify constraints have been created
+SELECT constraint_name, constraint_type, table_name 
+FROM user_constraints 
+ORDER BY table_name, constraint_type;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;</pre>
 
     <div class="file-header">
       <span class="filename">drops_group1.txt</span>
@@ -301,56 +299,54 @@
         Download
       </button>
     </div>
-    <pre id="drops" class="code-content">
-      /* 
-      Student Name, Student number, Module name, Student login
-      Date, Course and Year 
-      */
-      
-      -- @E:\DB-PROJECT\drops_group1.txt
-      
-      -- Dropping tables in the reverse order of their dependencies
-      -- Starting with tables that have foreign keys referencing other tables
-      
-      DROP TABLE student_submissions CASCADE CONSTRAINTS;
-      
-      DROP TABLE submissions CASCADE CONSTRAINTS;
-      
-      DROP TABLE assignments CASCADE CONSTRAINTS;
-      
-      DROP TABLE attendances CASCADE CONSTRAINTS;
-      
-      DROP TABLE module_lists CASCADE CONSTRAINTS;
-      
-      DROP TABLE degree_modules CASCADE CONSTRAINTS;
-      
-      DROP TABLE modules CASCADE CONSTRAINTS;
-      
-      -- Now dropping tables with no dependencies or whose dependents have been dropped
-      
-      DROP TABLE students CASCADE CONSTRAINTS;
-      
-      DROP TABLE markers CASCADE CONSTRAINTS;
-      
-      DROP TABLE examiners CASCADE CONSTRAINTS;
-      
-      DROP TABLE degrees CASCADE CONSTRAINTS;
-      
-      -- Verify all tables have been dropped
-      SELECT table_name 
-      FROM user_tables 
-      WHERE table_name IN ('DEGREES', 'EXAMINERS', 'MARKERS', 'STUDENTS', 
-                           'MODULES', 'DEGREE_MODULES', 'MODULE_LISTS', 
-                           'ATTENDANCES', 'ASSIGNMENTS', 'SUBMISSIONS', 
-                           'STUDENT_SUBMISSIONS');
-      
-      -- After all tables are dropped, permanently remove them from the recyclebin
-      PURGE RECYCLEBIN;
-      
-      -- COMMIT CHANGES
-      -- This saves all the changes made to the database schema
-      COMMIT;
-    </pre>
+    <pre id="drops" class="code-content">/* 
+Student Name, Student number, Module name, Student login
+Date, Course and Year 
+*/
+
+-- @E:\DB-PROJECT\drops_group1.txt
+
+-- Dropping tables in the reverse order of their dependencies
+-- Starting with tables that have foreign keys referencing other tables
+
+DROP TABLE student_submissions CASCADE CONSTRAINTS;
+
+DROP TABLE submissions CASCADE CONSTRAINTS;
+
+DROP TABLE assignments CASCADE CONSTRAINTS;
+
+DROP TABLE attendances CASCADE CONSTRAINTS;
+
+DROP TABLE module_lists CASCADE CONSTRAINTS;
+
+DROP TABLE degree_modules CASCADE CONSTRAINTS;
+
+DROP TABLE modules CASCADE CONSTRAINTS;
+
+-- Now dropping tables with no dependencies or whose dependents have been dropped
+
+DROP TABLE students CASCADE CONSTRAINTS;
+
+DROP TABLE markers CASCADE CONSTRAINTS;
+
+DROP TABLE examiners CASCADE CONSTRAINTS;
+
+DROP TABLE degrees CASCADE CONSTRAINTS;
+
+-- Verify all tables have been dropped
+SELECT table_name 
+FROM user_tables 
+WHERE table_name IN ('DEGREES', 'EXAMINERS', 'MARKERS', 'STUDENTS', 
+                     'MODULES', 'DEGREE_MODULES', 'MODULE_LISTS', 
+                     'ATTENDANCES', 'ASSIGNMENTS', 'SUBMISSIONS', 
+                     'STUDENT_SUBMISSIONS');
+
+-- After all tables are dropped, permanently remove them from the recyclebin
+PURGE RECYCLEBIN;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;</pre>
     <script>
       function toggleCode(id) {
         const codeElement = document.getElementById(id);
