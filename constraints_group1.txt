@@ -1,6 +1,9 @@
 /* 
-Student Name, Student number, Module name, Student login
-Date, Course and Year 
+Group 1,
+Ayush Karanjit 24812931,
+Anuskar Sigdel 24812606,
+Utsab Thami Magar 24814107,
+Nabin Thapaliya 24814102
 */
 
 -- @E:\DB-PROJECT\constraints_group1.txt
