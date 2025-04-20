@@ -35,14 +35,6 @@ DROP TABLE examiners CASCADE CONSTRAINTS;
 
 DROP TABLE degrees CASCADE CONSTRAINTS;
 
--- Verify all tables have been dropped
-SELECT table_name 
-FROM user_tables 
-WHERE table_name IN ('DEGREES', 'EXAMINERS', 'MARKERS', 'STUDENTS', 
-                     'MODULES', 'DEGREE_MODULES', 'MODULE_LISTS', 
-                     'ATTENDANCES', 'ASSIGNMENTS', 'SUBMISSIONS', 
-                     'STUDENT_SUBMISSIONS');
-
 -- After all tables are dropped, permanently remove them from the recyclebin
 PURGE RECYCLEBIN;
 
