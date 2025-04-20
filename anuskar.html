@@ -5,8 +5,346 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="db2.png" type="image/x-icon" />
     <title>Anuska's Completed Tasks</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      h1,
+      h2 {
+        color: #2c3e50;
+        font-weight: 600;
+      }
+
+      h1 {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+      }
+
+      .nav-link {
+        display: inline-block;
+        margin: 30px 10px 0 0;
+        padding: 10px 15px;
+        background-color: #2c3e50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link:hover {
+        background-color: #1a252f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      pre {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+        border-left: 4px solid #2c3e50;
+        overflow-x: auto;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 30px 0;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-header {
+        background-color: #e7e7e7;
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        font-weight: bold;
+        border-left: 4px solid #2c3e50;
+        margin: 40px 0 0 0;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .file-header .filename {
+        flex-grow: 1;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 6px 16px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .view-button {
+        background-color: #3498db;
+      }
+
+      .view-button:hover {
+        background-color: #2980b9;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .copy-button {
+        background-color: #27ae60;
+      }
+
+      .copy-button:hover {
+        background-color: #2ecc71;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .download-button {
+        background-color: #9b59b6;
+      }
+
+      .download-button:hover {
+        background-color: #8e44ad;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .code-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .code-content.visible {
+        display: block;
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
-    <h1>Pending...</h1>
+    <a href="plan.html" class="nav-link">← Go Back</a>
+    <h1>Anuska's Completed Tasks</h1>
+    <div class="file-header">
+      <span class="filename">queries_group1.txt</span>
+      <button class="btn view-button" onclick="toggleCode('queries')">
+        View
+      </button>
+      <button class="btn copy-button" onclick="copyToClipboard('queries')">
+        Copy
+      </button>
+      <button
+        class="btn download-button"
+        onclick="downloadFile('queries', 'queries_group1.txt')"
+      >
+        Download
+      </button>
+    </div>
+    <pre id="queries" class="code-content">
+/* 
+Group 1,
+Ayush Karanjit 24812931,
+Anuskar Sigdel 24812606,
+Utsab Thami Magar 24814107,
+Nabin Thapaliya 24814102
+*/
+
+-- @E:\DB-PROJECT\queries_group1.txt
+
+-- a) A simple query to return all the records from one table
+SELECT * FROM students;
+
+-- b) A projection query with 3 columns sorted in reverse alphabetical order
+SELECT student_fname, student_lname, address 
+FROM students 
+ORDER BY student_lname DESC;
+
+-- c) Restriction queries with multiple clauses
+
+-- Comparison operator with predicate for people who live in Kathmandu
+SELECT * FROM students 
+WHERE address = 'Kathmandu';
+
+-- Condition matching a pattern (begins with 'A')
+SELECT * FROM students 
+WHERE student_fname LIKE 'A%';
+
+-- Negative condition with predicate (do not live in Kathmandu)
+SELECT * FROM students 
+WHERE address != 'Kathmandu';
+
+-- Logic operator with predicates for students born after 2000 from Kathmandu
+SELECT * FROM students 
+WHERE address = 'Kathmandu' AND dob > TO_DATE('01-JAN-2000', 'DD-MON-YYYY');
+
+-- Logic operator with predicates for students born in July or living in Pokhara
+SELECT * FROM students 
+WHERE TO_CHAR(dob, 'MON') = 'JUL' OR address = 'Pokhara';
+
+-- Date range condition for this year's module enrollments
+SELECT ml.student_id, s.student_fname, s.student_lname, ml.enrollment_date
+FROM module_lists ml
+JOIN students s ON ml.student_id = s.student_id
+WHERE ml.enrollment_date BETWEEN TO_DATE('01-JAN-2025', 'DD-MON-YYYY') 
+                            AND TO_DATE('31-DEC-2025', 'DD-MON-YYYY');
+
+-- d) Join queries to extract insightful information
+
+-- 2 tables join: Find all students enrolled in Computer Science degree
+-- Purpose: Shows which students are currently pursuing Computer Science
+SELECT s.student_id, s.student_fname, s.student_lname, d.degree_title, d.degree_level
+FROM students s
+JOIN degrees d ON s.degree_id = d.degree_id
+WHERE d.degree_title = 'Computer Science';
+
+-- 3 tables join: Find all students with their modules and respective examiner
+-- Purpose: Helps track which examiner is responsible for each student's modules
+SELECT s.student_id, s.student_fname, s.student_lname, 
+       m.module_name, m.detail,
+       e.examiner_fname, e.examiner_lname
+FROM students s
+JOIN module_lists ml ON s.student_id = ml.student_id
+JOIN modules m ON ml.module_id = m.module_id
+JOIN examiners e ON m.examiner_id = e.examiner_id;
+
+-- e) Demonstrating additional or integrated skills
+
+-- Parameterized query to find students by specific degree
+-- Can be used with variable binding in application code
+SELECT * FROM students 
+WHERE degree_id = :degree_id;
+
+-- Function to calculate student age
+SELECT student_id, student_fname, student_lname, 
+       TRUNC((SYSDATE - dob)/365.25) AS age_years
+FROM students;
+
+-- Query with subquery to find students with above-average grades
+SELECT s.student_id, s.student_fname, s.student_lname, ss.grade
+FROM students s
+JOIN student_submissions ss ON s.student_id = ss.student_id
+WHERE ss.grade IN ('A+', 'A', 'A-')
+ORDER BY s.student_id;
+
+-- Query with aggregate function to count submissions by module
+SELECT m.module_name, COUNT(ss.submission_id) AS submission_count
+FROM modules m
+JOIN assignments a ON m.module_id = a.module_id
+JOIN submissions s ON a.assignment_id = s.assignment_id
+JOIN student_submissions ss ON s.submission_id = ss.submission_id
+GROUP BY m.module_name
+ORDER BY submission_count DESC;
+
+-- Query to find attendance percentage for modules
+SELECT m.module_name, 
+       COUNT(CASE WHEN a.status = 'P' THEN 1 END) AS present_count,
+       COUNT(*) AS total_count,
+       ROUND(COUNT(CASE WHEN a.status = 'P' THEN 1 END) * 100 / COUNT(*), 2) AS attendance_percentage
+FROM modules m
+JOIN attendances a ON m.module_id = a.module_id
+GROUP BY m.module_name
+ORDER BY attendance_percentage DESC;
+
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;
+
+</pre
+    >
+    <script>
+      function toggleCode(id) {
+        const codeElement = document.getElementById(id);
+        const button = event.target;
+
+        if (codeElement.classList.contains("visible")) {
+          codeElement.classList.remove("visible");
+          setTimeout(() => {
+            codeElement.style.display = "none";
+          }, 300);
+          button.textContent = "View";
+        } else {
+          codeElement.style.display = "block";
+          setTimeout(() => {
+            codeElement.classList.add("visible");
+          }, 10);
+          button.textContent = "Hide";
+        }
+      }
+
+      function copyToClipboard(id) {
+        const codeElement = document.getElementById(id);
+        const button = event.target;
+        const originalText = button.textContent;
+
+        // Make sure code is visible during copy
+        const wasHidden = codeElement.style.display === "none";
+        if (wasHidden) {
+          codeElement.style.display = "block";
+        }
+
+        // Copy text to clipboard
+        navigator.clipboard
+          .writeText(codeElement.textContent)
+          .then(() => {
+            // Show success feedback
+            button.textContent = "Copied!";
+            button.style.backgroundColor = "#16a085";
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.style.backgroundColor = "";
+            }, 2000);
+
+            // Restore display state if it was hidden
+            if (wasHidden) {
+              codeElement.style.display = "none";
+            }
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+            button.textContent = "Failed!";
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 2000);
+          });
+      }
+
+      function downloadFile(id, filename) {
+        const codeElement = document.getElementById(id);
+        const textContent = codeElement.textContent;
+
+        // Create a blob with the text content
+        const blob = new Blob([textContent], { type: "text/plain" });
+
+        // Create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // Create a temporary link element
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+
+        // Append the link, click it, and remove it
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Clean up the URL object
+        URL.revokeObjectURL(url);
+      }
+    </script>
   </body>
 </html>
