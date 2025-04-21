@@ -188,10 +188,6 @@ ALTER TABLE modules
 ADD CONSTRAINT pk_modules 
 PRIMARY KEY (module_id);
 
-ALTER TABLE attendances 
-ADD CONSTRAINT pk_attendances 
-PRIMARY KEY (attendance_id);
-
 ALTER TABLE assignments 
 ADD CONSTRAINT pk_assignments 
 PRIMARY KEY (assignment_id);
@@ -210,6 +206,10 @@ PRIMARY KEY (module_id, degree_id);
 ALTER TABLE module_lists 
 ADD CONSTRAINT pk_module_lists 
 PRIMARY KEY (student_id, module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT pk_attendances 
+PRIMARY KEY (student_id, module_id, attendance_date);
 
 ALTER TABLE student_submissions 
 ADD CONSTRAINT pk_student_submissions 
@@ -243,8 +243,8 @@ ADD CONSTRAINT fk_module_lists_modules
 FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE attendances 
-ADD CONSTRAINT fk_attendances_modules 
-FOREIGN KEY (module_id) REFERENCES modules(module_id);
+ADD CONSTRAINT fk_attendances_module_lists
+FOREIGN KEY (student_id, module_id) REFERENCES module_lists(student_id, module_id);
 
 ALTER TABLE assignments 
 ADD CONSTRAINT fk_assignments_modules 

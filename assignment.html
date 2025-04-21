@@ -336,66 +336,27 @@
       </tr>
       <tr>
         <td></td>
-        <td>attendance_id</td>
+        <td>student_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_attendances</td>
+        <td>pk_attendances, fk_attendances_module_lists</td>
       </tr>
       <tr>
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>fk_attendances_modules</td>
+        <td>pk_attendances, fk_attendances_module_lists</td>
       </tr>
       <tr>
         <td></td>
         <td>attendance_date</td>
         <td>DATE</td>
-        <td>DEFAULT SYSDATE, NOT NULL</td>
+        <td>pk_attendances, DEFAULT SYSDATE, NOT NULL</td>
       </tr>
       <tr>
         <td></td>
         <td>status</td>
         <td>CHAR(1)</td>
         <td>CHECK (status IN ('P', 'A'))</td>
-      </tr>
-      <tr class="table-title">
-        <td colspan="4">assignments</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>assignment_id</td>
-        <td>NUMBER(5)</td>
-        <td>pk_assignments</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>module_id</td>
-        <td>NUMBER(5)</td>
-        <td>fk_assignments_modules</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>code</td>
-        <td>VARCHAR2(5)</td>
-        <td>NOT NULL, UNIQUE</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>title</td>
-        <td>VARCHAR2(30)</td>
-        <td>NOT NULL</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>weighting</td>
-        <td>NUMBER(5,2)</td>
-        <td>NOT NULL, CHECK (weighting BETWEEN 0 AND 100)</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>type</td>
-        <td>VARCHAR2(20)</td>
-        <td></td>
       </tr>
 
       <tr class="table-title">
