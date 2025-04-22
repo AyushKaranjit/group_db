@@ -183,6 +183,10 @@ ALTER TABLE modules
 ADD CONSTRAINT pk_modules 
 PRIMARY KEY (module_id);
 
+ALTER TABLE module_lists
+ADD CONSTRAINT pk_module_lists
+PRIMARY KEY (module_list_id);
+      
 ALTER TABLE assignments 
 ADD CONSTRAINT pk_assignments 
 PRIMARY KEY (assignment_id);
