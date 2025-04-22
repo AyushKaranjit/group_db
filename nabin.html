@@ -149,7 +149,7 @@
         Download
       </button>
     </div>
-    <pre id="creates" class="code-content">
+        <pre id="creates" class="code-content">
 /* 
 Group 1,
 Ayush Karanjit 24812931,
@@ -220,6 +220,7 @@ CREATE TABLE degree_modules (
 
 -- Create table for module_lists
 CREATE TABLE module_lists (
+    module_list_id NUMBER(5),
     student_id NUMBER(5),
     module_id NUMBER(5),
     enrollment_date DATE
@@ -227,8 +228,8 @@ CREATE TABLE module_lists (
 
 -- Create table for attendances
 CREATE TABLE attendances (
-    student_id NUMBER(5),
-    module_id NUMBER(5),
+    attendance_id NUMBER(5),
+    module_list_id NUMBER(5),
     attendance_date DATE,
     status CHAR(1)
 );
@@ -248,8 +249,9 @@ CREATE TABLE submissions (
     submission_id NUMBER(5),
     assignment_id NUMBER(5),
     marker_id NUMBER(5),
-    receipt_no VARCHAR2(20),
-    submission_date DATE
+    receipt_no VARCHAR2(4),
+    submission_date DATE,
+    submission_time DATE
 );
 
 -- Create table for student_submissions
@@ -262,8 +264,7 @@ CREATE TABLE student_submissions (
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
+COMMIT;</pre>
 
     <div class="file-header">
       <span class="filename">drops_group1.txt</span>
