@@ -149,7 +149,7 @@
         Download
       </button>
     </div>
-    <pre id="constraints" class="code-content">
+        <pre id="constraints" class="code-content">
 /* 
 Group 1,
 Ayush Karanjit 24812931,
@@ -186,7 +186,11 @@ PRIMARY KEY (module_id);
 ALTER TABLE module_lists
 ADD CONSTRAINT pk_module_lists
 PRIMARY KEY (module_list_id);
-      
+
+ALTER TABLE attendances
+ADD CONSTRAINT pk_attendances
+PRIMARY KEY (attendance_id);
+
 ALTER TABLE assignments 
 ADD CONSTRAINT pk_assignments 
 PRIMARY KEY (assignment_id);
@@ -201,14 +205,6 @@ PRIMARY KEY (submission_id);
 ALTER TABLE degree_modules 
 ADD CONSTRAINT pk_degree_modules 
 PRIMARY KEY (module_id, degree_id);
-
-ALTER TABLE module_lists 
-ADD CONSTRAINT pk_module_lists 
-PRIMARY KEY (student_id, module_id);
-
-ALTER TABLE attendances 
-ADD CONSTRAINT pk_attendances 
-PRIMARY KEY (student_id, module_id, attendance_date);
 
 ALTER TABLE student_submissions 
 ADD CONSTRAINT pk_student_submissions 
@@ -243,7 +239,7 @@ FOREIGN KEY (module_id) REFERENCES modules(module_id);
 
 ALTER TABLE attendances 
 ADD CONSTRAINT fk_attendances_module_lists
-FOREIGN KEY (student_id, module_id) REFERENCES module_lists(student_id, module_id);
+FOREIGN KEY (module_list_id) REFERENCES module_lists(module_list_id);
 
 ALTER TABLE assignments 
 ADD CONSTRAINT fk_assignments_modules 
@@ -350,8 +346,7 @@ MODIFY attendance_date DEFAULT SYSDATE;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
+COMMIT;</pre>
 
     <script>
       function toggleCode(id) {
