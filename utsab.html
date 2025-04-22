@@ -149,107 +149,95 @@
         Download
       </button>
     </div>
-    <pre id="inserts" class="code-content">
-      /* 
-      Group 1,
-      Ayush Karanjit 24812931,
-      Anuskar Sigdel 24812606,
-      Utsab Thami Magar 24814107,
-      Nabin Thapaliya 24814102
-      */
-      
-      -- @E:\DB-PROJECT\inserts_group1.txt
-      
-      /* 
-      Group 1,
-      Ayush Karanjit 24812931,
-      Anuskar Sigdel 24812606,
-      Utsab Thami Magar 24814107,
-      Nabin Thapaliya 24814102
-      */
-      
-      -- @E:\DB-PROJECT\inserts_group1.txt
-      
-      -- Degrees
-      INSERT INTO degrees VALUES (1, 'Computer Science', 'Software focused', 'L5', 3);
-      INSERT INTO degrees VALUES (2, 'BBA', 'Business basics', 'L5', 3);
-      INSERT INTO degrees VALUES (3, 'Env Science', 'Sustainability', 'L6', 3);
-      INSERT INTO degrees VALUES (4, 'Data Science', 'Big data', 'L4', 3);
-      INSERT INTO degrees VALUES (5, 'Cyber Security', 'Network defense', 'L6', 3);
-      
-      -- Examiners
-      INSERT INTO examiners VALUES (101, 'Laura', 'Jameson', 'UoN', '9812398712', 'London');
-      INSERT INTO examiners VALUES (102, 'Michael', 'Roberts', 'UoN', '9801234578', 'Manchester');
-      INSERT INTO examiners VALUES (103, 'Emily', 'Clark', 'UoN', '9845678932', 'Leeds');
-      INSERT INTO examiners VALUES (104, 'Daniel', 'Stewart', 'UoN', '9867543201', 'Birmingham');
-      INSERT INTO examiners VALUES (105, 'Sarah', 'Turner', 'UoN', '9834567890', 'Glasgow');
-      
-      -- Markers
-      INSERT INTO markers VALUES (201, 'Ankit', 'Thapa', '9865342198', 'Kathmandu');
-      INSERT INTO markers VALUES (202, 'Sujita', 'Parajuli', '9843201765', 'Lalitpur');
-      INSERT INTO markers VALUES (203, 'Pradeep', 'Pandey', '9817456032', 'Bhaktapur');
-      INSERT INTO markers VALUES (204, 'Nischal', 'Khadka', '9832154789', 'Pokhara');
-      INSERT INTO markers VALUES (205, 'Niresh', 'Dhakal', '9803284791', 'Butwal');
-      
-      -- Students
-      INSERT INTO students VALUES (301, 1, 'Utsab', 'Thami', '15-AUG-03', '9867210345', 'Kathmandu');
-      INSERT INTO students VALUES (302, 1, 'Nabin', 'Thapaliya', '12-OCT-03', '9801678945', 'Lalitpur');
-      INSERT INTO students VALUES (303, 1, 'Ayush', 'Karanjit', '21-JUL-03', '9812304981', 'Bhaktapur');
-      INSERT INTO students VALUES (304, 1, 'Anuskar', 'Sigdel', '30-SEP-03', '9847812365', 'Pokhara');
-      INSERT INTO students VALUES (305, 1, 'David', 'Gurung', '11-NOV-03', '9821094738', 'Butwal');
-      
-      -- Modules
-      INSERT INTO modules VALUES (401, 101, 'Web Programming', 'Web dev basics', 'Y');
-      INSERT INTO modules VALUES (402, 102, 'System Design', 'SDLC and UML', 'Y');
-      INSERT INTO modules VALUES (403, 103, 'Relational DB', 'SQL skills', 'Y');
-      INSERT INTO modules VALUES (404, 104, 'Data Structures', 'Algorithms', 'Y');
-      INSERT INTO modules VALUES (405, 105, 'Operating Sys', 'OS concepts', 'Y');
-      
-      -- Degree Modules
-      INSERT INTO degree_modules VALUES (401, 1, '01-FEB-25', 'S1');
-      INSERT INTO degree_modules VALUES (402, 1, '01-FEB-25', 'S1');
-      INSERT INTO degree_modules VALUES (403, 1, '01-FEB-25', 'S1');
-      INSERT INTO degree_modules VALUES (404, 1, '01-AUG-25', 'S2');
-      INSERT INTO degree_modules VALUES (405, 1, '01-FEB-26', 'S1');
-      
-      -- Module Lists
-      INSERT INTO module_lists VALUES (301, 401, '05-FEB-25');
-      INSERT INTO module_lists VALUES (302, 401, '05-FEB-25');
-      INSERT INTO module_lists VALUES (303, 401, '05-FEB-25');
-      INSERT INTO module_lists VALUES (304, 401, '05-FEB-25');
-      INSERT INTO module_lists VALUES (305, 401, '05-FEB-25');
-      
-      -- Attendances 
-      INSERT INTO attendances VALUES (301, 401, '01-APR-25', 'P');
-      INSERT INTO attendances VALUES (302, 401, '02-APR-25', 'A');
-      INSERT INTO attendances VALUES (303, 401, '03-APR-25', 'P');
-      INSERT INTO attendances VALUES (304, 401, '04-APR-25', 'P');
-      INSERT INTO attendances VALUES (305, 401, '05-APR-25', 'A');
-      
-      -- Assignments
-      INSERT INTO assignments VALUES (601, 401, 'WP01', 'Responsive Web', 30.00, 'Project');
-      INSERT INTO assignments VALUES (602, 402, 'SD01', 'Design Report', 30.00, 'Report');
-      INSERT INTO assignments VALUES (603, 403, 'DB01', 'SQL Task', 30.00, 'Lab');
-      INSERT INTO assignments VALUES (604, 404, 'DS01', 'Linked List', 20.00, 'Code');
-      INSERT INTO assignments VALUES (605, 405, 'OS01', 'Scheduling', 25.00, 'Sim');
-      
-      -- Submissions
-      INSERT INTO submissions VALUES (701, 601, 201, 'R701', '19-MAY-25');
-      INSERT INTO submissions VALUES (702, 601, 202, 'R702', '19-MAY-25');
-      INSERT INTO submissions VALUES (703, 601, 203, 'R703', '19-MAY-25');
-      INSERT INTO submissions VALUES (704, 601, 204, 'R704', '19-MAY-25');
-      INSERT INTO submissions VALUES (705, 601, 205, 'R705', '19-MAY-25');
-      
-      -- Student Submissions
-      INSERT INTO student_submissions VALUES (301, 701, 'A', 'Great job');
-      INSERT INTO student_submissions VALUES (302, 702, 'B+', 'Well done');
-      INSERT INTO student_submissions VALUES (303, 703, 'A-', 'Improved');
-      INSERT INTO student_submissions VALUES (304, 704, 'A+', 'Excellent');
-      INSERT INTO student_submissions VALUES (305, 705, 'B', 'Satisfactory');
-      
-      -- Commit the transaction
-      COMMIT;</pre
-    >
+     <pre id="inserts" class="code-content">/* 
+Group 1,
+Ayush Karanjit 24812931,
+Anuskar Sigdel 24812606,
+Utsab Thami Magar 24814107,
+Nabin Thapaliya 24814102
+*/
+
+-- @E:\DB-PROJECT\inserts_group1.txt
+
+-- Degrees
+INSERT INTO degrees VALUES (1, 'Computer Science', 'Software focused', 'L5', 3);
+INSERT INTO degrees VALUES (2, 'BBA', 'Business basics', 'L5', 3);
+INSERT INTO degrees VALUES (3, 'Env Science', 'Sustainability', 'L6', 3);
+INSERT INTO degrees VALUES (4, 'Data Science', 'Big data', 'L4', 3);
+INSERT INTO degrees VALUES (5, 'Cyber Security', 'Network defense', 'L6', 3);
+
+-- Examiners
+INSERT INTO examiners VALUES (101, 'Laura', 'Jameson', 'UoN', '9812398712', 'London');
+INSERT INTO examiners VALUES (102, 'Michael', 'Roberts', 'UoN', '9801234578', 'Manchester');
+INSERT INTO examiners VALUES (103, 'Emily', 'Clark', 'UoN', '9845678932', 'Leeds');
+INSERT INTO examiners VALUES (104, 'Daniel', 'Stewart', 'UoN', '9867543201', 'Birmingham');
+INSERT INTO examiners VALUES (105, 'Sarah', 'Turner', 'UoN', '9834567890', 'Glasgow');
+
+-- Markers
+INSERT INTO markers VALUES (201, 'Ankit', 'Thapa', '9865342198', 'Kathmandu');
+INSERT INTO markers VALUES (202, 'Sujita', 'Parajuli', '9843201765', 'Lalitpur');
+INSERT INTO markers VALUES (203, 'Pradeep', 'Pandey', '9817456032', 'Bhaktapur');
+INSERT INTO markers VALUES (204, 'Nischal', 'Khadka', '9832154789', 'Pokhara');
+INSERT INTO markers VALUES (205, 'Niresh', 'Dhakal', '9803284791', 'Butwal');
+
+-- Students
+INSERT INTO students VALUES (301, 1, 'Utsab', 'Thami', '15-AUG-03', '9867210345', 'Kathmandu');
+INSERT INTO students VALUES (302, 1, 'Nabin', 'Thapaliya', '12-OCT-03', '9801678945', 'Lalitpur');
+INSERT INTO students VALUES (303, 1, 'Ayush', 'Karanjit', '21-JUL-03', '9812304981', 'Bhaktapur');
+INSERT INTO students VALUES (304, 1, 'Anuskar', 'Sigdel', '30-SEP-03', '9847812365', 'Pokhara');
+INSERT INTO students VALUES (305, 1, 'David', 'Gurung', '11-NOV-03', '9821094738', 'Butwal');
+
+-- Modules
+INSERT INTO modules VALUES (401, 101, 'Web Programming', 'Web dev basics', 'Y');
+INSERT INTO modules VALUES (402, 102, 'System Design', 'SDLC and UML', 'Y');
+INSERT INTO modules VALUES (403, 103, 'Relational DB', 'SQL skills', 'Y');
+INSERT INTO modules VALUES (404, 104, 'Data Structures', 'Algorithms', 'Y');
+INSERT INTO modules VALUES (405, 105, 'Operating Sys', 'OS concepts', 'Y');
+
+-- Degree Modules
+INSERT INTO degree_modules VALUES (401, 1, '01-FEB-25', 'S1');
+INSERT INTO degree_modules VALUES (402, 1, '01-FEB-25', 'S1');
+INSERT INTO degree_modules VALUES (403, 1, '01-FEB-25', 'S1');
+INSERT INTO degree_modules VALUES (404, 1, '01-AUG-25', 'S2');
+INSERT INTO degree_modules VALUES (405, 1, '01-FEB-26', 'S1');
+
+-- Module Lists
+INSERT INTO module_lists VALUES (301, 401, '05-FEB-25');
+INSERT INTO module_lists VALUES (302, 401, '05-FEB-25');
+INSERT INTO module_lists VALUES (303, 401, '05-FEB-25');
+INSERT INTO module_lists VALUES (304, 401, '05-FEB-25');
+INSERT INTO module_lists VALUES (305, 401, '05-FEB-25');
+
+-- Attendances 
+INSERT INTO attendances VALUES (301, 401, '01-APR-25', 'P');
+INSERT INTO attendances VALUES (302, 401, '02-APR-25', 'A');
+INSERT INTO attendances VALUES (303, 401, '03-APR-25', 'P');
+INSERT INTO attendances VALUES (304, 401, '04-APR-25', 'P');
+INSERT INTO attendances VALUES (305, 401, '05-APR-25', 'A');
+
+-- Assignments
+INSERT INTO assignments VALUES (601, 401, 'WP01', 'Responsive Web', 30.00, 'Project');
+INSERT INTO assignments VALUES (602, 402, 'SD01', 'Design Report', 30.00, 'Report');
+INSERT INTO assignments VALUES (603, 403, 'DB01', 'SQL Task', 30.00, 'Lab');
+INSERT INTO assignments VALUES (604, 404, 'DS01', 'Linked List', 20.00, 'Code');
+INSERT INTO assignments VALUES (605, 405, 'OS01', 'Scheduling', 25.00, 'Sim');
+
+-- Submissions
+INSERT INTO submissions VALUES (701, 601, 201, 'R701', '19-MAY-25');
+INSERT INTO submissions VALUES (702, 601, 202, 'R702', '19-MAY-25');
+INSERT INTO submissions VALUES (703, 601, 203, 'R703', '19-MAY-25');
+INSERT INTO submissions VALUES (704, 601, 204, 'R704', '19-MAY-25');
+INSERT INTO submissions VALUES (705, 601, 205, 'R705', '19-MAY-25');
+
+-- Student Submissions
+INSERT INTO student_submissions VALUES (301, 701, 'A', 'Great job');
+INSERT INTO student_submissions VALUES (302, 702, 'B+', 'Well done');
+INSERT INTO student_submissions VALUES (303, 703, 'A-', 'Improved');
+INSERT INTO student_submissions VALUES (304, 704, 'A+', 'Excellent');
+INSERT INTO student_submissions VALUES (305, 705, 'B', 'Satisfactory');
+
+-- Commit the transaction
+COMMIT;</pre>
     <script>
       function toggleCode(id) {
         const codeElement = document.getElementById(id);
