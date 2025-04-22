@@ -312,17 +312,23 @@
       <tr class="table-title">
         <td colspan="4">module_lists</td>
       </tr>
+       <tr>
+        <td></td>
+        <td>module_list_id</td>
+        <td>NUMBER(5)</td>
+        <td>pk_module_lists</td>
+      </tr>
       <tr>
         <td></td>
         <td>student_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_module_lists, fk_module_lists_students</td>
+        <td>fk_module_lists_students</td>
       </tr>
       <tr>
         <td></td>
         <td>module_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_module_lists, fk_module_lists_modules</td>
+        <td>fk_module_lists_modules</td>
       </tr>
       <tr>
         <td></td>
@@ -336,21 +342,21 @@
       </tr>
       <tr>
         <td></td>
-        <td>student_id</td>
+        <td>attendance_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_attendances, fk_attendances_module_lists</td>
+        <td>pk_attendances</td>
       </tr>
       <tr>
         <td></td>
-        <td>module_id</td>
+        <td>module_list_id</td>
         <td>NUMBER(5)</td>
-        <td>pk_attendances, fk_attendances_module_lists</td>
+        <td>fk_attendances_module_lists</td>
       </tr>
       <tr>
         <td></td>
         <td>attendance_date</td>
         <td>DATE</td>
-        <td>pk_attendances, DEFAULT SYSDATE, NOT NULL</td>
+        <td>DEFAULT SYSDATE, NOT NULL</td>
       </tr>
       <tr>
         <td></td>
