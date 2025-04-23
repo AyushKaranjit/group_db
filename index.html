@@ -72,6 +72,16 @@
         background-color: #27ae60;
         text-decoration: none;
       }
+
+      .deadline {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .days-left { /* Style for the new element */
+        font-weight: bold;
+        color: #e67e22; /* Orange color for emphasis */
+        margin-left: 5px;
+      }
     </style>
   </head>
   <body>
@@ -83,9 +93,9 @@
 
     <p>
       This is a group assignment worth 50% of the module grade,
-      <span class="deadline">due on May 19th, 2025</span>.
+      <span class="deadline" id="deadline-date">due on May 19th, 2025</span>.
+      <span id="days-left" class="days-left"></span>
     </p>
-    <p>
       <a
         href="https://nile.northampton.ac.uk/ultra/courses/_153635_1/outline"
         class="submission-link"
@@ -163,5 +173,45 @@
         </li>
       </ul>
     </div>
+    <script>
+      function calculateDaysLeft() {
+        const deadlineText = document.getElementById('deadline-date').textContent;
+        // Extract the date part (assuming format "due on Month Day(th/st/nd/rd), Year")
+        const dateMatch = deadlineText.match(/(\w+ \d+)(?:st|nd|rd|th)?, (\d{4})/);
+        if (!dateMatch) {
+          console.error("Could not parse deadline date from:", deadlineText);
+          return; // Exit if date format is not matched
+        }
+
+        const deadlineDate = new Date(`${dateMatch[1]}, ${dateMatch[2]}`);
+        // Use today's date based on the system clock (April 23, 2025)
+        const currentDate = new Date(2025, 3, 23); // Month is 0-indexed (0=Jan, 3=Apr)
+
+        // Set time to 00:00:00 to compare dates only
+        deadlineDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
+
+        const timeDiff = deadlineDate.getTime() - currentDate.getTime();
+        const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Calculate days
+
+        const daysLeftElement = document.getElementById('days-left');
+        if (!daysLeftElement) return; // Exit if element not found
+
+        if (daysLeft > 1) {
+          daysLeftElement.textContent = `(${daysLeft} days left)`;
+        } else if (daysLeft === 1) {
+          daysLeftElement.textContent = `(1 day left)`;
+        } else if (daysLeft === 0) {
+          daysLeftElement.textContent = `(Due today!)`;
+          daysLeftElement.style.color = '#c0392b'; // Darker red for urgency
+        } else {
+          daysLeftElement.textContent = `(Past due)`;
+          daysLeftElement.style.color = '#7f8c8d'; // Grey for past due
+        }
+      }
+
+      // Calculate days left when the page loads
+      document.addEventListener('DOMContentLoaded', calculateDaysLeft);
+    </script>
   </body>
 </html>
