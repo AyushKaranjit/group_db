@@ -133,10 +133,10 @@
   </head>
   <body>
     
-    <a href="plan.html" class="nav-link">← Go Back</a>
-    <h1>🥵🥵🥵🥵🥵</h1>
-    <h1>Pending...</h1>
     <!-- <a href="plan.html" class="nav-link">← Go Back</a>
+    <h1>🥵🥵🥵🥵🥵</h1>
+    <h1>Pending...</h1> -->
+    <a href="plan.html" class="nav-link">← Go Back</a>
     <h1>🥵🥵🥵🥵🥵</h1>
     <div class="file-header">
       <span class="filename">queries_group1.txt</span>
@@ -224,6 +224,11 @@ JOIN examiners e ON m.examiner_id = e.examiner_id;
 
 -- Parameterized query to find students by specific degree
 -- Can be used with variable binding in application code
+VARIABLE degree_id NUMBER
+BEGIN
+  :degree_id := 1; -- Set a sample value
+END;
+/
 SELECT * FROM students 
 WHERE degree_id = :degree_id;
 
@@ -254,13 +259,12 @@ SELECT m.module_name,
        COUNT(*) AS total_count,
        ROUND(COUNT(CASE WHEN a.status = 'P' THEN 1 END) * 100 / COUNT(*), 2) AS attendance_percentage
 FROM modules m
-JOIN attendances a ON m.module_id = a.module_id
+JOIN module_lists ml ON m.module_id = ml.module_id
+JOIN attendances a ON ml.module_list_id = a.module_list_id
 GROUP BY m.module_name
 ORDER BY attendance_percentage DESC;
 
-
--- COMMIT CHANGES
--- This saves all the changes made to the database schema
+-- AT last 
 COMMIT;
 
 </pre
@@ -349,6 +353,6 @@ COMMIT;
         // Clean up the URL object
         URL.revokeObjectURL(url);
       }
-    </script> -->
+    </script>
   </body>
 </html>

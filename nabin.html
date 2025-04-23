@@ -149,7 +149,7 @@
         Download
       </button>
     </div>
-        <pre id="creates" class="code-content">
+    <pre id="creates" class="code-content">
 /* 
 Group 1,
 Ayush Karanjit 24812931,
@@ -264,7 +264,8 @@ CREATE TABLE student_submissions (
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre>
+COMMIT;</pre
+    >
 
     <div class="file-header">
       <span class="filename">drops_group1.txt</span>
@@ -326,6 +327,68 @@ PURGE RECYCLEBIN;
 -- This saves all the changes made to the database schema
 COMMIT;</pre
     >
+
+    <h2>Notes on `creates_group1.txt`</h2>
+    <ul>
+      <li>
+        <strong>Purpose:</strong> Sets up the initial database structure by
+        creating all necessary tables.
+      </li>
+      <li>
+        <strong>Tables Created:</strong>
+        <ul>
+          <li>`degrees`: Stores degree information.</li>
+          <li>`examiners`: Stores external examiner details.</li>
+          <li>`markers`: Stores internal marker details.</li>
+          <li>`students`: Stores student information, linked to `degrees`.</li>
+          <li>`modules`: Stores module information, linked to `examiners`.</li>
+          <li>
+            `degree_modules`: Links `modules` to `degrees` (many-to-many).
+          </li>
+          <li>
+            `module_lists`: Links `students` to `modules` (enrollment,
+            many-to-many).
+          </li>
+          <li>
+            `attendances`: Records student attendance, linked to `module_lists`.
+          </li>
+          <li>`assignments`: Defines assignments, linked to `modules`.</li>
+          <li>
+            `submissions`: Records assignment submissions, linked to
+            `assignments` and `markers`.
+          </li>
+          <li>
+            `student_submissions`: Links `students` to `submissions`, storing
+            grades/feedback.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Final Step:</strong> `COMMIT;` saves all table creation
+        operations permanently.
+      </li>
+    </ul>
+
+    <h2>Notes on `drops_group1.txt`</h2>
+    <ul>
+      <li>
+        <strong>Purpose:</strong> Removes all tables created by
+        `creates_group1.txt` to clean the database schema.
+      </li>
+      <li>
+        <strong>Order:</strong> Tables are dropped in reverse dependency order
+        to avoid foreign key errors.
+      </li>
+      <li>
+        <strong>`CASCADE CONSTRAINTS`:</strong> Used with `DROP TABLE` to
+        automatically remove related foreign key constraints.
+      </li>
+      <li>
+        <strong>`PURGE RECYCLEBIN;`:</strong> Permanently removes dropped tables
+        from the recycle bin, freeing space.
+      </li>
+      <li><strong>`COMMIT;`:</strong> Saves the table deletion operations.</li>
+    </ul>
 
     <script>
       function toggleCode(id) {
