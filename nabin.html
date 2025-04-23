@@ -47,25 +47,15 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       }
 
-      pre {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 0 0 5px 5px;
-        border-left: 4px solid #2c3e50;
-        overflow-x: auto;
-        font-size: 14px;
-        line-height: 1.5;
-        margin: 0 0 30px 0;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      }
+      /* Removed pre style */
 
       .file-header {
         background-color: #e7e7e7;
         padding: 12px 15px;
-        border-radius: 5px 5px 0 0;
+        border-radius: 5px; /* Adjusted border-radius */
         font-weight: bold;
         border-left: 4px solid #2c3e50;
-        margin: 40px 0 0 0;
+        margin: 40px 0 30px 0; /* Adjusted margin */
         display: flex;
         align-items: center;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -87,27 +77,11 @@
         font-weight: 600;
         transition: all 0.2s ease;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-decoration: none; /* Added for anchor tag */
       }
 
-      .view-button {
-        background-color: #3498db;
-      }
-
-      .view-button:hover {
-        background-color: #2980b9;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-      }
-
-      .copy-button {
-        background-color: #27ae60;
-      }
-
-      .copy-button:hover {
-        background-color: #2ecc71;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-      }
+      /* Removed view-button styles */
+      /* Removed copy-button styles */
 
       .download-button {
         background-color: #9b59b6;
@@ -119,361 +93,39 @@
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
 
-      .code-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .code-content.visible {
-        display: block;
-        opacity: 1;
-      }
+      /* Removed code-content styles */
     </style>
   </head>
   <body>
     <a href="plan.html" class="nav-link">← Go Back</a>
     <h1>🫡🫡🫡🫡🫡</h1>
     <div class="file-header">
-      <span class="filename">creates_group1.txt</span>
-      <button class="btn view-button" onclick="toggleCode('creates')">
-        View
-      </button>
-      <button class="btn copy-button" onclick="copyToClipboard('creates')">
-        Copy
-      </button>
-      <button
+      <span class="filename">creates_group1.sql</span>
+      <!-- Removed View and Copy buttons -->
+      <a
+        href="sql/creates_group1.sql"
         class="btn download-button"
-        onclick="downloadFile('creates', 'creates_group1.txt')"
+        download="creates_group1.sql"
       >
         Download
-      </button>
+      </a>
     </div>
-    <pre id="creates" class="code-content">
-/* 
-Group 1,
-Ayush Karanjit 24812931,
-Anuskar Sigdel 24812606,
-Utsab Thami Magar 24814107,
-Nabin Thapaliya 24814102
-*/
-
-
--- @E:\DB-PROJECT\creates_group1.txt
-
-
--- Create table for degrees
-CREATE TABLE degrees (
-    degree_id NUMBER(5),
-    degree_title VARCHAR2(30),
-    detail VARCHAR2(100),
-    degree_level VARCHAR2(5),
-    degree_year NUMBER(1)
-);
-
--- Create table for examiners
-CREATE TABLE examiners (
-    examiner_id NUMBER(5),
-    examiner_fname VARCHAR2(15),
-    examiner_lname VARCHAR2(15),
-    institution VARCHAR2(30),
-    contact_detail VARCHAR2(20),
-    address VARCHAR2(30)
-);
-
--- Create table for markers
-CREATE TABLE markers (
-    marker_id NUMBER(5),
-    marker_fname VARCHAR2(15),
-    marker_lname VARCHAR2(15),
-    contact_detail VARCHAR2(20),
-    address VARCHAR2(30)
-);
-
--- Create table for students
-CREATE TABLE students (
-    student_id NUMBER(5),
-    degree_id NUMBER(5),
-    student_fname VARCHAR2(15),
-    student_lname VARCHAR2(15),
-    dob DATE,
-    contact_number VARCHAR2(20),
-    address VARCHAR2(30)
-);
-
--- Create table for modules
-CREATE TABLE modules (
-    module_id NUMBER(5),
-    examiner_id NUMBER(5),
-    module_name VARCHAR2(30),
-    detail VARCHAR2(30),
-    status CHAR(1)
-);
-
--- Create table for degree_modules
-CREATE TABLE degree_modules (
-    module_id NUMBER(5),
-    degree_id NUMBER(5),
-    start_date DATE,
-    semester VARCHAR2(2)
-);
-
--- Create table for module_lists
-CREATE TABLE module_lists (
-    module_list_id NUMBER(5),
-    student_id NUMBER(5),
-    module_id NUMBER(5),
-    enrollment_date DATE
-);
-
--- Create table for attendances
-CREATE TABLE attendances (
-    attendance_id NUMBER(5),
-    module_list_id NUMBER(5),
-    attendance_date DATE,
-    status CHAR(1)
-);
-
--- Create table for assignments
-CREATE TABLE assignments (
-    assignment_id NUMBER(5),
-    module_id NUMBER(5),
-    code VARCHAR2(5),
-    title VARCHAR2(30),
-    weighting NUMBER(5,2),
-    type VARCHAR2(20)
-);
-
--- Create table for submissions
-CREATE TABLE submissions (
-    submission_id NUMBER(5),
-    assignment_id NUMBER(5),
-    marker_id NUMBER(5),
-    receipt_no VARCHAR2(4),
-    submission_date DATE,
-    submission_time DATE
-);
-
--- Create table for student_submissions
-CREATE TABLE student_submissions (
-    student_id NUMBER(5),
-    submission_id NUMBER(5),
-    grade VARCHAR2(2),
-    feedback VARCHAR2(100)
-);
-
--- COMMIT CHANGES
--- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
+    <!-- Removed pre block for creates -->
 
     <div class="file-header">
-      <span class="filename">drops_group1.txt</span>
-      <button class="btn view-button" onclick="toggleCode('drops')">
-        View
-      </button>
-      <button class="btn copy-button" onclick="copyToClipboard('drops')">
-        Copy
-      </button>
-      <button
+      <span class="filename">drops_group1.sql</span>
+      <!-- Removed View and Copy buttons -->
+      <a
+        href="sql/drops_group1.sql"
         class="btn download-button"
-        onclick="downloadFile('drops', 'drops_group1.txt')"
+        download="drops_group1.sql"
       >
         Download
-      </button>
+      </a>
     </div>
-    <pre id="drops" class="code-content">
-/* 
-Group 1,
-Ayush Karanjit 24812931,
-Anuskar Sigdel 24812606,
-Utsab Thami Magar 24814107,
-Nabin Thapaliya 24814102
-*/
+    <!-- Removed pre block for drops -->
 
--- @E:\DB-PROJECT\drops_group1.txt
-
--- Dropping tables in the reverse order of their dependencies
--- Starting with tables that have foreign keys referencing other tables
-
-DROP TABLE student_submissions CASCADE CONSTRAINTS;
-
-DROP TABLE submissions CASCADE CONSTRAINTS;
-
-DROP TABLE assignments CASCADE CONSTRAINTS;
-
-DROP TABLE attendances CASCADE CONSTRAINTS;
-
-DROP TABLE module_lists CASCADE CONSTRAINTS;
-
-DROP TABLE degree_modules CASCADE CONSTRAINTS;
-
-DROP TABLE modules CASCADE CONSTRAINTS;
-
-DROP TABLE students CASCADE CONSTRAINTS;
-
--- Now dropping tables with no dependencies
-
-DROP TABLE markers CASCADE CONSTRAINTS;
-
-DROP TABLE examiners CASCADE CONSTRAINTS;
-
-DROP TABLE degrees CASCADE CONSTRAINTS;
-
--- After all tables are dropped, permanently remove them from the recyclebin
-PURGE RECYCLEBIN;
-
--- COMMIT CHANGES
--- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
-
-    <h2>Notes on `creates_group1.txt`</h2>
-    <ul>
-      <li>
-        <strong>Purpose:</strong> Sets up the initial database structure by
-        creating all necessary tables.
-      </li>
-      <li>
-        <strong>Tables Created:</strong>
-        <ul>
-          <li>`degrees`: Stores degree information.</li>
-          <li>`examiners`: Stores external examiner details.</li>
-          <li>`markers`: Stores internal marker details.</li>
-          <li>`students`: Stores student information, linked to `degrees`.</li>
-          <li>`modules`: Stores module information, linked to `examiners`.</li>
-          <li>
-            `degree_modules`: Links `modules` to `degrees` (many-to-many).
-          </li>
-          <li>
-            `module_lists`: Links `students` to `modules` (enrollment,
-            many-to-many).
-          </li>
-          <li>
-            `attendances`: Records student attendance, linked to `module_lists`.
-          </li>
-          <li>`assignments`: Defines assignments, linked to `modules`.</li>
-          <li>
-            `submissions`: Records assignment submissions, linked to
-            `assignments` and `markers`.
-          </li>
-          <li>
-            `student_submissions`: Links `students` to `submissions`, storing
-            grades/feedback.
-          </li>
-        </ul>
-      </li>
-      <li>
-        <strong>Final Step:</strong> `COMMIT;` saves all table creation
-        operations permanently.
-      </li>
-    </ul>
-
-    <h2>Notes on `drops_group1.txt`</h2>
-    <ul>
-      <li>
-        <strong>Purpose:</strong> Removes all tables created by
-        `creates_group1.txt` to clean the database schema.
-      </li>
-      <li>
-        <strong>Order:</strong> Tables are dropped in reverse dependency order
-        to avoid foreign key errors.
-      </li>
-      <li>
-        <strong>`CASCADE CONSTRAINTS`:</strong> Used with `DROP TABLE` to
-        automatically remove related foreign key constraints.
-      </li>
-      <li>
-        <strong>`PURGE RECYCLEBIN;`:</strong> Permanently removes dropped tables
-        from the recycle bin, freeing space.
-      </li>
-      <li><strong>`COMMIT;`:</strong> Saves the table deletion operations.</li>
-    </ul>
-
-    <script>
-      function toggleCode(id) {
-        const codeElement = document.getElementById(id);
-        const button = event.target;
-
-        if (codeElement.classList.contains("visible")) {
-          codeElement.classList.remove("visible");
-          setTimeout(() => {
-            codeElement.style.display = "none";
-          }, 300);
-          button.textContent = "View";
-        } else {
-          codeElement.style.display = "block";
-          setTimeout(() => {
-            codeElement.classList.add("visible");
-          }, 10);
-          button.textContent = "Hide";
-        }
-      }
-
-      function copyToClipboard(id) {
-        const codeElement = document.getElementById(id);
-        const button = event.target;
-        const originalText = button.textContent;
-
-        // Make sure code is visible during copy
-        const wasHidden = codeElement.style.display === "none";
-        if (wasHidden) {
-          codeElement.style.display = "block";
-        }
-
-        // Copy text to clipboard
-        navigator.clipboard
-          .writeText(codeElement.textContent)
-          .then(() => {
-            // Show success feedback
-            button.textContent = "Copied!";
-            button.style.backgroundColor = "#16a085";
-
-            // Reset button after 2 seconds
-            setTimeout(() => {
-              button.textContent = originalText;
-              button.style.backgroundColor = "";
-            }, 2000);
-
-            // Restore display state if it was hidden
-            if (wasHidden) {
-              codeElement.style.display = "none";
-            }
-          })
-          .catch((err) => {
-            console.error("Failed to copy: ", err);
-            button.textContent = "Failed!";
-
-            // Reset button after 2 seconds
-            setTimeout(() => {
-              button.textContent = originalText;
-            }, 2000);
-          });
-      }
-
-      function downloadFile(id, filename) {
-        const codeElement = document.getElementById(id);
-        const textContent = codeElement.textContent;
-
-        // Create a blob with the text content
-        const blob = new Blob([textContent], { type: "text/plain" });
-
-        // Create a URL for the blob
-        const url = URL.createObjectURL(blob);
-
-        // Create a temporary link element
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = filename;
-
-        // Append the link, click it, and remove it
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Clean up the URL object
-        URL.revokeObjectURL(url);
-      }
-    </script>
+    <!-- Removed Notes sections -->
+    <!-- Removed script block -->
   </body>
 </html>

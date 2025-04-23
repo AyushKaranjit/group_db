@@ -1,0 +1,43 @@
+/* 
+Group 1,
+Ayush Karanjit 24812931,
+Anuskar Sigdel 24812606,
+Utsab Thami Magar 24814107,
+Nabin Thapaliya 24814102
+*/
+
+-- @E:\DB-PROJECT\drops_group1.txt
+
+-- Dropping tables in the reverse order of their dependencies
+-- Starting with tables that have foreign keys referencing other tables
+
+DROP TABLE student_submissions CASCADE CONSTRAINTS;
+
+DROP TABLE submissions CASCADE CONSTRAINTS;
+
+DROP TABLE assignments CASCADE CONSTRAINTS;
+
+DROP TABLE attendances CASCADE CONSTRAINTS;
+
+DROP TABLE module_lists CASCADE CONSTRAINTS;
+
+DROP TABLE degree_modules CASCADE CONSTRAINTS;
+
+DROP TABLE modules CASCADE CONSTRAINTS;
+
+DROP TABLE students CASCADE CONSTRAINTS;
+
+-- Now dropping tables with no dependencies
+
+DROP TABLE markers CASCADE CONSTRAINTS;
+
+DROP TABLE examiners CASCADE CONSTRAINTS;
+
+DROP TABLE degrees CASCADE CONSTRAINTS;
+
+-- After all tables are dropped, permanently remove them from the recyclebin
+PURGE RECYCLEBIN;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;

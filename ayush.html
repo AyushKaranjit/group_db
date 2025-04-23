@@ -47,25 +47,13 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       }
 
-      pre {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 0 0 5px 5px;
-        border-left: 4px solid #2c3e50;
-        overflow-x: auto;
-        font-size: 14px;
-        line-height: 1.5;
-        margin: 0 0 30px 0;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      }
-
       .file-header {
         background-color: #e7e7e7;
         padding: 12px 15px;
-        border-radius: 5px 5px 0 0;
+        border-radius: 5px;
         font-weight: bold;
         border-left: 4px solid #2c3e50;
-        margin: 40px 0 0 0;
+        margin: 40px 0 30px 0;
         display: flex;
         align-items: center;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -87,26 +75,7 @@
         font-weight: 600;
         transition: all 0.2s ease;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .view-button {
-        background-color: #3498db;
-      }
-
-      .view-button:hover {
-        background-color: #2980b9;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-      }
-
-      .copy-button {
-        background-color: #27ae60;
-      }
-
-      .copy-button:hover {
-        background-color: #2ecc71;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        text-decoration: none;
       }
 
       .download-button {
@@ -118,322 +87,20 @@
         transform: translateY(-1px);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
-
-      .code-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .code-content.visible {
-        display: block;
-        opacity: 1;
-      }
     </style>
   </head>
   <body>
     <a href="plan.html" class="nav-link">← Go Back</a>
     <h1>😎😎😎😎</h1>
     <div class="file-header">
-      <span class="filename">constraints_group1.txt</span>
-      <button class="btn view-button" onclick="toggleCode('constraints')">
-        View
-      </button>
-      <button class="btn copy-button" onclick="copyToClipboard('constraints')">
-        Copy
-      </button>
-      <button
+      <span class="filename">constraints_group1.sql</span>
+      <a
+        href="sql/constraints_group1.sql"
         class="btn download-button"
-        onclick="downloadFile('constraints', 'constraints_group1.txt')"
+        download="constraints_group1.sql"
       >
         Download
-      </button>
+      </a>
     </div>
-    <pre id="constraints" class="code-content">
-/* 
-Group 1,
-Ayush Karanjit 24812931,
-Anuskar Sigdel 24812606,
-Utsab Thami Magar 24814107,
-Nabin Thapaliya 24814102
-*/
-
--- @E:\DB-PROJECT\constraints_group1.txt
-
--- PRIMARY KEY CONSTRAINTS
--- These establish entity integrity by ensuring unique identification
-
-ALTER TABLE degrees 
-ADD CONSTRAINT pk_degrees 
-PRIMARY KEY (degree_id);
-
-ALTER TABLE examiners 
-ADD CONSTRAINT pk_examiners 
-PRIMARY KEY (examiner_id);
-
-ALTER TABLE markers 
-ADD CONSTRAINT pk_markers 
-PRIMARY KEY (marker_id);
-
-ALTER TABLE students 
-ADD CONSTRAINT pk_students 
-PRIMARY KEY (student_id);
-
-ALTER TABLE modules 
-ADD CONSTRAINT pk_modules 
-PRIMARY KEY (module_id);
-
-ALTER TABLE module_lists
-ADD CONSTRAINT pk_module_lists
-PRIMARY KEY (module_list_id);
-
-ALTER TABLE attendances
-ADD CONSTRAINT pk_attendances
-PRIMARY KEY (attendance_id);
-
-ALTER TABLE assignments 
-ADD CONSTRAINT pk_assignments 
-PRIMARY KEY (assignment_id);
-
-ALTER TABLE submissions 
-ADD CONSTRAINT pk_submissions 
-PRIMARY KEY (submission_id);
-
--- COMPOSITE PRIMARY KEYS for junction tables
--- These establish entity integrity for many-to-many relationships
-
-ALTER TABLE degree_modules 
-ADD CONSTRAINT pk_degree_modules 
-PRIMARY KEY (module_id, degree_id);
-
-ALTER TABLE student_submissions 
-ADD CONSTRAINT pk_student_submissions 
-PRIMARY KEY (student_id, submission_id);
-
--- FOREIGN KEY CONSTRAINTS
--- These establish referential integrity between related tables
-
-ALTER TABLE students 
-ADD CONSTRAINT fk_students_degrees 
-FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
-
-ALTER TABLE modules 
-ADD CONSTRAINT fk_modules_examiners 
-FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
-
-ALTER TABLE degree_modules 
-ADD CONSTRAINT fk_degree_modules_modules 
-FOREIGN KEY (module_id) REFERENCES modules(module_id);
-
-ALTER TABLE degree_modules 
-ADD CONSTRAINT fk_degree_modules_degrees 
-FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
-
-ALTER TABLE module_lists 
-ADD CONSTRAINT fk_module_lists_students 
-FOREIGN KEY (student_id) REFERENCES students(student_id);
-
-ALTER TABLE module_lists 
-ADD CONSTRAINT fk_module_lists_modules 
-FOREIGN KEY (module_id) REFERENCES modules(module_id);
-
-ALTER TABLE attendances 
-ADD CONSTRAINT fk_attendances_module_lists
-FOREIGN KEY (module_list_id) REFERENCES module_lists(module_list_id);
-
-ALTER TABLE assignments 
-ADD CONSTRAINT fk_assignments_modules 
-FOREIGN KEY (module_id) REFERENCES modules(module_id);
-
-ALTER TABLE submissions 
-ADD CONSTRAINT fk_submissions_assignments 
-FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
-
-ALTER TABLE submissions 
-ADD CONSTRAINT fk_submissions_markers 
-FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
-
-ALTER TABLE student_submissions 
-ADD CONSTRAINT fk_student_submissions_students 
-FOREIGN KEY (student_id) REFERENCES students(student_id);
-
-ALTER TABLE student_submissions 
-ADD CONSTRAINT fk_student_submissions_submissions 
-FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
-
--- NOT NULL CONSTRAINTS
--- These implement entity integrity by ensuring required data is provided
-
-ALTER TABLE degrees MODIFY degree_title VARCHAR2(30) NOT NULL;
-ALTER TABLE degrees MODIFY degree_year NUMBER(1) NOT NULL;
-
-ALTER TABLE examiners MODIFY examiner_fname VARCHAR2(15) NOT NULL;
-ALTER TABLE examiners MODIFY examiner_lname VARCHAR2(15) NOT NULL;
-
-ALTER TABLE markers MODIFY marker_fname VARCHAR2(15) NOT NULL;
-ALTER TABLE markers MODIFY marker_lname VARCHAR2(15) NOT NULL;
-
-ALTER TABLE students MODIFY student_fname VARCHAR2(15) NOT NULL;
-ALTER TABLE students MODIFY student_lname VARCHAR2(15) NOT NULL;
-ALTER TABLE students MODIFY dob DATE NOT NULL;
-
-ALTER TABLE modules MODIFY module_name VARCHAR2(30) NOT NULL;
-
-ALTER TABLE degree_modules MODIFY start_date DATE NOT NULL;
-
-ALTER TABLE module_lists MODIFY enrollment_date DATE NOT NULL;
-
-ALTER TABLE attendances MODIFY attendance_date DATE NOT NULL;
-
-ALTER TABLE attendances MODIFY status CHAR(1);
-
-ALTER TABLE assignments MODIFY code VARCHAR2(5) NOT NULL;
-ALTER TABLE assignments MODIFY title VARCHAR2(30) NOT NULL;
-ALTER TABLE assignments MODIFY weighting NUMBER(5,2) NOT NULL;
-
-ALTER TABLE submissions MODIFY receipt_no VARCHAR2(20) NOT NULL;
-ALTER TABLE submissions MODIFY submission_date DATE NOT NULL;
-ALTER TABLE submissions MODIFY submission_time DATE NOT NULL;
-
--- UNIQUE CONSTRAINTS
--- These enforce that certain columns contain unique values
-
-ALTER TABLE assignments 
-ADD CONSTRAINT unique_assignment_code 
-UNIQUE (code);
-
-ALTER TABLE submissions 
-ADD CONSTRAINT unique_receipt_no 
-UNIQUE (receipt_no);
-
--- CHECK CONSTRAINTS
--- These implement domain integrity by limiting values
-
-ALTER TABLE degrees 
-ADD CONSTRAINT check_degree_year 
-CHECK (degree_year BETWEEN 1 AND 9);
-
-ALTER TABLE modules
-ADD CONSTRAINT check_module_status
-CHECK (status IN ('Y', 'N'));
-
-ALTER TABLE degree_modules 
-ADD CONSTRAINT check_semester 
-CHECK (semester IN ('S1', 'S2'));
-
-ALTER TABLE attendances 
-ADD CONSTRAINT check_attendance_status 
-CHECK (status IN ('P', 'A'));
-
-ALTER TABLE assignments 
-ADD CONSTRAINT check_weighting 
-CHECK (weighting BETWEEN 0 AND 100);
-
-ALTER TABLE student_submissions 
-ADD CONSTRAINT check_grade 
-CHECK (grade IN ('A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'));
-
--- DEFAULT CONSTRAINTS
--- These set default values for columns
-
-ALTER TABLE degrees 
-MODIFY degree_year DEFAULT 4;
-
-ALTER TABLE modules 
-MODIFY status DEFAULT 'Y';
-
-ALTER TABLE attendances 
-MODIFY attendance_date DEFAULT SYSDATE;
-
--- COMMIT CHANGES
--- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
-
-    <script>
-      function toggleCode(id) {
-        const codeElement = document.getElementById(id);
-        const button = event.target;
-
-        if (codeElement.classList.contains("visible")) {
-          codeElement.classList.remove("visible");
-          setTimeout(() => {
-            codeElement.style.display = "none";
-          }, 300);
-          button.textContent = "View";
-        } else {
-          codeElement.style.display = "block";
-          setTimeout(() => {
-            codeElement.classList.add("visible");
-          }, 10);
-          button.textContent = "Hide";
-        }
-      }
-
-      function copyToClipboard(id) {
-        const codeElement = document.getElementById(id);
-        const button = event.target;
-        const originalText = button.textContent;
-
-        // Make sure code is visible during copy
-        const wasHidden = codeElement.style.display === "none";
-        if (wasHidden) {
-          codeElement.style.display = "block";
-        }
-
-        // Copy text to clipboard
-        navigator.clipboard
-          .writeText(codeElement.textContent)
-          .then(() => {
-            // Show success feedback
-            button.textContent = "Copied!";
-            button.style.backgroundColor = "#16a085";
-
-            // Reset button after 2 seconds
-            setTimeout(() => {
-              button.textContent = originalText;
-              button.style.backgroundColor = "";
-            }, 2000);
-
-            // Restore display state if it was hidden
-            if (wasHidden) {
-              codeElement.style.display = "none";
-            }
-          })
-          .catch((err) => {
-            console.error("Failed to copy: ", err);
-            button.textContent = "Failed!";
-
-            // Reset button after 2 seconds
-            setTimeout(() => {
-              button.textContent = originalText;
-            }, 2000);
-          });
-      }
-
-      function downloadFile(id, filename) {
-        const codeElement = document.getElementById(id);
-        const textContent = codeElement.textContent;
-
-        // Create a blob with the text content
-        const blob = new Blob([textContent], { type: "text/plain" });
-
-        // Create a URL for the blob
-        const url = URL.createObjectURL(blob);
-
-        // Create a temporary link element
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = filename;
-
-        // Append the link, click it, and remove it
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Clean up the URL object
-        URL.revokeObjectURL(url);
-      }
-    </script>
   </body>
 </html>

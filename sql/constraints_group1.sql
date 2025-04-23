@@ -1,0 +1,198 @@
+/* 
+Group 1,
+Ayush Karanjit 24812931,
+Anuskar Sigdel 24812606,
+Utsab Thami Magar 24814107,
+Nabin Thapaliya 24814102
+*/
+
+-- @E:\DB-PROJECT\constraints_group1.txt
+
+-- PRIMARY KEY CONSTRAINTS
+-- These establish entity integrity by ensuring unique identification
+
+ALTER TABLE degrees 
+ADD CONSTRAINT pk_degrees 
+PRIMARY KEY (degree_id);
+
+ALTER TABLE examiners 
+ADD CONSTRAINT pk_examiners 
+PRIMARY KEY (examiner_id);
+
+ALTER TABLE markers 
+ADD CONSTRAINT pk_markers 
+PRIMARY KEY (marker_id);
+
+ALTER TABLE students 
+ADD CONSTRAINT pk_students 
+PRIMARY KEY (student_id);
+
+ALTER TABLE modules 
+ADD CONSTRAINT pk_modules 
+PRIMARY KEY (module_id);
+
+ALTER TABLE module_lists
+ADD CONSTRAINT pk_module_lists
+PRIMARY KEY (module_list_id);
+
+ALTER TABLE attendances
+ADD CONSTRAINT pk_attendances
+PRIMARY KEY (attendance_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT pk_assignments 
+PRIMARY KEY (assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT pk_submissions 
+PRIMARY KEY (submission_id);
+
+-- COMPOSITE PRIMARY KEYS for junction tables
+-- These establish entity integrity for many-to-many relationships
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT pk_degree_modules 
+PRIMARY KEY (module_id, degree_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT pk_student_submissions 
+PRIMARY KEY (student_id, submission_id);
+
+-- FOREIGN KEY CONSTRAINTS
+-- These establish referential integrity between related tables
+
+ALTER TABLE students 
+ADD CONSTRAINT fk_students_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
+
+ALTER TABLE modules 
+ADD CONSTRAINT fk_modules_examiners 
+FOREIGN KEY (examiner_id) REFERENCES examiners(examiner_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_degree_modules_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT fk_degree_modules_degrees 
+FOREIGN KEY (degree_id) REFERENCES degrees(degree_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_module_lists_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE module_lists 
+ADD CONSTRAINT fk_module_lists_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE attendances 
+ADD CONSTRAINT fk_attendances_module_lists
+FOREIGN KEY (module_list_id) REFERENCES module_lists(module_list_id);
+
+ALTER TABLE assignments 
+ADD CONSTRAINT fk_assignments_modules 
+FOREIGN KEY (module_id) REFERENCES modules(module_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_submissions_assignments 
+FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT fk_submissions_markers 
+FOREIGN KEY (marker_id) REFERENCES markers(marker_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_student_submissions_students 
+FOREIGN KEY (student_id) REFERENCES students(student_id);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT fk_student_submissions_submissions 
+FOREIGN KEY (submission_id) REFERENCES submissions(submission_id);
+
+-- NOT NULL CONSTRAINTS
+-- These implement entity integrity by ensuring required data is provided
+
+ALTER TABLE degrees MODIFY degree_title VARCHAR2(30) NOT NULL;
+ALTER TABLE degrees MODIFY degree_year NUMBER(1) NOT NULL;
+
+ALTER TABLE examiners MODIFY examiner_fname VARCHAR2(15) NOT NULL;
+ALTER TABLE examiners MODIFY examiner_lname VARCHAR2(15) NOT NULL;
+
+ALTER TABLE markers MODIFY marker_fname VARCHAR2(15) NOT NULL;
+ALTER TABLE markers MODIFY marker_lname VARCHAR2(15) NOT NULL;
+
+ALTER TABLE students MODIFY student_fname VARCHAR2(15) NOT NULL;
+ALTER TABLE students MODIFY student_lname VARCHAR2(15) NOT NULL;
+ALTER TABLE students MODIFY dob DATE NOT NULL;
+
+ALTER TABLE modules MODIFY module_name VARCHAR2(30) NOT NULL;
+
+ALTER TABLE degree_modules MODIFY start_date DATE NOT NULL;
+
+ALTER TABLE module_lists MODIFY enrollment_date DATE NOT NULL;
+
+ALTER TABLE attendances MODIFY attendance_date DATE NOT NULL;
+
+ALTER TABLE attendances MODIFY status CHAR(1);
+
+ALTER TABLE assignments MODIFY code VARCHAR2(5) NOT NULL;
+ALTER TABLE assignments MODIFY title VARCHAR2(30) NOT NULL;
+ALTER TABLE assignments MODIFY weighting NUMBER(5,2) NOT NULL;
+
+ALTER TABLE submissions MODIFY receipt_no VARCHAR2(20) NOT NULL;
+ALTER TABLE submissions MODIFY submission_date DATE NOT NULL;
+ALTER TABLE submissions MODIFY submission_time DATE NOT NULL;
+
+-- UNIQUE CONSTRAINTS
+-- These enforce that certain columns contain unique values
+
+ALTER TABLE assignments 
+ADD CONSTRAINT unique_assignment_code 
+UNIQUE (code);
+
+ALTER TABLE submissions 
+ADD CONSTRAINT unique_receipt_no 
+UNIQUE (receipt_no);
+
+-- CHECK CONSTRAINTS
+-- These implement domain integrity by limiting values
+
+ALTER TABLE degrees 
+ADD CONSTRAINT check_degree_year 
+CHECK (degree_year BETWEEN 1 AND 9);
+
+ALTER TABLE modules
+ADD CONSTRAINT check_module_status
+CHECK (status IN ('Y', 'N'));
+
+ALTER TABLE degree_modules 
+ADD CONSTRAINT check_semester 
+CHECK (semester IN ('S1', 'S2'));
+
+ALTER TABLE attendances 
+ADD CONSTRAINT check_attendance_status 
+CHECK (status IN ('P', 'A'));
+
+ALTER TABLE assignments 
+ADD CONSTRAINT check_weighting 
+CHECK (weighting BETWEEN 0 AND 100);
+
+ALTER TABLE student_submissions 
+ADD CONSTRAINT check_grade 
+CHECK (grade IN ('A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'));
+
+-- DEFAULT CONSTRAINTS
+-- These set default values for columns
+
+ALTER TABLE degrees 
+MODIFY degree_year DEFAULT 4;
+
+ALTER TABLE modules 
+MODIFY status DEFAULT 'Y';
+
+ALTER TABLE attendances 
+MODIFY attendance_date DEFAULT SYSDATE;
+
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
+COMMIT;
