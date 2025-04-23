@@ -264,7 +264,8 @@ JOIN attendances a ON ml.module_list_id = a.module_list_id
 GROUP BY m.module_name
 ORDER BY attendance_percentage DESC;
 
--- AT last 
+-- COMMIT CHANGES
+-- This saves all the changes made to the database schema
 COMMIT;
 
 </pre
