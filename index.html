@@ -184,8 +184,8 @@
         }
 
         const deadlineDate = new Date(`${dateMatch[1]}, ${dateMatch[2]}`);
-        // Use today's date based on the system clock (April 23, 2025)
-        const currentDate = new Date(2025, 3, 23); // Month is 0-indexed (0=Jan, 3=Apr)
+        // Use today's date based on the system clock
+        const currentDate = new Date(); // Use the actual current date
 
         // Set time to 00:00:00 to compare dates only
         deadlineDate.setHours(0, 0, 0, 0);
