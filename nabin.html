@@ -293,32 +293,50 @@ Nabin Thapaliya 24814102
 
 -- @E:\DB-PROJECT\drops_group1.txt
 
--- Dropping tables in the reverse order of their dependencies
--- Starting with tables that have foreign keys referencing other tables
+-- Dropping FOREIGN KEY constraints first to avoid dependency issues
 
-DROP TABLE student_submissions CASCADE CONSTRAINTS;
+ALTER TABLE students DROP CONSTRAINT fk_students_degrees;
+ALTER TABLE modules DROP CONSTRAINT fk_modules_examiners;
+ALTER TABLE degree_modules DROP CONSTRAINT fk_degree_modules_modules;
+ALTER TABLE degree_modules DROP CONSTRAINT fk_degree_modules_degrees;
+ALTER TABLE module_lists DROP CONSTRAINT fk_module_lists_students;
+ALTER TABLE module_lists DROP CONSTRAINT fk_module_lists_modules;
+ALTER TABLE attendances DROP CONSTRAINT fk_attendances_module_lists;
+ALTER TABLE assignments DROP CONSTRAINT fk_assignments_modules;
+ALTER TABLE submissions DROP CONSTRAINT fk_submissions_assignments;
+ALTER TABLE submissions DROP CONSTRAINT fk_submissions_markers;
+ALTER TABLE student_submissions DROP CONSTRAINT fk_student_submissions_students;
+ALTER TABLE student_submissions DROP CONSTRAINT fk_student_submissions_submissions;
 
-DROP TABLE submissions CASCADE CONSTRAINTS;
+-- Dropping PRIMARY KEY and UNIQUE constraints
 
-DROP TABLE assignments CASCADE CONSTRAINTS;
+ALTER TABLE degrees DROP CONSTRAINT pk_degrees;
+ALTER TABLE examiners DROP CONSTRAINT pk_examiners;
+ALTER TABLE markers DROP CONSTRAINT pk_markers;
+ALTER TABLE students DROP CONSTRAINT pk_students;
+ALTER TABLE modules DROP CONSTRAINT pk_modules;
+ALTER TABLE module_lists DROP CONSTRAINT pk_module_lists;
+ALTER TABLE attendances DROP CONSTRAINT pk_attendances;
+ALTER TABLE assignments DROP CONSTRAINT pk_assignments;
+ALTER TABLE assignments DROP CONSTRAINT unique_assignment_code; 
+ALTER TABLE submissions DROP CONSTRAINT pk_submissions;
+ALTER TABLE submissions DROP CONSTRAINT unique_receipt_no;
+ALTER TABLE degree_modules DROP CONSTRAINT pk_degree_modules; 
+ALTER TABLE student_submissions DROP CONSTRAINT pk_student_submissions; 
 
-DROP TABLE attendances CASCADE CONSTRAINTS;
+-- Now dropping the tables themselves
 
-DROP TABLE module_lists CASCADE CONSTRAINTS;
-
-DROP TABLE degree_modules CASCADE CONSTRAINTS;
-
-DROP TABLE modules CASCADE CONSTRAINTS;
-
-DROP TABLE students CASCADE CONSTRAINTS;
-
--- Now dropping tables with no dependencies
-
-DROP TABLE markers CASCADE CONSTRAINTS;
-
-DROP TABLE examiners CASCADE CONSTRAINTS;
-
-DROP TABLE degrees CASCADE CONSTRAINTS;
+DROP TABLE student_submissions;
+DROP TABLE submissions;
+DROP TABLE assignments;
+DROP TABLE attendances;
+DROP TABLE module_lists;
+DROP TABLE degree_modules;
+DROP TABLE modules;
+DROP TABLE students;
+DROP TABLE markers;
+DROP TABLE examiners;
+DROP TABLE degrees;
 
 -- After all tables are dropped, permanently remove them from the recyclebin
 PURGE RECYCLEBIN;
@@ -372,22 +390,31 @@ COMMIT;</pre
     <h2>Notes on `drops_group1.txt`</h2>
     <ul>
       <li>
-        <strong>Purpose:</strong> Removes all tables created by
-        `creates_group1.txt` to clean the database schema.
+        <strong>Purpose:</strong> Removes all tables and constraints created by
+        `creates_group1.txt` and `constraints_group1.txt` to clean the database
+        schema.
       </li>
       <li>
-        <strong>Order:</strong> Tables are dropped in reverse dependency order
-        to avoid foreign key errors.
+        <strong>Order:</strong> Constraints (Foreign Keys, then Primary/Unique
+        Keys) are dropped first, followed by the tables in reverse dependency
+        order.
       </li>
       <li>
-        <strong>`CASCADE CONSTRAINTS`:</strong> Used with `DROP TABLE` to
-        automatically remove related foreign key constraints.
+        <strong>`ALTER TABLE ... DROP CONSTRAINT`:</strong> Used to remove
+        specific constraints individually.
+      </li>
+      <li>
+        <strong>`DROP TABLE`:</strong> Used to remove the table structures after
+        constraints are gone.
       </li>
       <li>
         <strong>`PURGE RECYCLEBIN;`:</strong> Permanently removes dropped tables
         from the recycle bin, freeing space.
       </li>
-      <li><strong>`COMMIT;`:</strong> Saves the table deletion operations.</li>
+      <li>
+        <strong>`COMMIT;`:</strong> Saves the constraint and table deletion
+        operations.
+      </li>
     </ul>
 
     <script>
