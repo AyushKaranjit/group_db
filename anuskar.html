@@ -188,18 +188,18 @@ WHERE address != 'Kathmandu';
 
 -- Logic operator with predicates for students born after 2000 from Kathmandu
 SELECT * FROM students 
-WHERE address = 'Kathmandu' AND dob > TO_DATE('01-JAN-2000', 'DD-MON-YYYY');
+WHERE address = 'Kathmandu' AND dob > DATE '2000-01-01';
 
--- Logic operator with predicates for students born in July or living in Pokhara
+-- Logic operator with predicates for students living in Pokhara
 SELECT * FROM students 
-WHERE TO_CHAR(dob, 'MON') = 'JUL' OR address = 'Pokhara';
+WHERE address = 'Pokhara';
 
 -- Date range condition for this year's module enrollments
 SELECT ml.student_id, s.student_fname, s.student_lname, ml.enrollment_date
 FROM module_lists ml
 JOIN students s ON ml.student_id = s.student_id
-WHERE ml.enrollment_date BETWEEN TO_DATE('01-JAN-2025', 'DD-MON-YYYY') 
-                            AND TO_DATE('31-DEC-2025', 'DD-MON-YYYY');
+WHERE ml.enrollment_date BETWEEN DATE '2025-01-01' 
+                            AND DATE '2025-12-31';
 
 -- d) Join queries to extract insightful information
 
@@ -231,11 +231,6 @@ END;
 /
 SELECT * FROM students 
 WHERE degree_id = :degree_id;
-
--- Function to calculate student age
-SELECT student_id, student_fname, student_lname, 
-       TRUNC((SYSDATE - dob)/365.25) AS age_years
-FROM students;
 
 -- Query with subquery to find students with above-average grades
 SELECT s.student_id, s.student_fname, s.student_lname, ss.grade
