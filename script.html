@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="db2.png" type="image/x-icon" />
+    <title>Video Script Outline</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        color: #333;
+        background-color: #fdfdfd;
+      }
+      h1,
+      h2 {
+        color: #2c3e50;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+      h1 {
+        text-align: center;
+        border-bottom-width: 2px;
+        margin-bottom: 30px;
+      }
+      h2 {
+        margin-top: 40px;
+        font-size: 1.3em;
+      }
+      p {
+        margin-bottom: 15px;
+      }
+      strong {
+        color: #1a252f;
+        font-weight: 600;
+      }
+      code {
+        background-color: #e7e7e7;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        font-size: 0.9em;
+      }
+      em {
+        color: #555;
+        font-style: italic;
+      }
+      .timestamp {
+        font-weight: bold;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Video Script Outline (Total Time: ~10 minutes)</h1>
+
+    <h2><span class="timestamp">(0:00 - 1:00)</span> Introduction (Anuskar)</h2>
+    <p>
+      <strong>(Anuskar):</strong> "Hello everyone. We are Group 1, consisting
+      of Nabin Thapaliya, Ayush Karanjit, Utsab Thami Magar, and myself, Anuskar
+      Sigdel. For this assignment, we designed and implemented a relational
+      database based on the provided Entity Relationship Diagram."
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "Our goal was to create a functional database
+      schema in Oracle SQL, ensuring data integrity through various constraints,
+      populate it with sample data, and demonstrate how to retrieve information
+      using SQL queries."
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "We divided the core database tasks among the
+      group members. Nabin focused on creating the tables and the drop script,
+      Ayush handled the constraints, Utsab populated the database with initial
+      data, and I developed the queries. Let's start with Nabin explaining the
+      table creation process."
+    </p>
+
+    <h2>
+      <span class="timestamp">(1:00 - 3:30)</span> Database Design & Table
+      Creation (Nabin)
+    </h2>
+    <p>
+      <strong>(Nabin):</strong> "Thanks, Anuskar. My first task was to
+      translate the ERD, shown in the assignment specifications, into logical
+      table structures."
+    </p>
+    <p>
+      <strong>(Nabin):</strong> "This involved defining each table, its columns,
+      and appropriate datatypes. We aimed for clarity and consistency in naming
+      conventions."
+    </p>
+    <p>
+      <strong>(Nabin):</strong>
+      <em>(Show/Scroll through <code>creates_group1.txt</code> from nabin.html)</em>
+      "This is the <code>creates_group1.txt</code> script. It contains the
+      <code>CREATE TABLE</code> statements for all the entities identified in
+      the design phase, such as <code>degrees</code>, <code>students</code>,
+      <code>modules</code>, <code>assignments</code>, <code>submissions</code>,
+      and the junction tables like <code>degree_modules</code> and
+      <code>student_submissions</code> needed for many-to-many relationships."
+    </p>
+    <p>
+      <strong>(Nabin):</strong> "For example, here's the
+      <code>students</code> table definition, specifying columns like
+      <code>student_id</code>, <code>degree_id</code>, names, date of birth,
+      and contact details with their respective datatypes like
+      <code>NUMBER</code>, <code>VARCHAR2</code>, and <code>DATE</code>."
+    </p>
+    <p>
+      <strong>(Nabin):</strong> "We also created a corresponding
+      <code>drops_group1.txt</code> script."
+      <em>(Briefly show <code>drops_group1.txt</code> from nabin.html)</em>
+      "This script is essential for cleaning up the database. It drops all
+      constraints first, then the tables, and finally purges the recycle bin,
+      ensuring a clean state for re-running our creation scripts. Now, Ayush
+      will explain how we enforced data integrity using constraints."
+    </p>
+
+    <h2>
+      <span class="timestamp">(3:30 - 6:00)</span> Constraints & Integrity
+      (Ayush)
+    </h2>
+    <p>
+      <strong>(Ayush):</strong> "Thank you, Nabin. Once the tables were
+      defined, my focus was on implementing constraints to ensure database
+      integrity, which is crucial for maintaining data accuracy and consistency.
+      We focused on three main types: Entity, Referential, and Domain
+      Integrity."
+    </p>
+    <p>
+      <strong>(Ayush):</strong>
+      <em>(Show/Scroll through <code>constraints_group1.txt</code> from ayush.html)</em>
+      "This <code>constraints_group1.txt</code> script uses
+      <code>ALTER TABLE</code> statements to add these constraints after the
+      tables are created."
+    </p>
+    <p>
+      <strong>(Ayush):</strong> "For Entity Integrity, we defined Primary Keys
+      for each table, like <code>pk_students</code> on
+      <code>students(student_id)</code>. This ensures every student has a
+      unique ID and no record is duplicated."
+      <em>(Point to relevant PK constraint)</em>
+    </p>
+    <p>
+      <strong>(Ayush):</strong> "For Referential Integrity, we used Foreign Keys
+      to link related tables. For instance, <code>fk_students_degrees</code>
+      links the <code>degree_id</code> in the <code>students</code> table to
+      the <code>degree_id</code> in the <code>degrees</code> table."
+      <em>(Point to relevant FK constraint)</em> "This prevents us from
+      assigning a student to a non-existent degree or deleting a degree that
+      still has students assigned to it."
+    </p>
+    <p>
+      <strong>(Ayush):</strong> "For Domain Integrity, we used several
+      constraint types:
+      <ul>
+        <li>
+          <code>NOT NULL</code> constraints, like on
+          <code>student_fname</code>, ensure essential information isn't
+          missing." <em>(Point to a NOT NULL constraint)</em>
+        </li>
+        <li>
+          <code>CHECK</code> constraints validate data values. For example,
+          <code>check_grade</code> on <code>student_submissions</code> ensures
+          grades are within the allowed set ('A+', 'A', etc.), and
+          <code>check_module_status</code> ensures the status is 'Y' or 'N'."
+          <em>(Point to CHECK constraints)</em>
+        </li>
+        <li>
+          <code>UNIQUE</code> constraints, like
+          <code>unique_assignment_code</code> on <code>assignments</code>,
+          prevent duplicate assignment codes."
+          <em>(Point to a UNIQUE constraint)</em>
+        </li>
+        <li>
+          <code>DEFAULT</code> constraints provide default values, like setting
+          the <code>attendance_date</code> in the <code>attendances</code> table
+          to <code>SYSDATE</code> if not specified."
+          <em>(Point to a DEFAULT constraint)</em>
+        </li>
+      </ul>
+    </p>
+    <p>
+      <strong>(Ayush):</strong> "These constraints work together to keep the
+      database reliable. Next, Utsab will show how we populated these tables
+      with data."
+    </p>
+
+    <h2>
+      <span class="timestamp">(6:00 - 8:00)</span> Data Insertion (Utsab)
+    </h2>
+    <p>
+      <strong>(Utsab):</strong> "Thanks, Ayush. With the structure and rules in
+      place, the next step was to insert sample data using the
+      <code>inserts_group1.txt</code> script."
+    </p>
+    <p>
+      <strong>(Utsab):</strong>
+      <em>(Show/Scroll through <code>inserts_group1.txt</code> from utsab.html)</em>
+      "This script contains <code>INSERT INTO</code> statements for each table.
+      We added at least five records per table as required, ensuring the data
+      covers various scenarios for testing."
+    </p>
+    <p>
+      <strong>(Utsab):</strong> "For example, here we are inserting data into
+      the <code>degrees</code> table, providing values for
+      <code>degree_id</code>, title, detail, level, and year."
+      <em>(Point to degrees inserts)</em>
+    </p>
+    <p>
+      <strong>(Utsab):</strong> "Similarly, we added records for examiners,
+      markers, students, modules, and linked them through the junction tables
+      like <code>degree_modules</code> and <code>module_lists</code>."
+      <em>(Point to examples in other tables)</em>
+    </p>
+    <p>
+      <strong>(Utsab):</strong> "A key point here is the handling of dates. As
+      per the requirements, we avoided using <code>TO_DATE</code> and instead
+      used ANSI DATE literals like <code>DATE 'YYYY-MM-DD'</code> for inserting
+      dates, for example, in the <code>students</code> table for the
+      <code>dob</code> column." <em>(Point to a DATE literal example)</em>
+    </p>
+    <p>
+      <strong>(Utsab):</strong> "Having this sample data is vital for verifying
+      that the constraints work correctly and for testing the queries, which
+      Anuskar will demonstrate now."
+    </p>
+
+    <h2>
+      <span class="timestamp">(8:00 - 9:45)</span> Querying the Database
+      (Anuskar)
+    </h2>
+    <p>
+      <strong>(Anuskar):</strong> "Thank you, Utsab. Finally, to retrieve
+      information and demonstrate the database's utility, I developed the
+      <code>queries_group1.txt</code> script."
+    </p>
+    <p>
+      <strong>(Anuskar):</strong>
+      <em>(Show/Scroll through <code>queries_group1.txt</code> from anuskar.html)</em>
+      "This script includes various types of queries as required by the
+      assignment."
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "We start with simple queries, like
+      <code>SELECT * FROM students;</code> to retrieve all records from the
+      <code>students</code> table."
+      <em>(Show and potentially run the query)</em>
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "We also have projection queries selecting
+      specific columns, like
+      <code
+        >SELECT student_fname, student_lname, address FROM students ORDER BY
+        student_lname DESC;</code
+      >, which also demonstrates sorting." <em>(Show/run query)</em>
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "Restriction queries use the
+      <code>WHERE</code> clause. For example, finding students from 'Kathmandu'
+      (<code>WHERE address = 'Kathmandu'</code>) or using logical operators like
+      finding students from 'Kathmandu' <code>AND</code> born after a certain
+      date." <em>(Show/run examples)</em>
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "More complex queries involve joining tables.
+      Here's a 2-table join showing students and their degree titles by joining
+      <code>students</code> and <code>degrees</code> on
+      <code>degree_id</code>." <em>(Show/run 2-table join)</em>
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "And here's a 3-table join showing students,
+      their enrolled modules, and the examiner for that module by joining
+      <code>students</code>, <code>module_lists</code>, <code>modules</code>,
+      and <code>examiners</code>." <em>(Show/run 3-table join)</em>
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "We also included queries using aggregate
+      functions, like this one counting the number of submissions per module
+      using <code>COUNT</code> and <code>GROUP BY</code>."
+      <em>(Show/run aggregate query)</em> "These queries demonstrate how we can
+      extract meaningful, summarized information from the related tables."
+    </p>
+
+    <h2><span class="timestamp">(9:45 - 10:00)</span> Conclusion (Anuskar)</h2>
+    <p>
+      <strong>(Anuskar):</strong> "So, to summarize, our group successfully
+      designed the database schema from the ERD, created the tables, enforced
+      entity, referential, and domain integrity using various constraints,
+      populated the tables with sample data, and wrote queries to retrieve
+      useful information. We've demonstrated the creation and querying process
+      through our SQL scripts."
+    </p>
+    <p>
+      <strong>(Anuskar):</strong> "This concludes our demonstration. Thank you
+      for watching."
+    </p>
+  </body>
+</html>
