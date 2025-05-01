@@ -250,8 +250,7 @@ CREATE TABLE submissions (
     assignment_id NUMBER(5),
     marker_id NUMBER(5),
     receipt_no VARCHAR2(4),
-    submission_date DATE,
-    submission_time DATE
+    submission_date DATE
 );
 
 -- Create table for student_submissions
@@ -373,7 +372,7 @@ COMMIT;</pre
           <li>`assignments`: Defines assignments, linked to `modules`.</li>
           <li>
             `submissions`: Records assignment submissions, linked to
-            `assignments` and `markers`.
+            `assignments` and `markers`. (Removed `submission_time`)
           </li>
           <li>
             `student_submissions`: Links `students` to `submissions`, storing

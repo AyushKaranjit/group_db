@@ -149,7 +149,8 @@
         Download
       </button>
     </div>
-     <pre id="inserts" class="code-content"> 
+    <pre id="inserts" class="code-content">
+ 
 /* 
 Group 1,
 Ayush Karanjit 24812931,
@@ -160,8 +161,8 @@ Nabin Thapaliya 24814102
 
 -- @E:\DB-PROJECT\inserts_group1.txt
 
--- SET DATE FORMAT FOR SESSION
-ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-YY HH24:MI:SS';
+-- Note: Using ANSI DATE 'YYYY-MM-DD' and TIMESTAMP 'YYYY-MM-DD HH24:MI:SS' literals 
+-- for date and time insertion, independent of NLS settings.
 
 -- DEGREES
 INSERT INTO degrees VALUES (1, 'COMPUTER SCIENCE', 'SOFTWARE FOCUSED', 'L5', 3);
@@ -185,11 +186,11 @@ INSERT INTO markers VALUES (204, 'NISCHAL', 'KHADKA', '9832154789', 'POKHARA');
 INSERT INTO markers VALUES (205, 'NIRESH', 'DHAKAL', '9803284791', 'BUTWAL');
 
 -- STUDENTS
-INSERT INTO students VALUES (301, 1, 'UTSAB', 'THAMI', '15-AUG-03', '9867210345', 'KATHMANDU');
-INSERT INTO students VALUES (302, 1, 'NABIN', 'THAPALIYA', '12-OCT-03', '9801678945', 'LALITPUR');
-INSERT INTO students VALUES (303, 1, 'AYUSH', 'KARANJIT', '21-JUL-03', '9812304981', 'BHAKTAPUR');
-INSERT INTO students VALUES (304, 1, 'ANUSKAR', 'SIGDEL', '30-SEP-03', '9847812365', 'POKHARA');
-INSERT INTO students VALUES (305, 1, 'DAVID', 'GURUNG', '11-NOV-03', '9821094738', 'BUTWAL');
+INSERT INTO students VALUES (301, 1, 'UTSAB', 'THAMI', DATE '2003-08-15', '9867210345', 'KATHMANDU');
+INSERT INTO students VALUES (302, 1, 'NABIN', 'THAPALIYA', DATE '2003-10-12', '9801678945', 'LALITPUR');
+INSERT INTO students VALUES (303, 1, 'AYUSH', 'KARANJIT', DATE '2003-07-21', '9812304981', 'BHAKTAPUR');
+INSERT INTO students VALUES (304, 1, 'ANUSKAR', 'SIGDEL', DATE '2003-09-30', '9847812365', 'POKHARA');
+INSERT INTO students VALUES (305, 1, 'DAVID', 'GURUNG', DATE '2003-11-11', '9821094738', 'BUTWAL');
 
 -- MODULES
 INSERT INTO modules VALUES (401, 101, 'WEB PROGRAMMING', 'WEB DEV BASICS', 'Y');
@@ -199,25 +200,27 @@ INSERT INTO modules VALUES (404, 104, 'DATA STRUCTURES', 'ALGORITHMS', 'Y');
 INSERT INTO modules VALUES (405, 105, 'OPERATING SYS', 'OS CONCEPTS', 'Y');
 
 -- DEGREE_MODULES
-INSERT INTO degree_modules VALUES (401, 1, '01-FEB-25', 'S1');
-INSERT INTO degree_modules VALUES (402, 1, '01-FEB-25', 'S1');
-INSERT INTO degree_modules VALUES (403, 1, '01-FEB-25', 'S1');
-INSERT INTO degree_modules VALUES (404, 1, '01-AUG-25', 'S2');
-INSERT INTO degree_modules VALUES (405, 1, '01-FEB-26', 'S1');
+INSERT INTO degree_modules VALUES (401, 1, DATE '2025-02-01', 'S1');
+INSERT INTO degree_modules VALUES (402, 1, DATE '2025-02-01', 'S1');
+INSERT INTO degree_modules VALUES (403, 1, DATE '2025-02-01', 'S1');
+INSERT INTO degree_modules VALUES (404, 1, DATE '2025-08-01', 'S2');
+INSERT INTO degree_modules VALUES (405, 1, DATE '2026-02-01', 'S1');
 
 -- MODULE_LISTS
-INSERT INTO module_lists VALUES (501, 301, 401, '05-FEB-25');
-INSERT INTO module_lists VALUES (502, 302, 401, '05-FEB-25');
-INSERT INTO module_lists VALUES (503, 303, 401, '05-FEB-25');
-INSERT INTO module_lists VALUES (504, 304, 401, '05-FEB-25');
-INSERT INTO module_lists VALUES (505, 305, 401, '05-FEB-25');
+INSERT INTO module_lists VALUES (501, 301, 401, DATE '2025-02-05');
+INSERT INTO module_lists VALUES (502, 302, 401, DATE '2025-02-05');
+INSERT INTO module_lists VALUES (503, 303, 401, DATE '2025-02-05');
+INSERT INTO module_lists VALUES (504, 304, 401, DATE '2025-02-05');
+INSERT INTO module_lists VALUES (505, 305, 401, DATE '2025-02-05');
 
 -- ATTENDANCES
-INSERT INTO attendances VALUES (601, 501, '01-APR-25', 'P');
-INSERT INTO attendances VALUES (602, 502, '02-APR-25', 'A');
-INSERT INTO attendances VALUES (603, 503, '03-APR-25', 'P');
-INSERT INTO attendances VALUES (604, 504, '04-APR-25', 'P');
-INSERT INTO attendances VALUES (605, 505, '05-APR-25', 'A');
+-- Note: The DEFAULT SYSDATE for attendance_date will override the inserted value if not explicitly handled,
+-- but for consistency, using ANSI DATE literal here. Check table definition if default is desired.
+INSERT INTO attendances VALUES (601, 501, DATE '2025-04-01', 'P');
+INSERT INTO attendances VALUES (602, 502, DATE '2025-04-02', 'A');
+INSERT INTO attendances VALUES (603, 503, DATE '2025-04-03', 'P');
+INSERT INTO attendances VALUES (604, 504, DATE '2025-04-04', 'P');
+INSERT INTO attendances VALUES (605, 505, DATE '2025-04-05', 'A');
 
 -- ASSIGNMENTS
 INSERT INTO assignments VALUES (701, 401, 'WP01', 'RESPONSIVE WEB', 30.00, 'PROJECT');
@@ -226,12 +229,13 @@ INSERT INTO assignments VALUES (703, 403, 'DB01', 'SQL TASK', 30.00, 'LAB');
 INSERT INTO assignments VALUES (704, 404, 'DS01', 'LINKED LIST', 20.00, 'CODE');
 INSERT INTO assignments VALUES (705, 405, 'OS01', 'SCHEDULING', 25.00, 'SIM');
 
--- SUBMISSIONS (includes TIME without TO_DATE)
-INSERT INTO submissions VALUES (801, 701, 201, 'R801', '19-MAY-25', '19-MAY-25 10:00:00');
-INSERT INTO submissions VALUES (802, 701, 202, 'R802', '19-MAY-25', '19-MAY-25 10:15:00');
-INSERT INTO submissions VALUES (803, 701, 203, 'R803', '19-MAY-25', '19-MAY-25 10:30:00');
-INSERT INTO submissions VALUES (804, 701, 204, 'R804', '19-MAY-25', '19-MAY-25 10:45:00');
-INSERT INTO submissions VALUES (805, 701, 205, 'R805', '19-MAY-25', '19-MAY-25 11:00:00');
+-- SUBMISSIONS 
+-- Using DATE literal for submission_date.
+INSERT INTO submissions VALUES (801, 701, 201, 'R801', DATE '2025-05-19');
+INSERT INTO submissions VALUES (802, 701, 202, 'R802', DATE '2025-05-19');
+INSERT INTO submissions VALUES (803, 701, 203, 'R803', DATE '2025-05-19');
+INSERT INTO submissions VALUES (804, 701, 204, 'R804', DATE '2025-05-19');
+INSERT INTO submissions VALUES (805, 701, 205, 'R805', DATE '2025-05-19');
 
 -- STUDENT_SUBMISSIONS
 INSERT INTO student_submissions VALUES (301, 801, 'A', 'GREAT JOB');
@@ -243,7 +247,8 @@ INSERT INTO student_submissions VALUES (305, 805, 'B', 'SATISFACTORY');
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
 COMMIT;
-</pre>
+</pre
+    >
     <script>
       function toggleCode(id) {
         const codeElement = document.getElementById(id);
@@ -282,7 +287,6 @@ COMMIT;
             // Show success feedback
             button.textContent = "Copied!";
             button.style.backgroundColor = "#16a085";
-
             // Reset button after 2 seconds
             setTimeout(() => {
               button.textContent = originalText;
@@ -297,6 +301,7 @@ COMMIT;
           .catch((err) => {
             console.error("Failed to copy: ", err);
             button.textContent = "Failed!";
+            codeElement.style.display = "none";
 
             // Reset button after 2 seconds
             setTimeout(() => {
@@ -311,10 +316,8 @@ COMMIT;
 
         // Create a blob with the text content
         const blob = new Blob([textContent], { type: "text/plain" });
-
         // Create a URL for the blob
         const url = URL.createObjectURL(blob);
-
         // Create a temporary link element
         const link = document.createElement("a");
         link.href = url;
