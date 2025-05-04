@@ -181,6 +181,8 @@ INSERT INTO markers VALUES (202, 'SUJITA', 'PARAJULI', '9843201765', 'LALITPUR')
 INSERT INTO markers VALUES (203, 'PRADEEP', 'PANDEY', '9817456032', 'BHAKTAPUR');
 INSERT INTO markers VALUES (204, 'NISCHAL', 'KHADKA', '9832154789', 'POKHARA');
 INSERT INTO markers VALUES (205, 'NIRESH', 'DHAKAL', '9803284791', 'BUTWAL');
+-- Example using explicit column list
+INSERT INTO markers (marker_id, marker_fname, marker_lname) VALUES (206, 'RAJESH', 'HAMAL');
 
 -- STUDENTS
 INSERT INTO students VALUES (301, 1, 'UTSAB', 'THAMI', DATE '2003-08-15', '9867210345', 'KATHMANDU');
@@ -211,13 +213,14 @@ INSERT INTO module_lists VALUES (504, 304, 401, DATE '2025-02-05');
 INSERT INTO module_lists VALUES (505, 305, 401, DATE '2025-02-05');
 
 -- ATTENDANCES
--- Note: The DEFAULT SYSDATE for attendance_date will override the inserted value if not explicitly handled,
--- but for consistency, using ANSI DATE literal here. Check table definition if default is desired.
+Check table definition if default is desired.
 INSERT INTO attendances VALUES (601, 501, DATE '2025-04-01', 'P');
 INSERT INTO attendances VALUES (602, 502, DATE '2025-04-02', 'A');
 INSERT INTO attendances VALUES (603, 503, DATE '2025-04-03', 'P');
 INSERT INTO attendances VALUES (604, 504, DATE '2025-04-04', 'P');
 INSERT INTO attendances VALUES (605, 505, DATE '2025-04-05', 'A');
+-- Example relying on DEFAULT constraint for attendance_date (SYSDATE)
+INSERT INTO attendances (attendance_id, module_list_id, status) VALUES (606, 501, 'P');
 
 -- ASSIGNMENTS
 INSERT INTO assignments VALUES (701, 401, 'WP01', 'RESPONSIVE WEB', 30.00, 'PROJECT');
