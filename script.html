@@ -95,205 +95,140 @@
 
     <h1>Video Demonstration Script Outline</h1>
 
-    <h2>Introduction (Approx. 1 minute)</h2>
+    <h2>Introduction (About 45 seconds)</h2>
     <p>
-      <span class="timestamp">[0:00 - 0:15]</span>
-      <strong>Utsab:</strong> Hello everyone. We are Group 1, consisting of
-      Nabin Thapaliya, Anuskar Sigdel, Ayush Karanjit, and myself, Utsab Thami
-      Magar.
+      <strong>Utsab:</strong> Good afternoon everyone. We are Group 1, with Nabin Thapaliya, Anuskar Sigdel, Ayush Karanjit, and myself, Utsab Thami Magar.
     </p>
     <p>
-      <span class="timestamp">[0:15 - 0:45]</span>
-      <strong>Utsab:</strong> For this assignment, we were tasked with designing
-      and implementing a relational database based on a provided Entity
-      Relationship Diagram. Our goal was to create the necessary SQL scripts to
-      build the database structure, enforce data integrity, populate it with
-      data, and query the information effectively.
+      <strong>Utsab:</strong> For this assignment, we needed to design and build a database based on the ER Diagram we were given. Our job was to create SQL scripts that would build the database structure, make sure the data stays correct, add sample data, and show how to get useful information from it.
     </p>
     <p>
-      <span class="timestamp">[0:45 - 1:00]</span>
-      <strong>Utsab:</strong> We'll now walk you through the key SQL files we
-      developed, explaining the purpose and function of each script. Nabin will
-      start by explaining the table creation and cleanup scripts.
+      <strong>Utsab:</strong> Today we will show you what we did and how each part works. Nabin will start by explaining how we set up the database tables.
     </p>
 
-    <h2>Creates & Drops Scripts (Approx. 2 minutes)</h2>
+    <h2>Creates & Drops Scripts (About 1.5 minutes)</h2>
     <p>
-      <span class="timestamp">[1:00 - 1:45]</span>
-      <strong>Nabin:</strong> Thanks, Utsab. I was responsible for the initial
-      table structures and the cleanup script. The first script is
-      <code>creates_group1.sql</code>. <em>(Show script briefly)</em> Its main
-      purpose is to define and create all the necessary tables like
-      <code>students</code>, <code>modules</code>, <code>degrees</code>, etc.,
-      based on our table specifications derived from the ERD. It defines the
-      columns and their basic data types like <code>NUMBER</code>,
-      <code>VARCHAR2</code>, and <code>DATE</code>.
+      <strong>Nabin:</strong> Thank you, Utsab. I worked on the scripts that create and remove the database tables.
     </p>
     <p>
-      <span class="timestamp">[1:45 - 2:45]</span>
-      <strong>Nabin:</strong> The second script is
-      <code>drops_group1.sql</code>. <em>(Show script briefly)</em> This script
-      is crucial for testing and resetting the database. It systematically
-      removes all the constraints first – like foreign keys and primary keys –
-      to avoid dependency errors. Then, it drops all the tables we created.
-      Finally, it includes <code>PURGE RECYCLEBIN</code> to ensure a completely
-      clean state for subsequent runs. This allows us to reliably rebuild the
-      database from scratch.
+      <strong>Nabin:</strong> First, I made the <code>creates_group1.sql</code> file. <em>(briefly shows script)</em> This script creates all the tables we need like <code>students</code>, <code>modules</code>, <code>degrees</code>, and others based on our ER Diagram. It sets up each table with the right column names and data types - using <code>NUMBER</code> for IDs, <code>VARCHAR2</code> for text, and <code>DATE</code> for dates.
     </p>
     <p>
-      <span class="timestamp">[2:45 - 3:00]</span>
-      <strong>Nabin:</strong> Now, Ayush will explain how we enforced data
-      integrity using constraints.
+      <strong>Nabin:</strong> I also made a cleanup script called <code>drops_group1.sql</code>. <em>(shows script)</em> This script helps us restart the database when needed during testing. It removes all constraints first, then removes all tables, and finally cleans up the recyclebin. This gives us a clean start each time we run our scripts.
+    </p>
+    <p>
+      <strong>Nabin:</strong> The order is important - we must remove the constraints before the tables to avoid errors. This keeps everything working smoothly when we rebuild the database.
+    </p>
+    <p>
+      <strong>Nabin:</strong> I will now hand over to Ayush, who will explain how we made sure the data stays correct.
     </p>
 
-    <h2>Constraints Script (Approx. 2 minutes)</h2>
+    <h2>Constraints Script (About 2 minutes)</h2>
     <p>
-      <span class="timestamp">[3:00 - 3:45]</span>
-      <strong>Ayush:</strong> Thank you, Nabin. After creating the basic table
-      structures, the next critical step is enforcing data integrity. This is
-      done using the <code>constraints_group1.sql</code> script.
-      <em>(Show script briefly)</em> Constraints are rules that ensure the
-      accuracy and reliability of data in the database. We implemented several
-      types.
+      <strong>Ayush:</strong> Thank you, Nabin. After setting up the tables, we needed to add rules to make sure the data stays correct. We did this with the <code>constraints_group1.sql</code> script.
     </p>
+    <p>
+      <em>(shows script)</em> This script adds rules that the database will follow at all times.
+    </p>
+    <p>We added several types of rules:</p>
     <ul>
       <li>
-        <strong>Primary Keys (PK):</strong> Ensure each record in a table is
-        unique (e.g., <code>pk_students</code> on <code>student_id</code>).
+        <strong>Primary Keys</strong> for each table to make sure every record can be found easily. For example, each student has a unique <code>student_id</code>.
       </li>
       <li>
-        <strong>Foreign Keys (FK):</strong> Establish and enforce links between
-        tables, ensuring referential integrity (e.g.,
-        <code>fk_students_degrees</code> linking <code>students</code> to
-        <code>degrees</code>).
+        <strong>Foreign Keys</strong> to connect tables together. These make sure that when a student is linked to a degree program, that degree must exist in the <code>degrees</code> table.
       </li>
       <li>
-        <strong>Check Constraints:</strong> Limit the value range that can be
-        placed in a column (e.g., ensuring <code>grade</code> in
-        <code>student_submissions</code> is one of the allowed letter grades, or
-        <code>status</code> in <code>attendances</code> is 'P' or 'A').
+        <strong>Check constraints</strong> to limit what values can go in certain columns. For instance, the <code>grade</code> column can only have proper letter grades.
       </li>
       <li>
-        <strong>Not Null Constraints:</strong> Ensure that a column cannot have
-        a NULL value (e.g., <code>student_fname</code> cannot be empty).
+        <strong>Not Null constraints</strong> for important information that must be filled in. Things like a student's first name cannot be left empty.
       </li>
       <li>
-        <strong>Unique Constraints:</strong> Ensure that all values in a column
-        or a set of columns are unique across the table (e.g.,
-        <code>unique_assignment_code</code> on <code>code</code> in
-        <code>assignments</code>).
+        <strong>Unique constraints</strong> for information that shouldn't be repeated, like assignment codes.
       </li>
       <li>
-        <strong>Default Constraints:</strong> Assign a default value to a column
-        if no value is specified during insertion (e.g., setting default
-        <code>attendance_date</code> to <code>SYSDATE</code>).
+        <strong>Default values</strong> for when information isn't provided. For example, attendance date will use today's date if none is given.
       </li>
     </ul>
     <p>
-      <span class="timestamp">[4:45 - 5:00]</span>
-      <strong>Ayush:</strong> Applying these constraints ensures our database
-      maintains logical consistency. Next, Utsab will discuss how we populated
-      the tables with data.
+      <strong>Ayush:</strong> These rules work together to keep our data accurate and reliable. Now Utsab will explain how we added sample data to our tables.
     </p>
 
-    <h2>Insert Script (Approx. 1.5 minutes)</h2>
+    <h2>Insert Script (About 1.5 minutes)</h2>
     <p>
-      <span class="timestamp">[5:00 - 5:45]</span>
-      <strong>Utsab:</strong> Thanks, Ayush. Once the tables and constraints are
-      set up, we need data to work with. That's the purpose of the
-      <code>inserts_group1.sql</code> script.
-      <em>(Show script briefly)</em> This script contains multiple
-      <code>INSERT INTO</code> statements to populate each table with at least
-      five sample records, as required.
+      <strong>Utsab:</strong> Thank you, Ayush. After setting up the tables and rules, we needed to add sample data to the database using the <code>inserts_group1.sql</code> script.
     </p>
     <p>
-      <span class="timestamp">[5:45 - 6:15]</span>
-      <strong>Utsab:</strong> We carefully crafted the data to be realistic and
-      to comply with the constraints defined earlier. For example, we used the
-      ANSI <code>DATE</code> literal format (e.g.,
-      <code>DATE '2003-08-15'</code>) for date columns as specified, ensuring
-      correct data types are inserted without relying on implicit conversions or
-      the <code>TO_DATE</code> function. This script makes the database usable
-      for testing queries.
+      <em>(shows script)</em> This script contains <code>INSERT INTO</code> statements for each table in our database. The assignment asked for at least five records per table, but we added extra in some tables to make our query examples better.
     </p>
     <p>
-      <span class="timestamp">[6:15 - 6:30]</span>
-      <strong>Utsab:</strong> Now, Anuskar will show you how we retrieved and
-      analyzed this data using various queries.
+      <strong>Utsab:</strong> We used realistic test data with proper names, addresses, grades, and course codes. Using realistic data helps us test how the database would work in a real school setting.
+    </p>
+    <p>
+      <strong>Utsab:</strong> We made sure to format dates correctly as the assignment required. We used the format <code>DATE '2023-09-15'</code> for all date information.
+    </p>
+     <p>
+      <strong>Utsab:</strong> The main challenge was keeping all relationships between tables correct. When adding a student enrollment, we had to make sure both the student and the module existed in their tables first.
+    </p>
+    <p>
+      <strong>Utsab:</strong> I'll now hand over to Anuskar, who will show how we get useful information from our database.
     </p>
 
-    <h2>Queries Script (Approx. 2 minutes)</h2>
+    <h2>Queries Script (About 2 minutes)</h2>
     <p>
-      <span class="timestamp">[6:30 - 7:15]</span>
-      <strong>Anuskar:</strong> Thank you, Utsab. The
-      <code>queries_group1.sql</code> script demonstrates how to interact with
-      the populated database to retrieve meaningful information.
-      <em>(Show script briefly)</em> It includes various types of SQL queries as
-      required by the assignment specifications.
+      <strong>Anuskar:</strong> Thank you, Utsab. Now I'll show how we can get useful information from our database using the <code>queries_group1.sql</code> script.
+    </p>
+    <p>
+      <em>(shows script)</em> This script shows different ways to get information using SQL. Here are the main types of queries we made:
     </p>
     <ul>
       <li>
-        <strong>Simple Selects:</strong> Retrieving all data from a table (e.g.,
-        <code>SELECT * FROM students;</code>).
+        <strong>Simple Select queries</strong> that get all data from one table. For example, <code>SELECT * FROM students;</code> shows all student records.
       </li>
       <li>
-        <strong>Projections:</strong> Selecting specific columns (e.g., showing
-        only student names and addresses).
+        <strong>Projection queries</strong> that get only certain columns. This is useful when you only need specific information, like student names and phone numbers.
       </li>
       <li>
-        <strong>Restrictions (Filtering):</strong> Using the <code>WHERE</code>
-        clause to filter data based on conditions (e.g., finding students from
-        'Kathmandu' or students whose names start with 'A').
+        <strong>Filter queries</strong> that use the <code>WHERE</code> clause to find specific records. For example, finding students who live in a certain city or assignments due this month.
       </li>
       <li>
-        <strong>Joins:</strong> Combining data from multiple related tables
-        (e.g., listing students along with their degree titles, or finding the
-        examiner for each module a student is enrolled in).
+        <strong>Join queries</strong> that combine information from multiple tables. These show connections like which students are taking which modules, or which modules are part of each degree program.
       </li>
       <li>
-        <strong>Advanced Queries:</strong> Including aggregate functions like
-        <code>COUNT</code> with <code>GROUP BY</code> (e.g., counting
-        submissions per module) and calculations (e.g., calculating attendance
-        percentage).
+        <strong>Advanced queries</strong> using functions like <code>COUNT</code>, <code>AVG</code>, and grouping with <code>GROUP BY</code>. These help answer questions like how many students are in each module or what the average grade is.
       </li>
     </ul>
     <p>
-      <span class="timestamp">[8:15 - 8:30]</span>
-      <strong>Anuskar:</strong> These queries demonstrate our ability to extract
-      specific and combined information from the database structure we built.
-      Utsab will now explain how we tied all these scripts together.
+      <strong>Anuskar:</strong> These queries show how our database can answer practical questions that school staff might need to know.
+    </p>
+    <p>
+      <strong>Anuskar:</strong> Now I'll return to Utsab, who will explain how we put everything together.
     </p>
 
-    <h2>Master Run Script (Approx. 1 minute)</h2>
+    <h2>Master Run Script (About 1 minute)</h2>
     <p>
-      <span class="timestamp">[8:30 - 9:15]</span>
-      <strong>Utsab:</strong> Finally, to make the process of setting up and
-      testing the database efficient and repeatable, we created a master script
-      called <code>run_group1.sql</code>. <em>(Show script briefly)</em> This
-      script acts as an orchestrator, executing all the other SQL scripts in the
-      correct logical order. It first runs <code>drops_group1.sql</code> to
-      ensure a clean environment, then <code>creates_group1.sql</code> to build
-      the tables, followed by <code>constraints_group1.sql</code> to add the
-      integrity rules, then <code>inserts_group1.sql</code> to populate the
-      data, and finally <code>queries_group1.sql</code> to demonstrate data
-      retrieval.
+      <strong>Utsab:</strong> To make testing our database easy, we created a main script called <code>run_group1.sql</code>.
     </p>
     <p>
-      <span class="timestamp">[9:15 - 9:30]</span>
-      <strong>Utsab:</strong> Using this master script ensures that anyone can
-      recreate and test our entire database implementation with a single command
-      in SQL*Plus or SQL Developer.
+      <em>(shows script)</em> This script runs all our other scripts in the right order. It first cleans everything with the <code>drops</code> script, then creates the tables, adds the rules, inserts the data, and finally runs the queries.
+    </p>
+    <p>
+      <strong>Utsab:</strong> This approach makes it simple to test the whole database with just one command. You don't need to know which script to run first - the master script handles everything in the correct order.
+    </p>
+     <p>
+      <strong>Utsab:</strong> It also helped us during development. When we changed one script, we could run the master script to make sure everything still worked together properly.
     </p>
 
-    <h2>Conclusion (Approx. 30 seconds)</h2>
+    <h2>Conclusion (About 30 seconds)</h2>
     <p>
-      <span class="timestamp">[9:30 - 10:00]</span>
-      <strong>Utsab:</strong> In summary, our group successfully translated the
-      ERD into a functional relational database. We developed scripts for
-      creation, constraint enforcement, data insertion, querying, and cleanup,
-      ensuring adherence to good SQL practices and assignment requirements. Each
-      member contributed to their assigned part, and we collaborated throughout
-      the process. Thank you for watching our demonstration.
+      <strong>Utsab:</strong> To sum up, our team successfully built a database system based on the ER Diagram we were given. We created scripts to set up the tables, add rules to keep the data correct, fill the database with sample data, and show how to get useful information from it.
+    </p>
+    <p>
+      <strong>Utsab:</strong> Each team member worked on different parts, but we worked together to make sure everything fit properly. The result is a complete database system that meets all the assignment requirements.
+    </p>
+    <p>
+      <strong>Utsab:</strong> Thank you for listening to our presentation. We're ready to answer any questions you might have.
     </p>
   </body>
 </html>
