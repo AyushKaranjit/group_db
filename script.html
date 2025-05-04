@@ -215,16 +215,10 @@
       all date information.
     </p>
     <p>
-      <strong>Utsab:</strong> We also used different ways to insert data. For example:
-      <pre><code>-- Example using explicit column list
-INSERT INTO markers (marker_id, marker_fname, marker_lname) VALUES (206, 'RAJESH', 'HAMAL');</code></pre>
-      This lets us insert data into only specific columns, leaving others with default or null values.
+      <strong>Utsab:</strong> We also used different ways to insert data. For instance, we showed how to insert data by explicitly listing the columns we wanted to populate, like adding a marker with just their ID and name. This method allows other columns to automatically use their default values or remain null if allowed.
     </p>
     <p>
-      <strong>Utsab:</strong> And for columns with default values:
-      <pre><code>-- Example relying on DEFAULT constraint for attendance_date (SYSDATE)
-INSERT INTO attendances (attendance_id, module_list_id, status) VALUES (606, 501, 'P');</code></pre>
-      Here we don't specify <code>attendance_date</code>, so it uses the default value of today's date.
+      <strong>Utsab:</strong> We also demonstrated inserting data while relying on default constraints. For example, when adding an attendance record, we omitted the attendance date. Because we set up a default value for that column, the database automatically used the current system date (SYSDATE) for the record.
     </p>
     <p>
       <strong>Utsab:</strong> The main challenge was keeping all relationships
