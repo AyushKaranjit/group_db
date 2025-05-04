@@ -114,7 +114,7 @@
       tables.
     </p>
 
-    <h2>Creates & Drops Scripts (About 1.5 minutes)</h2>
+    <h2>Creates Script (About 1 minute)</h2>
     <p>
       <strong>Nabin:</strong> Thank you, Utsab. I worked on the scripts that
       create and remove the database tables.
@@ -129,20 +129,8 @@
       <code>DATE</code> for dates.
     </p>
     <p>
-      <strong>Nabin:</strong> I also made a cleanup script called
-      <code>drops_group1.sql</code>. <em>(shows script)</em> This script helps
-      us restart the database when needed during testing. It removes all
-      constraints first, then removes all tables, and finally cleans up the
-      recyclebin. This gives us a clean start each time we run our scripts.
-    </p>
-    <p>
-      <strong>Nabin:</strong> The order is important - we must remove the
-      constraints before the tables to avoid errors. This keeps everything
-      working smoothly when we rebuild the database.
-    </p>
-    <p>
-      <strong>Nabin:</strong> I will now hand over to Ayush, who will explain
-      how we made sure the data stays correct.
+      <strong>Nabin:</strong> Now Ayush will explain how we made sure the data
+      stays correct with constraints.
     </p>
 
     <h2>Constraints Script (About 2 minutes)</h2>
@@ -215,9 +203,10 @@
       all date information.
     </p>
     <p>
-      <strong>Utsab:</strong> We also used a different way to add data i.e to specify just certain columns, like the ID and name for a marker.
-      This lets the database handle the other columns, using defaults or leaving
-      them empty.
+      <strong>Utsab:</strong> We also used a different way to add data i.e to
+      specify just certain columns, like the ID and name for a marker. This lets
+      the database handle the other columns, using defaults or leaving them
+      empty.
     </p>
     <p>
       <strong>Utsab:</strong> We also demonstrated inserting data while relying
@@ -279,8 +268,26 @@
       practical questions that school staff might need to know.
     </p>
     <p>
-      <strong>Anuskar:</strong> Now I'll return to Utsab, who will explain how
-      we put everything together.
+      <strong>Anuskar:</strong> Now Nabin will explain the cleanup script we
+      created.
+    </p>
+
+    <h2>Drops Script (About 30 seconds)</h2>
+    <p>
+      <strong>Nabin:</strong> I also made a cleanup script called
+      <code>drops_group1.sql</code>. <em>(shows script)</em> This script helps
+      us restart the database when needed during testing. It removes all
+      constraints first, then removes all tables, and finally cleans up the
+      recyclebin. This gives us a clean start each time we run our scripts.
+    </p>
+    <p>
+      <strong>Nabin:</strong> The order is important - we must remove the
+      constraints before the tables to avoid errors. This keeps everything
+      working smoothly when we rebuild the database.
+    </p>
+    <p>
+      <strong>Nabin:</strong> Finally, Utsab will explain how we put everything
+      together with the master run script.
     </p>
 
     <h2>Master Run Script (About 1 minute)</h2>
