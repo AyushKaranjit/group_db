@@ -164,54 +164,60 @@ Nabin Thapaliya 24814102
 
 -- @E:\DB-PROJECT\queries_group1.txt
 
--- a) A simple query to return all the records from one table
+-- Our SQL Queries for the Student System
+
+-- BASIC QUERIES --------------------------------------
+
+-- a) Simple query to show all students
 SELECT * FROM students;
 
--- b) A projection query with 3 columns sorted in reverse alphabetical order
+-- b) Show student names and addresses in reverse order
 SELECT student_fname, student_lname, address 
 FROM students 
 ORDER BY student_lname DESC;
 
--- c) Restriction queries with multiple clauses
+-- FILTER QUERIES --------------------------------------
 
--- Comparison operator with predicate for people who live in Kathmandu
+-- c) Query examples with different conditions
+
+-- Find Kathmandu students
 SELECT * FROM students 
 WHERE address = 'Kathmandu';
 
--- Condition matching a pattern (begins with 'A')
+-- Find students with names starting with A
 SELECT * FROM students 
 WHERE student_fname LIKE 'A%';
 
--- Negative condition with predicate (do not live in Kathmandu)
+-- Students not from Kathmandu
 SELECT * FROM students 
 WHERE address != 'Kathmandu';
 
--- Logic operator with predicates for students born after 2000 from Kathmandu
+-- Young Kathmandu students (born after 2000)
 SELECT * FROM students 
 WHERE address = 'Kathmandu' AND dob > DATE '2000-01-01';
 
--- Logic operator with predicates for students living in Pokhara
+-- Pokhara students query
 SELECT * FROM students 
 WHERE address = 'Pokhara';
 
--- Date range condition for this year's module enrollments
+-- Students enrolled in modules this year
 SELECT ml.student_id, s.student_fname, s.student_lname, ml.enrollment_date
 FROM module_lists ml
 JOIN students s ON ml.student_id = s.student_id
 WHERE ml.enrollment_date BETWEEN DATE '2025-01-01' 
                             AND DATE '2025-12-31';
 
--- d) Join queries to extract insightful information
+-- JOIN QUERIES --------------------------------------
 
--- 2 tables join: Find all students enrolled in Computer Science degree
--- Purpose: Shows which students are currently pursuing Computer Science
+-- d) Queries combining tables
+
+-- Find Computer Science students
 SELECT s.student_id, s.student_fname, s.student_lname, d.degree_title, d.degree_level
 FROM students s
 JOIN degrees d ON s.degree_id = d.degree_id
-WHERE d.degree_title = 'Computer Science';
+WHERE d.degree_title = 'COMPUTER SCIENCE';
 
--- 3 tables join: Find all students with their modules and respective examiner
--- Purpose: Helps track which examiner is responsible for each student's modules
+-- Find who's examining which modules for each student
 SELECT s.student_id, s.student_fname, s.student_lname, 
        m.module_name, m.detail,
        e.examiner_fname, e.examiner_lname
@@ -220,26 +226,27 @@ JOIN module_lists ml ON s.student_id = ml.student_id
 JOIN modules m ON ml.module_id = m.module_id
 JOIN examiners e ON m.examiner_id = e.examiner_id;
 
--- e) Demonstrating additional or integrated skills
+-- ADVANCED STUFF --------------------------------------
 
--- Parameterized query to find students by specific degree
--- Can be used with variable binding in application code
+-- e) More complex queries
+
+-- Variable query to find students by degree
 VARIABLE degree_id NUMBER
 BEGIN
-  :degree_id := 1; -- Set a sample value
+  :degree_id := 1; -- Set to Computer Science 
 END;
 /
 SELECT * FROM students 
 WHERE degree_id = :degree_id;
 
--- Query with subquery to find students with above-average grades
+-- Find top students (A or better grades)
 SELECT s.student_id, s.student_fname, s.student_lname, ss.grade
 FROM students s
 JOIN student_submissions ss ON s.student_id = ss.student_id
 WHERE ss.grade IN ('A+', 'A', 'A-')
 ORDER BY s.student_id;
 
--- Query with aggregate function to count submissions by module
+-- Count submissions per module
 SELECT m.module_name, COUNT(ss.submission_id) AS submission_count
 FROM modules m
 JOIN assignments a ON m.module_id = a.module_id
@@ -248,16 +255,16 @@ JOIN student_submissions ss ON s.submission_id = ss.submission_id
 GROUP BY m.module_name
 ORDER BY submission_count DESC;
 
--- Query to find attendance percentage for modules
+-- Calculate attendance percentage
 SELECT m.module_name, 
        COUNT(CASE WHEN a.status = 'P' THEN 1 END) AS present_count,
        COUNT(*) AS total_count,
-       ROUND(COUNT(CASE WHEN a.status = 'P' THEN 1 END) * 100 / COUNT(*), 2) AS attendance_percentage
+       ROUND(COUNT(CASE WHEN a.status = 'P' THEN 1 END) * 100.0 / COUNT(*), 2) AS attendance_percent
 FROM modules m
 JOIN module_lists ml ON m.module_id = ml.module_id
 JOIN attendances a ON ml.module_list_id = a.module_list_id
 GROUP BY m.module_name
-ORDER BY attendance_percentage DESC;
+ORDER BY attendance_percent DESC;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
