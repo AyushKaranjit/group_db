@@ -97,138 +97,217 @@
 
     <h2>Introduction (About 45 seconds)</h2>
     <p>
-      <strong>Utsab:</strong> Good afternoon everyone. We are Group 1, with Nabin Thapaliya, Anuskar Sigdel, Ayush Karanjit, and myself, Utsab Thami Magar.
+      <strong>Utsab:</strong> Good afternoon everyone. We are Group 1, with
+      Nabin Thapaliya, Anuskar Sigdel, Ayush Karanjit, and myself, Utsab Thami
+      Magar.
     </p>
     <p>
-      <strong>Utsab:</strong> For this assignment, we needed to design and build a database based on the ER Diagram we were given. Our job was to create SQL scripts that would build the database structure, make sure the data stays correct, add sample data, and show how to get useful information from it.
+      <strong>Utsab:</strong> For this assignment, we needed to design and build
+      a database based on the ER Diagram we were given. Our job was to create
+      SQL scripts that would build the database structure, make sure the data
+      stays correct, add sample data, and show how to get useful information
+      from it.
     </p>
     <p>
-      <strong>Utsab:</strong> Today we will show you what we did and how each part works. Nabin will start by explaining how we set up the database tables.
+      <strong>Utsab:</strong> Today we will show you what we did and how each
+      part works. Nabin will start by explaining how we set up the database
+      tables.
     </p>
 
     <h2>Creates & Drops Scripts (About 1.5 minutes)</h2>
     <p>
-      <strong>Nabin:</strong> Thank you, Utsab. I worked on the scripts that create and remove the database tables.
+      <strong>Nabin:</strong> Thank you, Utsab. I worked on the scripts that
+      create and remove the database tables.
     </p>
     <p>
-      <strong>Nabin:</strong> First, I made the <code>creates_group1.sql</code> file. <em>(briefly shows script)</em> This script creates all the tables we need like <code>students</code>, <code>modules</code>, <code>degrees</code>, and others based on our ER Diagram. It sets up each table with the right column names and data types - using <code>NUMBER</code> for IDs, <code>VARCHAR2</code> for text, and <code>DATE</code> for dates.
+      <strong>Nabin:</strong> First, I made the
+      <code>creates_group1.sql</code> file. <em>(briefly shows script)</em> This
+      script creates all the tables we need like <code>students</code>,
+      <code>modules</code>, <code>degrees</code>, and others based on our ER
+      Diagram. It sets up each table with the right column names and data types
+      - using <code>NUMBER</code> for IDs, <code>VARCHAR2</code> for text, and
+      <code>DATE</code> for dates.
     </p>
     <p>
-      <strong>Nabin:</strong> I also made a cleanup script called <code>drops_group1.sql</code>. <em>(shows script)</em> This script helps us restart the database when needed during testing. It removes all constraints first, then removes all tables, and finally cleans up the recyclebin. This gives us a clean start each time we run our scripts.
+      <strong>Nabin:</strong> I also made a cleanup script called
+      <code>drops_group1.sql</code>. <em>(shows script)</em> This script helps
+      us restart the database when needed during testing. It removes all
+      constraints first, then removes all tables, and finally cleans up the
+      recyclebin. This gives us a clean start each time we run our scripts.
     </p>
     <p>
-      <strong>Nabin:</strong> The order is important - we must remove the constraints before the tables to avoid errors. This keeps everything working smoothly when we rebuild the database.
+      <strong>Nabin:</strong> The order is important - we must remove the
+      constraints before the tables to avoid errors. This keeps everything
+      working smoothly when we rebuild the database.
     </p>
     <p>
-      <strong>Nabin:</strong> I will now hand over to Ayush, who will explain how we made sure the data stays correct.
+      <strong>Nabin:</strong> I will now hand over to Ayush, who will explain
+      how we made sure the data stays correct.
     </p>
 
     <h2>Constraints Script (About 2 minutes)</h2>
     <p>
-      <strong>Ayush:</strong> Thank you, Nabin. After setting up the tables, we needed to add rules to make sure the data stays correct. We did this with the <code>constraints_group1.sql</code> script.
+      <strong>Ayush:</strong> Thank you, Nabin. After setting up the tables, we
+      needed to add rules to make sure the data stays correct. We did this with
+      the <code>constraints_group1.sql</code> script.
     </p>
     <p>
-      <em>(shows script)</em> This script adds rules that the database will follow at all times.
+      <em>(shows script)</em> This script adds rules that the database will
+      follow at all times.
     </p>
     <p>We added several types of rules:</p>
     <ul>
       <li>
-        <strong>Primary Keys</strong> for each table to make sure every record can be found easily. For example, each student has a unique <code>student_id</code>.
+        <strong>Primary Keys</strong> for each table to make sure every record
+        can be found easily. For example, each student has a unique
+        <code>student_id</code>.
       </li>
       <li>
-        <strong>Foreign Keys</strong> to connect tables together. These make sure that when a student is linked to a degree program, that degree must exist in the <code>degrees</code> table.
+        <strong>Foreign Keys</strong> to connect tables together. These make
+        sure that when a student is linked to a degree program, that degree must
+        exist in the <code>degrees</code> table.
       </li>
       <li>
-        <strong>Check constraints</strong> to limit what values can go in certain columns. For instance, the <code>grade</code> column can only have proper letter grades.
+        <strong>Check constraints</strong> to limit what values can go in
+        certain columns. For instance, the <code>grade</code> column can only
+        have proper letter grades.
       </li>
       <li>
-        <strong>Not Null constraints</strong> for important information that must be filled in. Things like a student's first name cannot be left empty.
+        <strong>Not Null constraints</strong> for important information that
+        must be filled in. Things like a student's first name cannot be left
+        empty.
       </li>
       <li>
-        <strong>Unique constraints</strong> for information that shouldn't be repeated, like assignment codes.
+        <strong>Unique constraints</strong> for information that shouldn't be
+        repeated, like assignment codes.
       </li>
       <li>
-        <strong>Default values</strong> for when information isn't provided. For example, attendance date will use today's date if none is given.
+        <strong>Default values</strong> for when information isn't provided. For
+        example, attendance date will use today's date if none is given.
       </li>
     </ul>
     <p>
-      <strong>Ayush:</strong> These rules work together to keep our data accurate and reliable. Now Utsab will explain how we added sample data to our tables.
+      <strong>Ayush:</strong> These rules work together to keep our data
+      accurate and reliable. Now Utsab will explain how we added sample data to
+      our tables.
     </p>
 
     <h2>Insert Script (About 1.5 minutes)</h2>
     <p>
-      <strong>Utsab:</strong> Thank you, Ayush. After setting up the tables and rules, we needed to add sample data to the database using the <code>inserts_group1.sql</code> script.
+      <strong>Utsab:</strong> Thank you, Ayush. After setting up the tables and
+      rules, we needed to add sample data to the database using the
+      <code>inserts_group1.sql</code> script.
     </p>
     <p>
-      <em>(shows script)</em> This script contains <code>INSERT INTO</code> statements for each table in our database. The assignment asked for at least five records per table, but we added extra in some tables to make our query examples better.
+      <em>(shows script)</em> This script contains
+      <code>INSERT INTO</code> statements for each table in our database. The
+      assignment asked for at least five records per table, but we added extra
+      in some tables to make our query examples better.
     </p>
     <p>
-      <strong>Utsab:</strong> We used realistic test data with proper names, addresses, grades, and course codes. Using realistic data helps us test how the database would work in a real school setting.
+      <strong>Utsab:</strong> We used realistic test data with proper names,
+      addresses, grades, and course codes. Using realistic data helps us test
+      how the database would work in a real school setting.
     </p>
     <p>
-      <strong>Utsab:</strong> We made sure to format dates correctly as the assignment required. We used the format <code>DATE '2023-09-15'</code> for all date information.
-    </p>
-     <p>
-      <strong>Utsab:</strong> The main challenge was keeping all relationships between tables correct. When adding a student enrollment, we had to make sure both the student and the module existed in their tables first.
+      <strong>Utsab:</strong> We made sure to format dates correctly as the
+      assignment required. We used the format <code>DATE '2023-09-15'</code> for
+      all date information.
     </p>
     <p>
-      <strong>Utsab:</strong> I'll now hand over to Anuskar, who will show how we get useful information from our database.
+      <strong>Utsab:</strong> The main challenge was keeping all relationships
+      between tables correct. When adding a student enrollment, we had to make
+      sure both the student and the module existed in their tables first.
+    </p>
+    <p>
+      <strong>Utsab:</strong> I'll now hand over to Anuskar, who will show how
+      we get useful information from our database.
     </p>
 
     <h2>Queries Script (About 2 minutes)</h2>
     <p>
-      <strong>Anuskar:</strong> Thank you, Utsab. Now I'll show how we can get useful information from our database using the <code>queries_group1.sql</code> script.
+      <strong>Anuskar:</strong> Thank you, Utsab. Now I'll show how we can get
+      useful information from our database using the
+      <code>queries_group1.sql</code> script.
     </p>
     <p>
-      <em>(shows script)</em> This script shows different ways to get information using SQL. Here are the main types of queries we made:
+      <em>(shows script)</em> This script shows different ways to get
+      information using SQL. Here are the main types of queries we made:
     </p>
     <ul>
       <li>
-        <strong>Simple Select queries</strong> that get all data from one table. For example, <code>SELECT * FROM students;</code> shows all student records.
+        <strong>Simple Select queries</strong> that get all data from one table.
+        For example, <code>SELECT * FROM students;</code> shows all student
+        records.
       </li>
       <li>
-        <strong>Projection queries</strong> that get only certain columns. This is useful when you only need specific information, like student names and phone numbers.
+        <strong>Projection queries</strong> that get only certain columns. This
+        is useful when you only need specific information, like student names
+        and phone numbers.
       </li>
       <li>
-        <strong>Filter queries</strong> that use the <code>WHERE</code> clause to find specific records. For example, finding students who live in a certain city or assignments due this month.
+        <strong>Filter queries</strong> that use the <code>WHERE</code> clause
+        to find specific records. For example, finding students who live in a
+        certain city or assignments due this month.
       </li>
       <li>
-        <strong>Join queries</strong> that combine information from multiple tables. These show connections like which students are taking which modules, or which modules are part of each degree program.
+        <strong>Join queries</strong> that combine information from multiple
+        tables. These show connections like which students are taking which
+        modules, or which modules are part of each degree program.
       </li>
       <li>
-        <strong>Advanced queries</strong> using functions like <code>COUNT</code>, <code>AVG</code>, and grouping with <code>GROUP BY</code>. These help answer questions like how many students are in each module or what the average grade is.
+        <strong>Advanced queries</strong> using functions like
+        <code>COUNT</code>, <code>AVG</code>, and grouping with
+        <code>GROUP BY</code>. These help answer questions like how many
+        students are in each module or what the average grade is.
       </li>
     </ul>
     <p>
-      <strong>Anuskar:</strong> These queries show how our database can answer practical questions that school staff might need to know.
+      <strong>Anuskar:</strong> These queries show how our database can answer
+      practical questions that school staff might need to know.
     </p>
     <p>
-      <strong>Anuskar:</strong> Now I'll return to Utsab, who will explain how we put everything together.
+      <strong>Anuskar:</strong> Now I'll return to Utsab, who will explain how
+      we put everything together.
     </p>
 
     <h2>Master Run Script (About 1 minute)</h2>
     <p>
-      <strong>Utsab:</strong> To make testing our database easy, we created a main script called <code>run_group1.sql</code>.
+      <strong>Utsab:</strong> To make testing our database easy, we created a
+      main script called <code>run_group1.sql</code>.
     </p>
     <p>
-      <em>(shows script)</em> This script runs all our other scripts in the right order. It first cleans everything with the <code>drops</code> script, then creates the tables, adds the rules, inserts the data, and finally runs the queries.
+      <em>(shows script)</em> This script runs all our other scripts in the
+      right order. It first cleans everything with the
+      <code>drops</code> script, then creates the tables, adds the rules,
+      inserts the data, and finally runs the queries.
     </p>
     <p>
-      <strong>Utsab:</strong> This approach makes it simple to test the whole database with just one command. You don't need to know which script to run first - the master script handles everything in the correct order.
+      <strong>Utsab:</strong> This approach makes it simple to test the whole
+      database with just one command. You don't need to know which script to run
+      first - the master script handles everything in the correct order.
     </p>
-     <p>
-      <strong>Utsab:</strong> It also helped us during development. When we changed one script, we could run the master script to make sure everything still worked together properly.
+    <p>
+      <strong>Utsab:</strong> It also helped us during development. When we
+      changed one script, we could run the master script to make sure everything
+      still worked together properly.
     </p>
 
     <h2>Conclusion (About 30 seconds)</h2>
     <p>
-      <strong>Utsab:</strong> To sum up, our team successfully built a database system based on the ER Diagram we were given. We created scripts to set up the tables, add rules to keep the data correct, fill the database with sample data, and show how to get useful information from it.
+      <strong>Utsab:</strong> To sum up, our team successfully built a database
+      system based on the ER Diagram we were given. We created scripts to set up
+      the tables, add rules to keep the data correct, fill the database with
+      sample data, and show how to get useful information from it.
     </p>
     <p>
-      <strong>Utsab:</strong> Each team member worked on different parts, but we worked together to make sure everything fit properly. The result is a complete database system that meets all the assignment requirements.
+      <strong>Utsab:</strong> Each team member worked on different parts, but we
+      worked together to make sure everything fit properly. The result is a
+      complete database system that meets all the assignment requirements.
     </p>
     <p>
-      <strong>Utsab:</strong> Thank you for listening to our presentation. We're ready to answer any questions you might have.
+      <strong>Utsab:</strong> Thank you for listening to our presentation. We're
+      ready to answer any questions you might have.
     </p>
   </body>
 </html>
