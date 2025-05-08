@@ -261,7 +261,10 @@ CREATE TABLE student_submissions (
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre
+COMMIT;
+
+-- Query to show all tables, views, synonyms
+SELECT * FROM tab;</pre
     >
 
     <div class="file-header">
@@ -321,6 +324,14 @@ ALTER TABLE submissions DROP CONSTRAINT unique_receipt_no;
 ALTER TABLE degree_modules DROP CONSTRAINT pk_degree_modules; 
 ALTER TABLE student_submissions DROP CONSTRAINT pk_student_submissions; 
 
+-- Dropping CHECK constraints
+ALTER TABLE degrees DROP CONSTRAINT check_degree_year;
+ALTER TABLE modules DROP CONSTRAINT check_module_status;
+ALTER TABLE degree_modules DROP CONSTRAINT check_semester;
+ALTER TABLE attendances DROP CONSTRAINT check_attendance_status;
+ALTER TABLE assignments DROP CONSTRAINT check_weighting;
+ALTER TABLE student_submissions DROP CONSTRAINT check_grade;
+
 -- Now dropping the tables themselves
 
 DROP TABLE student_submissions;
@@ -337,6 +348,9 @@ DROP TABLE degrees;
 
 -- After all tables are dropped, permanently remove them from the recyclebin
 PURGE RECYCLEBIN;
+
+-- Query to show all tables
+SELECT * FROM tab;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema

@@ -331,6 +331,14 @@ ALTER TABLE attendances
 ADD CONSTRAINT check_attendance_status 
 CHECK (status IN ('P', 'A'));
 
+ALTER TABLE assignments
+ADD CONSTRAINT check_assignment_code_upper
+CHECK (code = UPPER(code));
+
+ALTER TABLE submissions
+ADD CONSTRAINT check_receipt_no_upper
+CHECK (receipt_no = UPPER(receipt_no));
+
 ALTER TABLE assignments 
 ADD CONSTRAINT check_weighting 
 CHECK (weighting BETWEEN 0 AND 100);
@@ -353,8 +361,11 @@ MODIFY attendance_date DEFAULT SYSDATE;
 
 -- COMMIT CHANGES
 -- This saves all the changes made to the database schema
-COMMIT;</pre
-    >
+COMMIT;
+
+-- Query to show all tables
+SELECT * FROM tab;
+    </pre>
 
     <script>
       function toggleCode(id) {
