@@ -132,7 +132,6 @@
     </style>
   </head>
   <body>
-    
     <!-- <a href="plan.html" class="nav-link">← Go Back</a>
     <h1>🥵🥵🥵🥵🥵</h1>
     <h1>Pending...</h1> -->
@@ -194,7 +193,7 @@ WHERE address != 'Kathmandu';
 
 -- Young Kathmandu students (born after 2000)
 SELECT * FROM students 
-WHERE address = 'Kathmandu' AND dob > DATE '2000-01-01';
+WHERE address = 'Kathmandu' AND dob > '01 01 2000';
 
 -- Pokhara students query
 SELECT * FROM students 
@@ -204,8 +203,8 @@ WHERE address = 'Pokhara';
 SELECT ml.student_id, s.student_fname, s.student_lname, ml.enrollment_date
 FROM module_lists ml
 JOIN students s ON ml.student_id = s.student_id
-WHERE ml.enrollment_date BETWEEN DATE '2025-01-01' 
-                            AND DATE '2025-12-31';
+WHERE ml.enrollment_date BETWEEN '01 01 2025' 
+                            AND '31 12 2025';
 
 -- JOIN QUERIES --------------------------------------
 
