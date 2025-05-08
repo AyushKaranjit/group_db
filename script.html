@@ -40,9 +40,12 @@
         padding-left: 15px; /* Indent paragraphs */
       }
       strong {
-        color: #2980b9; /* Brighter blue for speaker name */
-        font-weight: 700; /* Bolder speaker name */
-        margin-right: 5px; /* Space after speaker name */
+        font-weight: 700; /* Bolder */
+        color: #34495e;   /* Default to main body text color for emphasis */
+      }
+      p > strong:first-child {
+        color: #2980b9;   /* Brighter blue, different from general emphasis */
+        margin-right: 5px; /* Space after speaker name, before the dialogue */
       }
       code {
         background-color: #e9ecef; /* Slightly darker code background */
@@ -180,7 +183,7 @@
 
     <h2>Drops Script (About 30 seconds)</h2>
     <p>
-      <strong>Nabin:</strong> I also created <code>drops_group1.sql</code>. <em>(shows script)</em> This utility resets the database.
+      <strong>Nabin:</strong> I also created <code>drops_group1.sql</code>. <em>(shows script)</em> This script resets the database.
       <strong
         >Critically, it first removes all constraints, then deletes the tables,
         and finally purges the recyclebin.</strong
