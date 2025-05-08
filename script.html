@@ -123,7 +123,7 @@
     </p>
     <p>
       <strong>Nabin:</strong> The <code>creates_group1.sql</code> file
-      <em>(shows script)</em> runs the SQL commands needed to set up our
+      <em>(shows script)</em> To check that the tables are created, we also run <code>SELECT * FROM tab;</code>. This script runs the SQL commands needed to set up our
       database structure. It creates all the tables shown in our ER diagram,
       like <code>students</code>, <code>modules</code>, and
       <code>degrees</code>. For each table, we defined clear column names and
@@ -146,7 +146,7 @@
       <code>constraints_group1.sql</code> script.
     </p>
     <p>
-      <em>(shows script)</em> This script applies a full set of rules that the
+      <em>(shows script)</em> To verify the application of constraints, we also use <code>SELECT * FROM tab;</code> at the end. This script applies a full set of rules that the
       database enforces automatically. These rules are very important because
       they stop bad or inconsistent data from getting into the database, which
       in turn protects its reliability.
@@ -204,7 +204,7 @@
       queries perform.
     </p>
     <p>
-      <em>(shows script)</em> This script has all the
+      <em>(shows script)</em> To check that data has been inserted, we run <code>SELECT * FROM tab;</code>. This script has all the
       <code>INSERT INTO</code> commands for every table in our database. We made
       sure to add enough records to each table – often more than the five
       required – so we could test everything thoroughly and have a good set of
@@ -297,7 +297,7 @@
     <h2>Drops Script (About 30 seconds)</h2>
     <p>
       <strong>Nabin:</strong> I also created the
-      <code>drops_group1.sql</code> script. <em>(shows script)</em> This script
+      <code>drops_group1.sql</code> script. <em>(shows script)</em> To confirm that all tables are dropped, <code>SELECT * FROM tab;</code> is executed at the end. This script
       is a utility to reset the database. It removes all the rules
       (constraints), then deletes all the tables, and finally runs
       <code>PURGE RECYCLEBIN</code> to clear out any leftover items. This
