@@ -97,257 +97,113 @@
 
     <h2>Introduction (About 45 seconds)</h2>
     <p>
-      <strong>Utsab:</strong> Good afternoon. We're Group 1, here to present our
-      database project. Our team members are Nabin Thapaliya, Anuskar Sigdel,
-      Ayush Karanjit, and myself, Utsab Thami Magar.
+      <strong>Utsab:</strong> Good afternoon. We are Group 1: Nabin, Anuskar, Ayush, and myself, Utsab. We're presenting our database project, built from a provided ERD.
     </p>
     <p>
-      <strong>Utsab:</strong> For this assignment, our main goal was to design
-      and build a database based on an Entity-Relationship Diagram that was
-      provided to us. This meant we had to write several SQL scripts. These
-      scripts helped us build the database structure, set rules for data
-      integrity, fill the tables with sample data, and then show how to get data
-      out using SQL queries.
+      <strong>Utsab:</strong> Our core task involved creating SQL scripts to define the database structure, enforce data integrity, populate tables, and execute queries.
     </p>
     <p>
-      <strong>Utsab:</strong> In this presentation, we'll walk you through each
-      step of how we developed the system and show you how it works. Nabin will
-      start by explaining how we set up our database tables.
+      <strong>Utsab:</strong> We'll now walk through our development process. Nabin will start with table creation.
     </p>
 
     <h2>Creates Script (About 1 minute)</h2>
     <p>
-      <strong>Nabin:</strong> Thank you, Utsab. My part was to develop the
-      scripts that create the database tables. These tables are the basic
-      building blocks of our system.
+      <strong>Nabin:</strong> Thank you, Utsab. I developed the scripts to create our database tables. The <code>creates_group1.sql</code> file <em>(shows script)</em> sets up the database structure based on the ERD, creating tables like <code>students</code> and <code>modules</code>. We defined clear column names and appropriate data types like <code>NUMBER</code>, <code>VARCHAR2</code>, and <code>DATE`, and used <code>SELECT * FROM tab;</code> to verify table creation. This organization is key for a smooth-running database.
     </p>
     <p>
-      <strong>Nabin:</strong> The <code>creates_group1.sql</code> file
-      <em>(shows script)</em> To check that the tables are created, we also run <code>SELECT * FROM tab;</code>. This script runs the SQL commands needed to set up our
-      database structure. It creates all the tables shown in our ER diagram,
-      like <code>students</code>, <code>modules</code>, and
-      <code>degrees</code>. For each table, we defined clear column names and
-      chose suitable data types. For example, we used <code>NUMBER</code> for
-      IDs to keep things efficient, <code>VARCHAR2</code> for text that can vary
-      in length, and <code>DATE</code> for dates. This organized approach is key
-      for keeping our data well-structured, accurate, and for making sure the
-      database runs smoothly.
-    </p>
-    <p>
-      <strong>Nabin:</strong> Next, Ayush will talk about the rules, or
-      constraints, we put in place to make sure our data is reliable.
+      <strong>Nabin:</strong> Next, Ayush will discuss data constraints.
     </p>
 
     <h2>Constraints Script (About 2 minutes)</h2>
     <p>
-      <strong>Ayush:</strong> Thanks, Nabin. After creating the tables, an
-      important next step was to add constraints. These are rules that help us
-      manage data quality and keep everything consistent. We did this using the
-      <code>constraints_group1.sql</code> script.
+      <strong>Ayush:</strong> Thanks, Nabin. Next, we added constraints using <code>constraints_group1.sql</code>. <em>(shows script)</em> These rules are vital for data quality and consistency, preventing bad data and protecting reliability. We used <code>SELECT * FROM tab;</code> to verify. Key constraints include:
     </p>
-    <p>
-      <em>(shows script)</em> To verify the application of constraints, we also use <code>SELECT * FROM tab;</code> at the end. This script applies a full set of rules that the
-      database enforces automatically. These rules are very important because
-      they stop bad or inconsistent data from getting into the database, which
-      in turn protects its reliability.
-    </p>
-    <p>We set up several kinds of constraints:</p>
     <ul>
       <li>
-        <strong>Primary Keys:</strong> Every table has a primary key, like
-        <code>student_id</code> for the <code>students</code> table. This makes
-        sure every entry is unique and helps avoid duplicate data.
+        <strong>Primary Keys:</strong> Ensures unique entries, like <code>student_id</code>.
       </li>
       <li>
-        <strong>Foreign Keys:</strong> These create links between tables and
-        make sure those links are valid. For instance, a
-        <code>degree_id</code> in the <code>students</code> table has to match
-        an existing ID in the <code>degrees</code> table.
+        <strong>Foreign Keys:</strong> Link tables and ensure valid relationships, like <code>degree_id</code> in <code>students</code>.
       </li>
       <li>
-        <strong>Check constraints:</strong> These make sure data values are
-        sensible. For example, the <code>grade</code> in
-        <code>student_submissions</code> must be a valid grade, and a module's
-        <code>status</code> might only be 'Y' or 'N'.
+        <strong>Check constraints:</strong> Ensure sensible data values, like a valid <code>grade</code> or module <code>status</code>.
       </li>
       <li>
-        <strong>Not Null constraints:</strong> We applied these to essential
-        fields like <code>student_fname</code> (student's first name) or
-        <code>module_name</code>, to make sure important information is always
-        filled in.
+        <strong>Not Null constraints:</strong> Applied to essential fields like <code>student_fname</code>, ensuring important data isn't missed.
       </li>
       <li>
-        <strong>Unique constraints:</strong> These ensure that values in certain
-        columns (other than the primary key) are unique. For example,
-        <code>assignment_code</code> in the <code>assignments</code> table must
-        be unique for every assignment.
+        <strong>Unique constraints:</strong> Ensure unique values in non-primary key columns, like <code>assignment_code</code>.
       </li>
       <li>
-        <strong>Default values:</strong> If no value is given when adding data,
-        a default value is automatically used. For example, the
-        <code>attendance_date</code> in the <code>attendances</code> table
-        defaults to the current date (<code>SYSDATE</code>).
+        <strong>Default values:</strong> Automatically used if no value is given, like <code>attendance_date</code> defaulting to <code>SYSDATE</code>.
       </li>
     </ul>
     <p>
-      <strong>Ayush:</strong> All together, these constraints create a strong
-      system for keeping our database accurate and reliable. Utsab will now
-      explain how we filled the database with sample data.
+      <strong>Ayush:</strong> These constraints ensure an accurate and reliable database. Utsab will now explain data insertion.
     </p>
 
     <h2>Insert Script (About 1.5 minutes)</h2>
     <p>
-      <strong>Utsab:</strong> Thank you, Ayush. Once the database structure and
-      rules were set up, the next step was to add sample data using the
-      <code>inserts_group1.sql</code> script. This is important for checking if
-      the database works correctly, including the constraints and how well
-      queries perform.
+      <strong>Utsab:</strong> Thank you, Ayush. With the structure and rules ready, we added sample data using <code>inserts_group1.sql</code>. <em>(shows script)</em> This script uses <code>INSERT INTO</code> commands for all tables, with ample realistic data to test functionality and constraints, verified with <code>SELECT * FROM tab;</code>.
     </p>
     <p>
-      <em>(shows script)</em> To check that data has been inserted, we run <code>SELECT * FROM tab;</code>. This script has all the
-      <code>INSERT INTO</code> commands for every table in our database. We made
-      sure to add enough records to each table – often more than the five
-      required – so we could test everything thoroughly and have a good set of
-      data for our query examples. All the data we inserted follows the rules we
-      defined.
+      <strong>Utsab:</strong> We used real-world examples for names and codes, handled dates as text like <code>\'19-MAY-2025\'</code> for Oracle's conversion, tested default values by omitting some columns, and carefully managed foreign key relationships, for instance, ensuring <code>students</code> and <code>modules</code> entries exist before adding to <code>module_lists</code>.
     </p>
     <p>
-      <strong>Utsab:</strong> We used realistic test data for things like
-      student names, addresses, and course codes to make it feel like a
-      real-world application. This helps us better understand how the database
-      behaves.
-    </p>
-    <p>
-      <strong>Utsab:</strong> For dates, like submission or enrollment dates, we
-      typed them as text in a format Oracle understands, such as
-      <code>'19-MAY-2025'</code>. Oracle then correctly changes these text
-      strings into its date format, making sure dates are stored and retrieved
-      accurately.
-    </p>
-    <p>
-      <strong>Utsab:</strong> When inserting data, we also tried things like
-      providing only some of the columns for certain records. This lets the
-      database use default values where we set them up. For example, if we added
-      an attendance record without a date, it would automatically get the
-      current system date, just as we designed.
-    </p>
-    <p>
-      <strong>Utsab:</strong> A key thing to watch out for during data insertion
-      was keeping the relationships between tables correct, especially with
-      foreign keys. For example, records in <code>module_lists</code> need
-      matching entries to already exist in both the <code>students</code> and
-      <code>modules</code> tables. Anuskar will now show how we retrieve and use
-      this data.
+      <strong>Utsab:</strong> Anuskar will now demonstrate data querying.
     </p>
 
     <h2>Queries Script (About 2 minutes)</h2>
     <p>
-      <strong>Anuskar:</strong> Thank you, Utsab. After setting up the
-      structure, rules, and data in our database, we focused on how to get
-      useful information out of it. The <code>queries_group1.sql</code> script
-      shows how we approached retrieving and analyzing data.
-    </p>
-    <p>
-      <em>(shows script)</em> This script contains a variety of SQL queries
-      designed to show different ways of getting data:
+      <strong>Anuskar:</strong> Thank you, Utsab. To retrieve useful information, we used <code>queries_group1.sql</code>. <em>(shows script)</em> This demonstrates various SQL queries, including:
     </p>
     <ul>
       <li>
-        <strong>Simple Select Statements:</strong> These basic queries get all
-        data from a single table. For example,
-        <code>SELECT * FROM students;</code> gives us everything from the
-        students table.
+        <strong>Simple Select Statements:</strong> Basic queries like <code>SELECT * FROM students;</code> to get all data from a table.
       </li>
       <li>
-        <strong>Projection Queries:</strong> To get specific pieces of
-        information, we use projection to select only certain columns from a
-        table. For instance, getting just the first name, last name, and contact
-        number of students (<code
-          >SELECT student_fname, student_lname, contact_number FROM
-          students;</code
-        >).
+        <strong>Projection Queries:</strong> Selecting specific columns, like student names and contact numbers.
       </li>
       <li>
-        <strong>Filtering with WHERE Clause:</strong> These queries use the
-        <code>WHERE</code> clause to find records that meet specific conditions,
-        allowing us to pull out targeted data. Examples include finding students
-        from a certain city or assignments of a particular type.
+        <strong>Filtering with WHERE Clause:</strong> Using <code>WHERE</code> to find records meeting specific conditions, like students from a city.
       </li>
       <li>
-        <strong>Join Operations:</strong> Since our database has related tables,
-        joins are essential for combining data from multiple tables. We showed
-        how to join students with their enrolled modules, or modules with their
-        assigned examiners.
+        <strong>Join Operations:</strong> Combining data from multiple tables, like students with their enrolled modules.
       </li>
       <li>
-        <strong>Advanced Queries with Aggregate Functions:</strong> For data
-        analysis, we used functions like <code>COUNT</code> (for example, to see
-        how many students are in each module) and <code>AVG</code> (like
-        calculating the average weight of assignments). These are often used
-        with the <code>GROUP BY</code> clause to get summary reports.
+        <strong>Advanced Queries with Aggregate Functions:</strong> Using functions like <code>COUNT</code> and <code>AVG</code> with <code>GROUP BY</code> for summary reports, like student counts per module.
       </li>
     </ul>
     <p>
-      <strong>Anuskar:</strong> These query examples show that the database can
-      answer practical, real-world questions, turning raw data into useful
-      insights. Nabin will now briefly talk about the script used for cleaning
-      up the database.
+      <strong>Anuskar:</strong> These showcase the database's ability to turn data into insights. Nabin will now discuss the cleanup script.
     </p>
 
     <h2>Drops Script (About 30 seconds)</h2>
     <p>
-      <strong>Nabin:</strong> I also created the
-      <code>drops_group1.sql</code> script. <em>(shows script)</em> To confirm that all tables are dropped, <code>SELECT * FROM tab;</code> is executed at the end. This script
-      is a utility to reset the database. It removes all the rules
-      (constraints), then deletes all the tables, and finally runs
-      <code>PURGE RECYCLEBIN</code> to clear out any leftover items. This
-      ensures a clean state, which is really important for repeatable testing or
-      when we give the whole script package to someone else, making sure the
-      database can be rebuilt reliably from scratch.
+      <strong>Nabin:</strong> I also created <code>drops_group1.sql</code>. <em>(shows script)</em> This utility resets the database.
+      <strong
+        >Critically, it first removes all constraints, then deletes the tables,
+        and finally purges the recyclebin.</strong
+      >
+      This order is vital for a clean slate, confirmed by <code>SELECT * FROM tab;</code>.
     </p>
-    <p>
-      <strong>Nabin:</strong> The order of operations—removing constraints
-      before tables—is important to avoid errors and ensure a smooth cleanup. I
-      will now explain the master script that ties all these parts together.
-    </p>
+    <p><strong>Nabin:</strong> Now, I'll explain the master run script.</p>
 
     <h2>Master Run Script (About 1 minute)</h2>
     <p>
-      <strong>Nabin:</strong> To make sure all our database setup steps run
-      smoothly and in the right order, we created a main script called
-      <code>run_group1.sql</code>. This script runs all the other SQL scripts
-      one by one.
+      <strong>Nabin:</strong> Finally, to automate setup, we have <code>run_group1.sql</code>. <em>(shows script)</em> This master script sequentially runs all others: <code>drops</code>, then <code>creates</code>, <code>constraints</code>, <code>inserts</code>, and finally <code>queries</code>. If the database is already clear, the initial <code>drops</code> part might show \'table or view does not exist\' errors; this is normal and the script continues. This ensures consistent setup and testing with a single command.
     </p>
     <p>
-      <em>(shows script)</em> The <code>run_group1.sql</code> script first runs
-      <code>drops_group1.sql</code> to clear everything out. Then, it runs
-      <code>creates_group1.sql</code> to build the tables, followed by
-      <code>constraints_group1.sql</code> to add the data rules. After that,
-      <code>inserts_group1.sql</code> adds sample data, and finally,
-      <code>queries_group1.sql</code> is run to show how we get data out. This
-      automatic process means the whole database can be set up and shown in the
-      same way every time.
-    </p>
-    <p>
-      <strong>Nabin:</strong> This main script is very helpful for packaging the
-      project. It lets anyone rebuild and test the entire database system easily
-      with just one command. It makes sure that when we show the project, it
-      works consistently. Utsab will now give the conclusion.
+      <strong>Nabin:</strong> Utsab will now conclude.
     </p>
 
     <h2>Conclusion (About 30 seconds)</h2>
     <p>
-      <strong>Utsab:</strong> So, to wrap up, our team has successfully designed
-      and built a database system based on the Entity-Relationship Diagram we
-      were given. We've put together a full set of SQL scripts for creating the
-      database structure, enforcing rules, adding data, and effectively querying
-      that data.
+      <strong>Utsab:</strong> In summary, our team successfully built the database system from the ERD, creating a full suite of SQL scripts for structure, rules, data, and queries.
     </p>
     <p>
-      <strong>Utsab:</strong> Through our teamwork, each part was developed and
-      then brought together to create a complete and working system. The final
-      database successfully meets all the requirements of the assignment.
+      <strong>Utsab:</strong> Our collaborative effort resulted in a complete, working system meeting all assignment requirements.
     </p>
-    <p><strong>Utsab:</strong> Thank you for your time and attention.</p>
+    <p><strong>Utsab:</strong> Thank you.</p>
   </body>
 </html>
